@@ -41,7 +41,6 @@ public class EnemySpawnerManager : MonoBehaviour
         {
             posX *= -1;
         }
-        Debug.Log(posX);
         Vector3 pos = new Vector3(posX * spaceBetweenEnemies, 0, lineNum * spaceBetweenLines);
         GameObject enemy = Instantiate(enemyPrefab, pos, Quaternion.identity);
         enemy.name = "EnemyL" + lineNum + "N" + enemyIndex;
