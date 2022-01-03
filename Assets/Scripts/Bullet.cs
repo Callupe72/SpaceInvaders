@@ -34,6 +34,7 @@ public class Bullet : MonoBehaviour
             scoreOverEnemy.SetText(damages);
             ScoreManager.Instance.AddScore(damages);
             CinemachineShake.Instance.ShakeCamera(0.5f, .1f);
+            XPManager.Instance.AddXP(10);
             Destroy(gameObject);
         }
     }

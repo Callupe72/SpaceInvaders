@@ -60,9 +60,7 @@ public class Player : MonoBehaviour
                 horizontal = 0;
             }
         }
-        rb.velocity = new Vector3(horizontal * speed, 0, 0);
-
-        
+        rb.velocity = new Vector3(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y, rb.velocity.z);
     }
 
     void Shoot()

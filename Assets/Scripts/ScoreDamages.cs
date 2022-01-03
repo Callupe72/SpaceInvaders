@@ -10,6 +10,7 @@ public class ScoreDamages : MonoBehaviour
     [SerializeField] float timeBeforeDisapear = 1f;
     [SerializeField] float fadeOutTime = 1f;
     bool canFadeOut = false;
+    Vector3 lastPos;
     public void SetText(int damages)
     {
         text.text = damages.ToString();
@@ -20,6 +21,8 @@ public class ScoreDamages : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBeforeDisapear);
         canFadeOut = true;
+        lastPos = transform.position;
+        lastPos = new Vector3(lastPos.x, lastPos.y + 1.5f, lastPos.z);
         yield return new WaitForSeconds(fadeOutTime);
         transform.gameObject.SetActive(false);
     }
@@ -30,6 +33,7 @@ public class ScoreDamages : MonoBehaviour
         {
             text.DOColor(Color.white, fadeOutTime);
             text.transform.DOScale(0.5f, fadeOutTime);
+            text.transform.DOMove(lastPos, fadeOutTime);
         }
     }
 }
