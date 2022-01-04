@@ -1496,6 +1496,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   lineRenderer: {fileID: 1213732299}
+  playerCanDestroyLine: 0
+  playerCanAim: 1
+  playerShield: 0
+  playerCanUsePowerShot: 1
 --- !u!54 &1213732304
 Rigidbody:
   m_ObjectHideFlags: 0

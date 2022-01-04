@@ -19,17 +19,26 @@ public class Enemy : MonoBehaviour
         rb.velocity = new Vector3(0, 0, -speed / 100);
     }
 
-    public void Damage(int damages)
+    public void Damage(int damages, bool destroyLine)
     {
         life -= damages;
         if (life <= 0)
         {
-            DestroyThisLine();
+            if (destroyLine)
+            {
+                DestroyThisLine();
+            }
+            else
+            {
+                Die();
+            }
         }
     }
 
     public void Die()
     {
+        int rand = Random.Range(100, 150);
+        XPManager.Instance.AddXP(rand);
         Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

@@ -33,14 +33,21 @@ public class Player : MonoBehaviour
     bool isOnCooldown;
     float pressingTime;
     bool isLoadingSpecialAttack;
-
+    [SerializeField] Transform weaponToRotate;
 
     //AIM
     [Header("Aim")]
     [SerializeField] Transform redPoint;
     [SerializeField] LayerMask layerEnemy;
     [SerializeField] LineRenderer lineRenderer;
-    bool playerCanAim = true;
+
+
+    //POWER UPS
+
+    [HideInInspector] public bool playerCanDestroyLine = false;
+    [HideInInspector] public bool playerCanAim = false;
+    [HideInInspector] public bool playerShield = false;
+    [HideInInspector] public bool playerCanUsePowerShot = true;
 
     void Start()
     {
@@ -77,12 +84,16 @@ public class Player : MonoBehaviour
         }
         if (Input.GetButton("Fire"))
         {
-            pressingTime += Time.deltaTime;
-            pressingTime = Mathf.Clamp(pressingTime, 0, 0.5f);
-            PostProcessManager.Instance.SetLensDistorsion(true, pressingTime);
-            if (pressingTime > timeBeforeSpecialAttack)
+            weaponToRotate.Rotate(new Vector3(0, -3 * pressingTime, 0));
+            if (playerCanUsePowerShot)
             {
-                PostProcessManager.Instance.SetChromaticAberration(true, pressingTime * 2);
+                pressingTime += Time.deltaTime;
+                pressingTime = Mathf.Clamp(pressingTime, 0, 0.5f);
+                PostProcessManager.Instance.SetLensDistorsion(true, pressingTime);
+                if (pressingTime > timeBeforeSpecialAttack)
+                {
+                    PostProcessManager.Instance.SetChromaticAberration(true, pressingTime * 2);
+                }
             }
         }
 
@@ -123,8 +134,6 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector3(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y, rb.velocity.z);
 
 
-
-
         //forceFactor = 1.0f - ((weaponRigidbody.transform.position.y - waterLevel) / floatThreshold);
 
         //if (forceFactor > 0.0f)
@@ -161,20 +170,32 @@ public class Player : MonoBehaviour
     void Shoot(bool normalShoot)
     {
         Bullet bulletTransform = Instantiate(bullet, bulletSpawner.position, Quaternion.identity).GetComponent<Bullet>();
+        bulletTransform.SetCanDestroyLine(playerCanDestroyLine);
+
         if (normalShoot)
         {
             //Normal Attack
             bulletTransform.SetDamages(Mathf.RoundToInt(damages));
             bulletTransform.SetImpactBeforeDie(1);
+            bulletTransform.transform.localScale = Vector3.one * 0.1f;
+            TrailRenderer bulletTrail = bulletTransform.GetComponent<TrailRenderer>();
+
+            bulletTrail.startWidth = 0.1f;
+            bulletTrail.endWidth = 0.05f;
+            bulletTrail.time = 0.1f;
         }
         else
         {
             //Special Attack
             bulletTransform.SetDamages(Mathf.RoundToInt(damages));
             bulletTransform.SetImpactBeforeDie(AudioReaction.Instance.GetDropValue() * 2);
+            bulletTransform.transform.localScale = Vector3.one * 0.3f;
+            TrailRenderer bulletTrail = bulletTransform.GetComponent<TrailRenderer>();
+            bulletTrail.startWidth = 0.3f;
+            bulletTrail.endWidth = 0.1f;
+            bulletTrail.time = 0.5f;
         }
     }
-
     public void SetStatsOnLevelUp(LevelData levelData)
     {
         speed = levelData.speed;

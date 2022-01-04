@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] AnimationCurve curve;
     int impactBeforeDie;
     float time;
+    [SerializeField] bool destroyLine;
 
 
 void Start()
@@ -30,15 +31,14 @@ void Start()
         if (collision.gameObject.GetComponent<Enemy>())
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.Damage(damages);
+            enemy.Damage(damages, destroyLine);
             Vector3 spawnPos = collision.transform.position;
             spawnPos = new Vector3(spawnPos.x, spawnPos.y + 1, spawnPos.z);
             ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.identity).GetComponent<ScoreDamages>();
+            scoreOverEnemy.transform.parent = collision.transform;
             scoreOverEnemy.SetText(damages);
             ScoreManager.Instance.AddScore(damages);
             CinemachineShake.Instance.ShakeCamera(0.75f, .1f);
-            int rand = Random.Range(100, 150);
-            XPManager.Instance.AddXP(rand);
             impactBeforeDie--;
 
             if (impactBeforeDie == 0)
@@ -53,5 +53,10 @@ void Start()
     public void SetImpactBeforeDie(int newImpact)
     {
         impactBeforeDie = newImpact;
+    }
+
+    public void SetCanDestroyLine(bool thisDestroyLine)
+    {
+        destroyLine = thisDestroyLine;
     }
 }
