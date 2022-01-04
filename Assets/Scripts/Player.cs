@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] float shootCooldown = 0.25f;
     [SerializeField] Transform bulletSpawner;
     [SerializeField] GameObject bullet;
+    [SerializeField] float timeBeforeSpecialAttack = 0.25f;
     [Header("Movement")]
     [SerializeField] int speed;
     [SerializeField] bool smoothMovement = false;
@@ -19,6 +20,8 @@ public class Player : MonoBehaviour
     Rigidbody rb;
     float waitBeforeShoot;
     bool isOnCooldown;
+    float pressingTime;
+    bool isLoadingSpecialAttack;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -26,13 +29,37 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonUp("Fire"))
+        {
+            PostProcessManager.Instance.SetLensDistorsion(true, 0);
+            PostProcessManager.Instance.SetChromaticAberration(true, 0);
+            if (pressingTime > timeBeforeSpecialAttack)
+            {
+                //Special atack
+                Shoot(false);
+                waitBeforeShoot = 0;
+            }
+            else
+            {
+                //Normal Attack
+                if (!isOnCooldown)
+                {
+                    Shoot(true);
+                    waitBeforeShoot = 0;
+                    isOnCooldown = true;
+                }
+            }
+            pressingTime = 0;
+
+        }
         if (Input.GetButton("Fire"))
         {
-            if (!isOnCooldown)
+            pressingTime += Time.deltaTime;
+            pressingTime = Mathf.Clamp(pressingTime, 0, 0.5f);
+            PostProcessManager.Instance.SetLensDistorsion(true, pressingTime);
+            if (pressingTime > timeBeforeSpecialAttack)
             {
-                Shoot();
-                waitBeforeShoot = 0;
-                isOnCooldown = true;
+                PostProcessManager.Instance.SetChromaticAberration(true, pressingTime * 2);
             }
         }
 
@@ -63,9 +90,20 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector3(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y, rb.velocity.z);
     }
 
-    void Shoot()
+    void Shoot(bool normalShoot)
     {
         Bullet bulletTransform = Instantiate(bullet, bulletSpawner.position, Quaternion.identity).GetComponent<Bullet>();
-        bulletTransform.SetDamages(damages);
+        if (normalShoot)
+        {
+            //Normal Attack
+            bulletTransform.SetDamages(damages);
+            bulletTransform.SetImpactBeforeDie(1);
+        }
+        else
+        {
+            //Special Attack
+            bulletTransform.SetDamages(damages);
+            bulletTransform.SetImpactBeforeDie(3);
+        }
     }
 }

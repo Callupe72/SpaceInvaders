@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] float speed = 100;
     [SerializeField] float timeBeforeDestroy = 3f;
     [SerializeField] GameObject scoreDamages;
+    int impactBeforeDie;
 
     void Start()
     {
@@ -33,15 +34,22 @@ public class Bullet : MonoBehaviour
             ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.identity).GetComponent<ScoreDamages>();
             scoreOverEnemy.SetText(damages);
             ScoreManager.Instance.AddScore(damages);
-            CinemachineShake.Instance.ShakeCamera(0.5f, .1f);
+            CinemachineShake.Instance.ShakeCamera(0.75f, .1f);
             int rand = Random.Range(100, 150);
             XPManager.Instance.AddXP(rand);
-            Destroy(gameObject);
+            impactBeforeDie--;
+
+            if (impactBeforeDie == 0)
+                Destroy(gameObject);
         }
     }
 
     public void SetDamages(int newDamages)
     {
         damages = newDamages;
+    }
+    public void SetImpactBeforeDie(int newImpact)
+    {
+        impactBeforeDie = newImpact;
     }
 }
