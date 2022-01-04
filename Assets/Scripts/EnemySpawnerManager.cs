@@ -41,8 +41,8 @@ public class EnemySpawnerManager : MonoBehaviour
         {
             posX *= -1;
         }
-        Vector3 pos = new Vector3(posX * spaceBetweenEnemies, 0, lineNum * spaceBetweenLines);
-        GameObject enemy = Instantiate(enemyPrefab, pos, Quaternion.identity);
+        Vector3 pos = new Vector3(posX * spaceBetweenEnemies, 2, lineNum * spaceBetweenLines);
+        GameObject enemy = Instantiate(enemyPrefab, pos, Quaternion.Euler(-90,180,0));
         enemy.name = "EnemyL" + lineNum + "N" + enemyIndex;
         enemy.transform.parent = parent;
     }

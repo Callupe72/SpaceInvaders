@@ -62,4 +62,12 @@ public class PostProcessManager : MonoBehaviour
             ca.intensity.value = intensity;
         }
     }
+    public void SetBloom(bool isActive, float intensity)
+    {
+        b.active = isActive;
+        if (isActive)
+        {
+            b.intensity.value = intensity;
+        }
+    }
 }

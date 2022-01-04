@@ -17,7 +17,7 @@ public class Level_Data : MonoBehaviour
     public string path = "Assets/CSV/level_xp.csv";
     public List<LevelData> Data = new List<LevelData>();
 
-    void Start()
+    void Awake()
     {
         ReadCSVFile();
     }

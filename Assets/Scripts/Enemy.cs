@@ -7,7 +7,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] int life = 100;
     [SerializeField] float speed = 10f;
-    [SerializeField] Rigidbody rb; 
+    [SerializeField] Rigidbody rb;
+    [SerializeField] FracturedEnemy fracturedEnemy;
 
     void FixedUpdate()
     {
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

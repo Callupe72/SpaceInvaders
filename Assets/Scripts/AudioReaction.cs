@@ -13,9 +13,21 @@ public class AudioReaction : MonoBehaviour
 
     private float clipLoudness;
     private float[] clipSampleData;
+    public static AudioReaction Instance;
+
+    float dropValue = 100;
 
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         clipSampleData = new float[sampleDataLength];
     }
     void Update()
@@ -31,9 +43,28 @@ public class AudioReaction : MonoBehaviour
                 clipLoudness += Mathf.Abs(sample);
                 if (clipLoudness > 200)
                 {
+                    if (dropValue <= 200)
+                    {
+                        PostProcessManager.Instance.SetBloom(true, 10);
+                    }
+                    dropValue = clipLoudness;
+                }
+                else
+                {
+                    if (dropValue != 100)
+                    {
+                        PostProcessManager.Instance.SetBloom(true, 1);
+                    }
+                    dropValue = 100;
                 }
             }
         }
 
+    }
+
+    public int GetDropValue()
+    {
+        Debug.Log("DROP" + Mathf.RoundToInt(dropValue)/ 100);
+        return Mathf.RoundToInt(dropValue) / 100;
     }
 }

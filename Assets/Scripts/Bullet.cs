@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -9,18 +7,22 @@ public class Bullet : MonoBehaviour
     [SerializeField] float speed = 100;
     [SerializeField] float timeBeforeDestroy = 3f;
     [SerializeField] GameObject scoreDamages;
+    [SerializeField] AnimationCurve curve;
     int impactBeforeDie;
+    float time;
 
-    void Start()
+
+void Start()
     {
         Destroy(gameObject, timeBeforeDestroy);
     }
 
     void Update()
     {
-        rb.velocity = new Vector3(0,0, speed / 100);
+        time += Time.deltaTime;
+        rb.velocity = new Vector3(0, 0, speed * time / 100);
         Vector3 rot = rb.rotation.eulerAngles;
-        rb.rotation = Quaternion.Euler(rot.x + 50, rot.y+50, rot.z);
+        rb.rotation = Quaternion.Euler(rot.x + 50, rot.y + 50, rot.z);
     }
 
     void OnCollisionEnter(Collision collision)

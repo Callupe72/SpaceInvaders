@@ -1,27 +1,33 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using TMPro;
 
 public class XPManager : MonoBehaviour
 {
     [SerializeField] Image xpBarBack;
     [SerializeField] Image xpBar;
+    [SerializeField] TextMeshProUGUI levelTxt;
     [SerializeField] GameObject xpText;
     [SerializeField] Transform xpTextParent;
+    [SerializeField] Player player;
+    [SerializeField] Level_Data levelData;
+    [SerializeField] float timeLevelTransition = .5f;
 
     float playerXp;
     float xpBeforeNextLvl = 2000;
+    float xpMax;
 
-    int level;
+    int level = -1;
 
     bool canFollow;
     float speed = 10f;
     float timeBeforeFollow = .5f;
 
     public static XPManager Instance;
+    bool canLevelGrowUp;
+
     void Awake()
     {
         if (Instance != null)
@@ -34,19 +40,30 @@ public class XPManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+    void Start()
+    {
+        LevelUp();
+    }
+
     void Update()
     {
         if (canFollow)
         {
             xpBar.fillAmount = Mathf.Lerp(xpBar.fillAmount, xpBarBack.fillAmount, Time.deltaTime * speed);
-            if (xpBar.fillAmount >= 0.99)
+            if (xpBarBack.fillAmount >= 0.99)
             {
                 LevelUp();
             }
-            if (xpBar.fillAmount >= xpBarBack.fillAmount-0.00005)
+            if (xpBar.fillAmount >= xpBarBack.fillAmount - 0.00005)
             {
                 canFollow = false;
             }
+        }
+
+        if (canLevelGrowUp)
+        {
+            levelTxt.DOColor(Color.white, timeLevelTransition);
+            levelTxt.transform.DOScale(1, timeLevelTransition);
         }
     }
 
@@ -74,6 +91,17 @@ public class XPManager : MonoBehaviour
         level++;
         xpBar.fillAmount = 0;
         xpBarBack.fillAmount = 0;
+        player.SetStatsOnLevelUp(levelData.Data[level]);
+        levelTxt.text = (level+1).ToString();
+        if (level > 0)
+        {
+            xpMax += playerXp;
+            playerXp -= xpBeforeNextLvl;
+            levelTxt.DOColor(Color.red, 0.001f);
+            levelTxt.transform.DOScale(3, 0.001f);
+            canLevelGrowUp = true;
+            StartCoroutine(WaitBeforeFollow(Mathf.RoundToInt(playerXp)));
+        }
+        xpBeforeNextLvl = levelData.Data[level].xp;
     }
-
 }
