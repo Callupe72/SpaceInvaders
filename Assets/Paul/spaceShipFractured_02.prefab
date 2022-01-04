@@ -1298,7 +1298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBeforeBeingDestroyed: 2
-  breakForce: 1000
+  breakForce: 100
 --- !u!1 &5448752816474184350
 GameObject:
   m_ObjectHideFlags: 0

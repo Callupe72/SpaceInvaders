@@ -23,7 +23,7 @@ public class XPManager : MonoBehaviour
 
     bool canFollow;
     float speed = 10f;
-    float timeBeforeFollow = .5f;
+    [SerializeField] float timeBeforeFollow = .5f;
 
     public static XPManager Instance;
     bool canLevelGrowUp;

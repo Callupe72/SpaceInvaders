@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 9149981147789427968}
   - component: {fileID: 9040239742727950773}
   - component: {fileID: 3598288294520981915}
-  m_Layer: 0
+  - component: {fileID: 1041465572512244831}
+  m_Layer: 6
   m_Name: EnemyMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1041465572512244831
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178899896743584359}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7165226397443856211, guid: c3bc1331f1ad5fe46a6a4f0cbc216f54, type: 3}
 --- !u!1 &1789872348610626092
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,11 +105,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7829819179575593664}
-  - component: {fileID: 6076062865580398815}
   - component: {fileID: -4054649016418178941}
   - component: {fileID: 780013316789344093}
-  - component: {fileID: 3028770612026171405}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,19 +129,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!65 &6076062865580398815
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1789872348610626092}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.7857103, y: 12.178986, z: 1}
-  m_Center: {x: -0.06836748, y: -4.2226815, z: 3.1645083e-15}
 --- !u!114 &-4054649016418178941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
-  speed: 10
+  speed: 500
   rb: {fileID: 780013316789344093}
   fracturedEnemy: {fileID: -8716586036654775229, guid: 1d8144ec2087d5b4db480d7f8ba9a379, type: 3}
 --- !u!54 &780013316789344093
@@ -161,16 +161,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &3028770612026171405
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1789872348610626092}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.5040805, y: 2.7802866, z: 4.1904726}
-  m_Center: {x: -0.02278912, y: -0.48322076, z: 0.84319687}

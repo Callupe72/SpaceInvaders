@@ -9,8 +9,9 @@ public class FracturedEnemy : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, timeBeforeBeingDestroyed);
-        foreach (Rigidbody rb in transform)
+        foreach (Transform transform in transform)
         {
+            Rigidbody rb = transform.GetComponent<Rigidbody>();
             Vector3 force = (rb.transform.position - transform.position).normalized * breakForce;
             rb.AddForce(force);
         }

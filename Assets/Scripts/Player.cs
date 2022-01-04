@@ -33,6 +33,15 @@ public class Player : MonoBehaviour
     bool isOnCooldown;
     float pressingTime;
     bool isLoadingSpecialAttack;
+
+
+    //AIM
+    [Header("Aim")]
+    [SerializeField] Transform redPoint;
+    [SerializeField] LayerMask layerEnemy;
+    [SerializeField] LineRenderer lineRenderer;
+    bool playerCanAim = true;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,6 +50,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        //SHOOT
+
         if (Input.GetButtonUp("Fire"))
         {
             PostProcessManager.Instance.SetLensDistorsion(true, 0);
@@ -85,6 +96,13 @@ public class Player : MonoBehaviour
         }
 
         weaponPhysic.transform.position = transform.position + startingWeaponPhysicPos;
+
+        //AIM
+
+        if (playerCanAim)
+        {
+            Aim();
+        }
     }
 
     void FixedUpdate()
@@ -117,6 +135,28 @@ public class Player : MonoBehaviour
         //}
 
     }
+
+    void Aim()
+    {
+
+        RaycastHit hit;
+        Ray ray = new Ray(bulletSpawner.transform.position, Vector3.forward);
+
+        if (Physics.Raycast(ray, out hit, layerEnemy))
+        {
+            lineRenderer.SetWidth(0.01f, 0.01f);
+            lineRenderer.SetPosition(0, bulletSpawner.transform.position);
+            lineRenderer.SetPosition(1, hit.point);
+            redPoint.position = hit.point;
+        }
+        else
+        {
+            redPoint.position = Vector3.one * 9999;
+            lineRenderer.SetWidth(0, 0);
+        }
+
+    }
+
 
     void Shoot(bool normalShoot)
     {

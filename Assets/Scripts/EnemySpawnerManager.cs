@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemySpawnerManager : MonoBehaviour
@@ -36,16 +37,33 @@ public class EnemySpawnerManager : MonoBehaviour
 
     void SpawnEnemy(int lineNum, int enemyIndex, Transform parent)
     {
-        float posX = (enemyIndex+1) / 2;
+        float posX = (enemyIndex + 1) / 2;
         if (enemyIndex % 2 == 0)
         {
             posX *= -1;
         }
         Vector3 pos = new Vector3(posX * spaceBetweenEnemies, 2, lineNum * spaceBetweenLines);
-        GameObject enemy = Instantiate(enemyPrefab, pos, Quaternion.Euler(-90,180,0));
+        GameObject enemy = Instantiate(enemyPrefab, pos, Quaternion.Euler(-90, 180, 0));
         enemy.name = "EnemyL" + lineNum + "N" + enemyIndex;
         enemy.transform.parent = parent;
     }
+
+    public void DestroyLine(Transform lineToDestroy)
+    {
+        StartCoroutine(WaitToDestroyLine(lineToDestroy));
+    }
+
+    IEnumerator WaitToDestroyLine(Transform lineToDestroy)
+    {
+        Time.timeScale = 0.5f;
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 1f;
+        foreach (Transform enemy in lineToDestroy)
+        {
+            enemy.GetComponent<Enemy>().Die();
+        }
+    }
+
 }
 
 [System.Serializable]

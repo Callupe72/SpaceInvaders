@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -9,6 +7,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] Rigidbody rb;
     [SerializeField] FracturedEnemy fracturedEnemy;
+
+    void Start()
+    {
+        float scale = Random.Range(0.75f, 1.25f);
+        transform.localScale = Vector3.one * scale;
+    }
 
     void FixedUpdate()
     {
@@ -20,14 +24,20 @@ public class Enemy : MonoBehaviour
         life -= damages;
         if (life <= 0)
         {
-            Die();
+            DestroyThisLine();
         }
     }
 
-    void Die()
+    public void Die()
     {
         Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+    void DestroyThisLine()
+    {
+        transform.parent.transform.parent.GetComponent<EnemySpawnerManager>().DestroyLine(transform.parent);
+        Die();
     }
 
     void Update()
