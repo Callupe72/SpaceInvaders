@@ -31,7 +31,6 @@ public class AudioReaction : MonoBehaviour
                 clipLoudness += Mathf.Abs(sample);
                 if (clipLoudness > 200)
                 {
-                    Debug.Log(clipLoudness);
                 }
             }
         }

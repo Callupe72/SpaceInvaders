@@ -737,6 +737,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xpBarBack: {fileID: 542528067}
   xpBar: {fileID: 1876202042}
+  xpText: {fileID: 817253915605626918, guid: 6d02838bab22c5749932ccc030baa573, type: 3}
+  xpTextParent: {fileID: 1876202044}
 --- !u!1 &542528064
 GameObject:
   m_ObjectHideFlags: 0
