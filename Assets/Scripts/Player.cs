@@ -93,10 +93,7 @@ public class Player : MonoBehaviour
 
 
         //SHOOT
-
-        Debug.Log(Input.GetAxis("Fire"));
-
-        if (Input.GetButtonUp("Fire") || Input.GetAxis("Fire") != 0)
+        if (Input.GetButtonUp("Fire"))
         {
             actualRotateStartCurve = 0;
             isPlayingRotateSound = false;
@@ -122,7 +119,7 @@ public class Player : MonoBehaviour
             pressingTime = 0;
 
         }
-        if (Input.GetButton("Fire") || Input.GetAxis("Fire") == 0)
+        if (Input.GetButton("Fire"))
         {
             actualRotateStartCurve += Time.deltaTime;
             weaponToRotate.Rotate(new Vector3(0, -8 * pressingTime * rotateCurveStartRotate.Evaluate(actualRotateStartCurve), 0));
