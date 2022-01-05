@@ -29,6 +29,10 @@ public class Player : MonoBehaviour
     [SerializeField] bool rotateOnMove = true;
     [SerializeField] int maxRotation = 30;
     [Range(0, 2)] [SerializeField] float rotationTime = 0.25f;
+    bool rotateWeapon;
+    [SerializeField] float cooldownRotate = 0.25f;
+    float actualRotateCooldown;
+    [SerializeField] AnimationCurve rotateCurve;
     Rigidbody rb;
     float waitBeforeShoot;
     bool isOnCooldown;
@@ -54,6 +58,7 @@ public class Player : MonoBehaviour
     float dashReloadingTimeCalculator;
     bool isDashing;
     bool isReloadingDash;
+    bool isPlayingRotateSound;
 
     //POWER UPS
 
@@ -73,10 +78,23 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (rotateWeapon)
+        {
+            actualRotateCooldown += Time.deltaTime;
+            if(actualRotateCooldown > cooldownRotate)
+            {
+                rotateWeapon = false;
+            }
+            weaponToRotate.Rotate(new Vector3(0, -3 * rotateCurve.Evaluate(actualRotateCooldown), 0));
+        }
+
+
         //SHOOT
 
         if (Input.GetButtonUp("Fire"))
         {
+            isPlayingRotateSound = false;
+            actualRotateCooldown = 0;
             PostProcessManager.Instance.SetLensDistorsion(true, 0);
             PostProcessManager.Instance.SetChromaticAberration(true, 0);
             if (pressingTime > timeBeforeSpecialAttack)
@@ -109,6 +127,11 @@ public class Player : MonoBehaviour
                 if (pressingTime > timeBeforeSpecialAttack)
                 {
                     PostProcessManager.Instance.SetChromaticAberration(true, pressingTime * 2);
+                    if (!isPlayingRotateSound)
+                    {
+                        AudioManager.Instance.Play2DSound("RotateWeapon");
+                        isPlayingRotateSound = true;
+                    }
                 }
             }
         }
@@ -221,6 +244,8 @@ public class Player : MonoBehaviour
             redPoint.position = Vector3.one * 9999;
             lineRenderer.SetWidth(0, 0);
         }
+
+
     }
 
 
@@ -229,10 +254,12 @@ public class Player : MonoBehaviour
         Bullet bulletTransform = Instantiate(bullet, bulletSpawner.position, Quaternion.identity).GetComponent<Bullet>();
         bulletTransform.SetCanDestroyLine(playerCanDestroyLine);
         bulletTransform.SetDebrisMakeDamages(debrisMakesDamages);
+        rotateWeapon = true;
 
         if (normalShoot)
         {
             //Normal Attack
+            AudioManager.Instance.Play2DSound("NormalShot");
             bulletTransform.SetDamages(Mathf.RoundToInt(damages));
             bulletTransform.SetImpactBeforeDie(1);
             bulletTransform.transform.localScale = Vector3.one * 0.1f;
@@ -245,6 +272,7 @@ public class Player : MonoBehaviour
         else
         {
             //Special Attack
+            AudioManager.Instance.Play2DSound("PowerShot");
             bulletTransform.SetDamages(Mathf.RoundToInt(damages));
             bulletTransform.SetImpactBeforeDie(AudioReaction.Instance.GetDropValue() * 2);
             bulletTransform.transform.localScale = Vector3.one * 0.3f;

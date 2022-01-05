@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        AudioManager.Instance.Play3DSound("ShipExplosion", transform.position);
         int rand = Random.Range(100, 150);
         XPManager.Instance.AddXP(rand);
         Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
