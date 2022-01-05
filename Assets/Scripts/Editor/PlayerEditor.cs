@@ -23,13 +23,14 @@ public class PlayerEditor : Editor
                 seePowerup = false;
             }
 
-            player.playerCanUsePowerShot = EditorGUILayout.Toggle("Can Use Power Shot", player.playerCanUsePowerShot);
-            player.playerCanAim = EditorGUILayout.Toggle("Can Aim", player.playerCanAim);
-            player.playerCanDestroyLine = EditorGUILayout.Toggle("Can Destroy Line", player.playerCanDestroyLine);
-            player.playerShield = EditorGUILayout.Toggle("Can Use Shield", player.playerShield);
+            player.playerCanUsePowerShot = EditorGUILayout.Toggle("Use Power Shot", player.playerCanUsePowerShot);
+            player.playerCanAim = EditorGUILayout.Toggle("Aim", player.playerCanAim);
+            player.playerCanDestroyLine = EditorGUILayout.Toggle("Destroy Line", player.playerCanDestroyLine);
+            player.playerShield = EditorGUILayout.Toggle("Use Shield", player.playerShield);
+            player.playerCanDash = EditorGUILayout.Toggle("Dash", player.playerCanDash);
+            player.playerCanMakeDamagesOnDash = EditorGUILayout.Toggle("Make Damages on Dash", player.playerCanMakeDamagesOnDash);
+            player.debrisMakesDamages = EditorGUILayout.Toggle("Debris Make Damages", player.debrisMakesDamages);
         }
-
-
 
         EditorGUILayout.Space(20);
 

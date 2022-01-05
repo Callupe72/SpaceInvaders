@@ -16,6 +16,7 @@ public class AudioReaction : MonoBehaviour
     public static AudioReaction Instance;
 
     float dropValue = 100;
+    [SerializeField] float soundImpact = 100;
 
     void Awake()
     {
@@ -50,7 +51,7 @@ public class AudioReaction : MonoBehaviour
                     dropValue = 100;
                 }
 
-               PostProcessManager.Instance.SetBloom(true,clipLoudness/100);
+               PostProcessManager.Instance.SetBloom(true,clipLoudness * soundImpact / 1000);
             }
         }
 

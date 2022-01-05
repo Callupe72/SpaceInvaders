@@ -184,7 +184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42118205}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1752.4314, y: -910.75, z: -32.65}
+  m_LocalPosition: {x: -1752.4314, y: -910.75, z: -139.54999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 69171978}
@@ -644,6 +644,7 @@ MonoBehaviour:
   audioSource: {fileID: 337432688}
   updateStep: 0.1
   sampleDataLength: 1024
+  soundImpact: 100
 --- !u!1 &424316720
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,8 +929,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1789872348610626092, guid: 4f740fee78405214c8f01b2466d51da9, type: 3}
   waves:
-  - enemyPerLines: 3
-    linesNumbers: 10
+  - enemyPerLines: 10
+    linesNumbers: 50
   spaceBetweenLines: 15
   spaceBetweenEnemies: 8
 --- !u!4 &456856606
@@ -1539,7 +1540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213732298}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1752.4314, y: -911.65, z: -30}
+  m_LocalPosition: {x: -1752.4314, y: -911.65, z: -136.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1194854904}
@@ -1579,10 +1580,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   lineRenderer: {fileID: 1213732299}
+  aimDistance: 0
+  dashSpeed: 100000
+  dashTime: 0.1
+  cooldownReloadDash: 0.25
   playerCanDestroyLine: 1
   playerCanAim: 1
   playerShield: 0
   playerCanUsePowerShot: 1
+  playerCanDash: 1
+  playerCanMakeDamagesOnDash: 0
+  debrisMakesDamages: 1
 --- !u!54 &1213732304
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2001,7 +2009,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1752.4314, y: -910.75, z: -32.65}
+  m_LocalPosition: {x: -1752.4314, y: -910.75, z: -139.54999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 159873094}
@@ -2091,7 +2099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1870557787
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2169,7 +2177,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

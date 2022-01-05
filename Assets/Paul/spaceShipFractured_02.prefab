@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8071534700410988266}
   - component: {fileID: 5673134298880811384}
   - component: {fileID: 4167427814561108334}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.007
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,9 +125,9 @@ GameObject:
   - component: {fileID: 2928158618102940140}
   - component: {fileID: 5558716113991081873}
   - component: {fileID: 6928416282243931964}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.019
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,9 +237,9 @@ GameObject:
   - component: {fileID: 1292526221018972396}
   - component: {fileID: 7940768268595064658}
   - component: {fileID: 2583164838850062483}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.003
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,9 +349,9 @@ GameObject:
   - component: {fileID: 907168091771171443}
   - component: {fileID: 3079851372443454871}
   - component: {fileID: 7228826694020483947}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.006
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -461,9 +461,9 @@ GameObject:
   - component: {fileID: 17655850563778741}
   - component: {fileID: 4159990965888932925}
   - component: {fileID: 3875400163533913743}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.011
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -573,9 +573,9 @@ GameObject:
   - component: {fileID: 3421306153058988946}
   - component: {fileID: 1345632959103351011}
   - component: {fileID: 5222018120694554752}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -685,9 +685,9 @@ GameObject:
   - component: {fileID: 3803368175213459163}
   - component: {fileID: 4825291167438672336}
   - component: {fileID: 5283972439115429248}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.004
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -797,9 +797,9 @@ GameObject:
   - component: {fileID: 9214813562374403683}
   - component: {fileID: 2751370182684303227}
   - component: {fileID: 5240850306037634293}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.010
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -909,9 +909,9 @@ GameObject:
   - component: {fileID: 7641821620078265933}
   - component: {fileID: 4059102376091227542}
   - component: {fileID: 4155200887712027207}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.021
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1021,9 +1021,9 @@ GameObject:
   - component: {fileID: 5341542169124635795}
   - component: {fileID: 2445740221035765590}
   - component: {fileID: 7361985089928483145}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.005
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1133,9 +1133,9 @@ GameObject:
   - component: {fileID: 3452943368905990127}
   - component: {fileID: 7090549666977723221}
   - component: {fileID: 3017120797048025146}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.002
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1242,9 +1242,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4737675450469748724}
   - component: {fileID: -8716586036654775229}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceShipFractured_02
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1298,7 +1298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBeforeBeingDestroyed: 2
-  breakForce: 100
+  breakForce: 10
+  damagesOnCollision: 10
 --- !u!1 &5448752816474184350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,9 +1313,9 @@ GameObject:
   - component: {fileID: 9215529368227923696}
   - component: {fileID: 911056622629528102}
   - component: {fileID: 1713018505000557302}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.009
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1424,9 +1425,9 @@ GameObject:
   - component: {fileID: 62637596833838094}
   - component: {fileID: 5306736774213142495}
   - component: {fileID: 1761780727813818936}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.018
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1536,9 +1537,9 @@ GameObject:
   - component: {fileID: 558186926004604773}
   - component: {fileID: 1386526876522354780}
   - component: {fileID: 1934790364987189557}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.008
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1648,9 +1649,9 @@ GameObject:
   - component: {fileID: 8623627068964819811}
   - component: {fileID: 8594280142220110614}
   - component: {fileID: 5019250201551296381}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.014
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1760,9 +1761,9 @@ GameObject:
   - component: {fileID: 4255821466251215713}
   - component: {fileID: 9150847663893433300}
   - component: {fileID: 7794371035560194853}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.012
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1872,9 +1873,9 @@ GameObject:
   - component: {fileID: 5132102601625733697}
   - component: {fileID: 4391998089635620281}
   - component: {fileID: 3412783012039520953}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.015
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1984,9 +1985,9 @@ GameObject:
   - component: {fileID: 459575810208354730}
   - component: {fileID: 3346826160231010590}
   - component: {fileID: 9029378799313281044}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.001
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2096,9 +2097,9 @@ GameObject:
   - component: {fileID: 839954365473489202}
   - component: {fileID: 6159226322452025742}
   - component: {fileID: 5808709930245984759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.017
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2208,9 +2209,9 @@ GameObject:
   - component: {fileID: 8953544459088535193}
   - component: {fileID: 9067024412372205470}
   - component: {fileID: 2480419617628683663}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.016
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2320,9 +2321,9 @@ GameObject:
   - component: {fileID: 2937649452002941178}
   - component: {fileID: 6227400068835547827}
   - component: {fileID: 9190940976849806556}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.020
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2432,9 +2433,9 @@ GameObject:
   - component: {fileID: 5338540891140488055}
   - component: {fileID: 8305164213501600184}
   - component: {fileID: 7091895585675999793}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceship_02_cell.013
-  m_TagString: Untagged
+  m_TagString: FracturedDebries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

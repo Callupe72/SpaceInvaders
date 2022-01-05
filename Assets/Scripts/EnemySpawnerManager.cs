@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class EnemySpawnerManager : MonoBehaviour
     [SerializeField] int spaceBetweenEnemies = 2;
     int currentWave = -1;
 
+    int enemyStillAlive;
+
     void Start()
     {
         CreateNewWave();
@@ -18,6 +21,7 @@ public class EnemySpawnerManager : MonoBehaviour
     void CreateNewWave()
     {
         currentWave++;
+        enemyStillAlive = waves[currentWave].GetLinesNumbers() * waves[currentWave].GetEnemyPerLine();
         for (int i = 0; i < waves[currentWave].GetLinesNumbers(); i++)
         {
             SpawnLine(i);
@@ -51,6 +55,22 @@ public class EnemySpawnerManager : MonoBehaviour
     public void DestroyLine(Transform lineToDestroy)
     {
         StartCoroutine(WaitToDestroyLine(lineToDestroy));
+    }
+
+    public void EnemyIsKilled()
+    {
+        enemyStillAlive--;
+        if (enemyStillAlive == 0)
+        {
+            if (currentWave < waves.Length)
+            {
+                CreateNewWave();
+            }
+            else
+            {
+                GameManager.Instance.ChangeGameState(GameManager.GameState.Victory);
+            }
+        }
     }
 
     IEnumerator WaitToDestroyLine(Transform lineToDestroy)

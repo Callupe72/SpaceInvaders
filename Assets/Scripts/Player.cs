@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     float forceFactor;
     Vector3 floatForce;
 
+
     [Header("PlayerStats")]
     [SerializeField] float speed = 10;
     [SerializeField] float life = 100;
@@ -40,7 +41,19 @@ public class Player : MonoBehaviour
     [SerializeField] Transform redPoint;
     [SerializeField] LayerMask layerEnemy;
     [SerializeField] LineRenderer lineRenderer;
+    [SerializeField] float aimDistance;
 
+
+    //DASH
+
+    [Header("Dash")]
+    [SerializeField] float dashSpeed = 1000;
+    [Range(0, 1)] [SerializeField] float dashTime = 0.1f;
+    [SerializeField] float cooldownReloadDash = 1;
+    float dashTimeCalculator;
+    float dashReloadingTimeCalculator;
+    bool isDashing;
+    bool isReloadingDash;
 
     //POWER UPS
 
@@ -48,6 +61,9 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool playerCanAim = false;
     [HideInInspector] public bool playerShield = false;
     [HideInInspector] public bool playerCanUsePowerShot = true;
+    [HideInInspector] public bool playerCanDash = true;
+    [HideInInspector] public bool playerCanMakeDamagesOnDash = false;
+    [HideInInspector] public bool debrisMakesDamages = false;
 
     void Start()
     {
@@ -84,7 +100,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetButton("Fire"))
         {
-            weaponToRotate.Rotate(new Vector3(0, -3 * pressingTime, 0));
+            weaponToRotate.Rotate(new Vector3(0, -5 * pressingTime, 0));
             if (playerCanUsePowerShot)
             {
                 pressingTime += Time.deltaTime;
@@ -118,6 +134,50 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        Movement();
+
+    }
+
+    void Movement()
+    {
+        float isDashingSpeed = speed;
+
+        #region Dash
+        if (playerCanDash)
+        {
+            if (Input.GetButton("Dash") && !isDashing && !isReloadingDash)
+            {
+                isDashingSpeed = dashSpeed;
+                isDashing = true;
+                dashTimeCalculator = 0;
+            }
+
+            if (isDashing)
+            {
+                dashTimeCalculator += Time.deltaTime;
+                if (dashTimeCalculator > dashTime)
+                {
+                    dashTimeCalculator = 0;
+                    isDashing = false;
+                    isReloadingDash = true;
+                    dashReloadingTimeCalculator = 0;
+                }
+            }
+
+            if (isReloadingDash)
+            {
+                dashReloadingTimeCalculator += Time.deltaTime;
+                if (dashReloadingTimeCalculator > cooldownReloadDash)
+                {
+                    dashReloadingTimeCalculator = 0;
+                    isReloadingDash = false;
+                }
+            }
+        }
+
+        #endregion
+
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         if (rotateOnMove)
         {
@@ -131,7 +191,7 @@ public class Player : MonoBehaviour
                 horizontal = 0;
             }
         }
-        rb.velocity = new Vector3(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y, rb.velocity.z);
+        rb.velocity = new Vector3(horizontal * Time.fixedDeltaTime * isDashingSpeed, rb.velocity.y, rb.velocity.z);
 
 
         //forceFactor = 1.0f - ((weaponRigidbody.transform.position.y - waterLevel) / floatThreshold);
@@ -142,16 +202,14 @@ public class Player : MonoBehaviour
         //    floatForce += new Vector3(weaponRigidbody.velocity.x, -downForce, weaponRigidbody.velocity.z);
         //    weaponRigidbody.AddForceAtPosition(floatForce, weaponRigidbody.transform.position);
         //}
-
     }
 
     void Aim()
     {
-
         RaycastHit hit;
         Ray ray = new Ray(bulletSpawner.transform.position, Vector3.forward);
 
-        if (Physics.Raycast(ray, out hit, layerEnemy))
+        if (Physics.Raycast(ray, out hit, aimDistance, layerEnemy))
         {
             lineRenderer.SetWidth(0.01f, 0.01f);
             lineRenderer.SetPosition(0, bulletSpawner.transform.position);
@@ -163,7 +221,6 @@ public class Player : MonoBehaviour
             redPoint.position = Vector3.one * 9999;
             lineRenderer.SetWidth(0, 0);
         }
-
     }
 
 
@@ -171,6 +228,7 @@ public class Player : MonoBehaviour
     {
         Bullet bulletTransform = Instantiate(bullet, bulletSpawner.position, Quaternion.identity).GetComponent<Bullet>();
         bulletTransform.SetCanDestroyLine(playerCanDestroyLine);
+        bulletTransform.SetDebrisMakeDamages(debrisMakesDamages);
 
         if (normalShoot)
         {

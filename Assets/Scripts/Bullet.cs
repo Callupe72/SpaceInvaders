@@ -6,14 +6,13 @@ public class Bullet : MonoBehaviour
     int damages;
     [SerializeField] float speed = 100;
     [SerializeField] float timeBeforeDestroy = 3f;
-    [SerializeField] GameObject scoreDamages;
     [SerializeField] AnimationCurve curve;
     int impactBeforeDie;
     float time;
     [SerializeField] bool destroyLine;
+    bool debrisWillMakeDamages;
 
-
-void Start()
+    void Start()
     {
         Destroy(gameObject, timeBeforeDestroy);
     }
@@ -32,12 +31,7 @@ void Start()
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.Damage(damages, destroyLine);
-            Vector3 spawnPos = collision.transform.position;
-            spawnPos = new Vector3(spawnPos.x, spawnPos.y + 1, spawnPos.z);
-            ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.identity).GetComponent<ScoreDamages>();
-            scoreOverEnemy.transform.parent = collision.transform;
-            scoreOverEnemy.SetText(damages);
-            ScoreManager.Instance.AddScore(damages);
+            enemy.SetDebrisMakeDamages(debrisWillMakeDamages);
             CinemachineShake.Instance.ShakeCamera(0.75f, .1f);
             impactBeforeDie--;
 
@@ -58,5 +52,10 @@ void Start()
     public void SetCanDestroyLine(bool thisDestroyLine)
     {
         destroyLine = thisDestroyLine;
+    }
+
+    public void SetDebrisMakeDamages(bool isTrue)
+    {
+        debrisWillMakeDamages = isTrue;
     }
 }
