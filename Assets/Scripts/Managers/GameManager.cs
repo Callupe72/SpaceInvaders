@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    bool isPause = false;
+    public static bool isPause = false;
     [SerializeField] GameObject pauseMenu;
 
     public enum GameState
@@ -91,8 +91,10 @@ public class GameManager : MonoBehaviour
 
     void GameIsPaused()
     {
+        AudioReaction.Instance.PauseMusic();
     }
     void GameIsPlayed()
     {
+        AudioReaction.Instance.PlayMusic();
     }
 }

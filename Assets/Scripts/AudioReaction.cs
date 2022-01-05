@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class AudioReaction : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class AudioReaction : MonoBehaviour
     private float clipLoudness;
     private float[] clipSampleData;
     public static AudioReaction Instance;
+    [SerializeField] Slider volumeSlider;
+    [SerializeField] TextMeshProUGUI volumeTxt;
 
     float dropValue = 100;
     [SerializeField] float soundImpact = 100;
@@ -31,6 +35,12 @@ public class AudioReaction : MonoBehaviour
         }
         clipSampleData = new float[sampleDataLength];
     }
+
+    void Start()
+    {
+        SetVolume();
+    }
+
     void Update()
     {
         currentUpdateTime += Time.deltaTime;
@@ -57,8 +67,24 @@ public class AudioReaction : MonoBehaviour
 
     }
 
+    public void SetVolume()
+    {
+        audioSource.volume = volumeSlider.value;
+        volumeTxt.text = volumeSlider.value.ToString();
+    }
+
     public int GetDropValue()
     {
         return Mathf.RoundToInt(dropValue) / 100;
+    }
+
+    public void PauseMusic()
+    {
+        audioSource.Pause();
+    }
+
+    public void PlayMusic()
+    {
+        audioSource.Play();
     }
 }

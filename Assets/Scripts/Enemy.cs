@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         Vector3 spawnPos = transform.position;
         spawnPos = new Vector3(spawnPos.x, spawnPos.y + 1, spawnPos.z);
         ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.identity).GetComponent<ScoreDamages>();
-        scoreOverEnemy.transform.parent = transform;
+        //scoreOverEnemy.transform.parent = transform;
         scoreOverEnemy.SetText(damages);
         ScoreManager.Instance.AddScore(damages);
         if (life <= 0)

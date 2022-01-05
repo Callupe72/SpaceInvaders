@@ -24,7 +24,7 @@ public class ScoreDamages : MonoBehaviour
         lastPos = transform.position;
         lastPos = new Vector3(lastPos.x, lastPos.y + 1.5f, lastPos.z);
         yield return new WaitForSeconds(fadeOutTime);
-        transform.gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     void Update()

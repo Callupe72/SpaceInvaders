@@ -13,10 +13,9 @@ public class FracturedEnemy : MonoBehaviour
     {
         Destroy(gameObject, timeBeforeBeingDestroyed);
         //StartCoroutine(WaitBeforeScaleDown());
-        foreach (Transform transform in transform)
+        foreach (Rigidbody rb in transform.GetComponentsInChildren<Rigidbody>())
         {
-            Rigidbody rb = transform.GetComponent<Rigidbody>();
-            Vector3 force = (rb.transform.position - transform.position).normalized * breakForce;
+            Vector3 force = (rb.transform.position - transform.position).normalized * breakForce / 100000;
             rb.AddForce(force);
         }
     }

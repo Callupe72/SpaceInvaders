@@ -32,7 +32,9 @@ public class Player : MonoBehaviour
     bool rotateWeapon;
     [SerializeField] float cooldownRotate = 0.25f;
     float actualRotateCooldown;
-    [SerializeField] AnimationCurve rotateCurve;
+    [SerializeField] AnimationCurve rotateCurveStartRotate;
+    float actualRotateStartCurve;
+    [SerializeField] AnimationCurve rotateCurveEndRotate;
     Rigidbody rb;
     float waitBeforeShoot;
     bool isOnCooldown;
@@ -82,11 +84,11 @@ public class Player : MonoBehaviour
         if (rotateWeapon)
         {
             actualRotateCooldown += Time.deltaTime;
-            if(actualRotateCooldown > cooldownRotate)
+            if (actualRotateCooldown > cooldownRotate)
             {
                 rotateWeapon = false;
             }
-            weaponToRotate.Rotate(new Vector3(0, -3 * rotateCurve.Evaluate(actualRotateCooldown), 0));
+            weaponToRotate.Rotate(new Vector3(0, -3 * rotateCurveEndRotate.Evaluate(actualRotateCooldown), 0));
         }
 
 
@@ -94,6 +96,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonUp("Fire"))
         {
+            actualRotateStartCurve = 0;
             isPlayingRotateSound = false;
             actualRotateCooldown = 0;
             PostProcessManager.Instance.SetLensDistorsion(true, 0);
@@ -119,7 +122,8 @@ public class Player : MonoBehaviour
         }
         if (Input.GetButton("Fire"))
         {
-            weaponToRotate.Rotate(new Vector3(0, -5 * pressingTime, 0));
+            actualRotateStartCurve += Time.deltaTime;
+            weaponToRotate.Rotate(new Vector3(0, -8 * pressingTime * rotateCurveStartRotate.Evaluate(actualRotateStartCurve), 0));
             if (playerCanUsePowerShot)
             {
                 pressingTime += Time.deltaTime;
@@ -245,8 +249,6 @@ public class Player : MonoBehaviour
             redPoint.position = Vector3.one * 9999;
             lineRenderer.SetWidth(0, 0);
         }
-
-
     }
 
 

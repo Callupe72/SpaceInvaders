@@ -47,6 +47,7 @@ public class AudioManager : MonoBehaviour
     public void SetAudioValueFromSlider()
     {
         audioVolume = audioVolumeSlider.value;
+        ActualiseText();
     }
 
     public void ActualiseText()
@@ -58,7 +59,7 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
-        GameObject obj2D = Instantiate(new GameObject());
+        GameObject obj2D = new GameObject();
         obj2D.AddComponent<AudioSource>();
         AudioSource source2D = obj2D.GetComponent<AudioSource>();
 
