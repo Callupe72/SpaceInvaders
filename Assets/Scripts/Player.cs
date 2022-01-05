@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     [Header("PlayerStats")]
     [SerializeField] float speed = 10;
-    [SerializeField] float life = 100;
+    [SerializeField] float life = 3;
     [SerializeField] float damages = 200;
     [Header("Shoot")]
     [SerializeField] float shootCooldown = 0.25f;
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     float pressingTime;
     bool isLoadingSpecialAttack;
     [SerializeField] Transform weaponToRotate;
+    bool isDead = false;
 
     //AIM
     [Header("Aim")]
@@ -282,10 +283,21 @@ public class Player : MonoBehaviour
             bulletTrail.time = 0.5f;
         }
     }
+
     public void SetStatsOnLevelUp(LevelData levelData)
     {
         speed = levelData.speed;
         damages = levelData.dommage;
-        life = levelData.defense;
+    }
+
+    public void TakeDommage(int dommage)
+    {
+        life -= dommage;
+        if (life <= 0)
+        {
+            life = 0;
+            isDead = true;
+            GameManager.Instance.ChangeGameState(GameManager.GameState.Defeat);
+        }
     }
 }
