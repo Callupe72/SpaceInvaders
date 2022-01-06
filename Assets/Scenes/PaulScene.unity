@@ -11257,6 +11257,11 @@ MonoBehaviour:
   bulletSpawner: {fileID: 1194854904}
   bullet: {fileID: 2954419753947916537, guid: a965b604af9ff4a4da3ebad0015a052d, type: 3}
   timeBeforeSpecialAttack: 0.25
+  durationBetweenChangeMoveWeapon: 1
+  offsetMoveWeapon: 0.5
+  offsetMoveWeaponFire: 1
+  weaponToMove: {fileID: 1194854904}
+  moveWeapon: 0
   smoothMovement: 1
   rotateOnMove: 1
   maxRotation: 5
