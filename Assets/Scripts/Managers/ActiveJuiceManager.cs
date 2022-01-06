@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +16,7 @@ public class ActiveJuiceManager : MonoBehaviour
         [HideInInspector] public string effectToActive;
         public enum AllEffect
         {
+            ActiveEveryhing,
             PostProcess,
             Bloom,
             ShipExplostion,
@@ -126,7 +125,7 @@ public class ActiveJuiceManager : MonoBehaviour
             activeJuices[i].juicinessSpawner.slider.maxValue = activeJuices[i].maxValue;
             activeJuices[i].juicinessSpawner.slider.wholeNumbers = activeJuices[i].wholeNumbers;
 
-            if(activeJuices[i].whatToUse == ActiveJuiceValues.HowToModify.Title)
+            if (activeJuices[i].whatToUse == ActiveJuiceValues.HowToModify.Title)
             {
                 juicinessText.text = activeJuices[i].titleName;
                 activeJuices[i].juicinessSpawner.name = "Title : " + activeJuices[i].titleName;
@@ -143,7 +142,7 @@ public class ActiveJuiceManager : MonoBehaviour
     {
         for (int i = 0; i < activeJuices.Length; i++)
         {
-            if(activeJuices[i].whichEffect == whichEffect)
+            if (activeJuices[i].whichEffect == whichEffect)
             {
                 return activeJuices[i].juicinessSpawner.slider.value;
             }
@@ -184,6 +183,54 @@ public class ActiveJuiceManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    public void ActiveAllToggle(bool isOn)
+    {
+        for (int i = 0; i < activeJuices.Length; i++)
+        {
+            if (activeJuices[i].whatToUse == ActiveJuiceValues.HowToModify.Toggle)
+            {
+                if (activeJuices[i].whichEffect != ActiveJuiceValues.AllEffect.ActiveEveryhing)
+                {
+
+                    activeJuices[i].juicinessSpawner.toggle.isOn = isOn;
+                    if (isOn)
+                    {
+                        activeJuices[i].juicinessSpawner.ChangeValue();
+                    }
+                }
+            }
+        }
+    }
+
+    public void ChangeActiveAllToggle(bool isOn)
+    {
+        for (int i = 0; i < activeJuices.Length; i++)
+        {
+            if (activeJuices[i].whichEffect == ActiveJuiceValues.AllEffect.ActiveEveryhing)
+            {
+                if (!isOn)
+                {
+                    activeJuices[i].juicinessSpawner.toggle.isOn = !isOn;
+                    return;
+                }
+                else
+                {
+                    for (int j = 0; j < activeJuices.Length; j++)
+                    {
+                        if(activeJuices[j].whatToUse == ActiveJuiceValues.HowToModify.Toggle)
+                        {
+                            if (activeJuices[j].juicinessSpawner.toggle == false)
+                            {
+                                activeJuices[i].juicinessSpawner.toggle.isOn = false;
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

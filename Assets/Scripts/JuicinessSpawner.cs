@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class JuicinessSpawner : MonoBehaviour
@@ -20,24 +18,11 @@ public class JuicinessSpawner : MonoBehaviour
 
     public void ChangeValue()
     {
-        switch (modifyValue)
-        {
-            case ActiveJuiceManager.ActiveJuiceValues.HowToModify.Toggle:
-
-                //Toggle true false
-
-                break;
-            case ActiveJuiceManager.ActiveJuiceValues.HowToModify.Slider:
-
-                //Value en Int
-
-                break;
-            default:
-                break;
-        }
-
         switch (thisEffect)
         {
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ActiveEveryhing:
+                ActiveJuiceManager.Instance.ActiveAllToggle(toggle.isOn);
+                break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.PostProcess:
                 PostProcessManager.Instance.SetPostProcessIsActive(toggle.isOn);
                 break;
@@ -60,6 +45,15 @@ public class JuicinessSpawner : MonoBehaviour
             default:
                 break;
         }
+
+        if (thisEffect != ActiveJuiceManager.ActiveJuiceValues.AllEffect.ActiveEveryhing)
+        {
+            if (toggle.gameObject.activeInHierarchy)
+            {
+                ActiveJuiceManager.Instance.ChangeActiveAllToggle(toggle.isOn);
+            }
+        }
+
     }
 
     public void SetButtonTo()
