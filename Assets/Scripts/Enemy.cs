@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        ComboManager.Instance.AddCombo();
         AudioManager.Instance.Play3DSound("ShipExplosion", transform.position);
         int rand = Random.Range(100, 150);
         XPManager.Instance.AddXP(rand);

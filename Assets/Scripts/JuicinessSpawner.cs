@@ -11,6 +11,21 @@ public class JuicinessSpawner : MonoBehaviour
     public ActiveJuiceManager.ActiveJuiceValues.HowToModify modifyValue;
     public ActiveJuiceManager.ActiveJuiceValues.AllEffect thisEffect;
 
+    float defaultValueFloat;
+    bool defaultValueBool;
+
+    public void SaveResetValue()
+    {
+        if (slider.gameObject.activeInHierarchy)
+        {
+            defaultValueFloat = slider.value;
+        }
+        else
+        {
+            defaultValueBool = toggle.isOn;
+        }
+    }
+
     public void SetText()
     {
         sliderText.text = slider.value.ToString();
@@ -84,4 +99,24 @@ public class JuicinessSpawner : MonoBehaviour
         }
     }
 
+    public void ResetToDefaultValue()
+    {
+        if(thisEffect == ActiveJuiceManager.ActiveJuiceValues.AllEffect.ActiveEveryhing)
+        {
+            ActiveJuiceManager.Instance.ResetAllButtons();
+        }
+        ResetButtons();
+    }
+
+    public void ResetButtons()
+    {
+        if (slider.gameObject.activeInHierarchy)
+        {
+            slider.value = defaultValueFloat;
+        }
+        else
+        {
+            toggle.isOn = defaultValueBool;
+        }
+    }
 }

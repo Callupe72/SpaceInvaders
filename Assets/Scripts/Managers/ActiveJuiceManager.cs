@@ -23,6 +23,8 @@ public class ActiveJuiceManager : MonoBehaviour
             Sound,
             Music,
             ShakeCamera,
+            XpBar,
+            XpText,
             Animations,
         }
 
@@ -72,18 +74,31 @@ public class ActiveJuiceManager : MonoBehaviour
         if (destroyAllButtons)
         {
             destroyAllButtons = false;
-            foreach (Transform item in juicinessParent.transform)
-            {
-                Destroy(item.gameObject);
-            }
+            DestroyButtons();
         }
 
         ChangeName();
     }
 
+    void DestroyButtons()
+    {
+        for (int i = 0; i < juicinessParent.transform.childCount; i++)
+        {
+            GameObject goToDestroy = juicinessParent.transform.GetChild(i).gameObject;
+            UnityEditor.EditorApplication.delayCall += () =>
+            {
+                DestroyImmediate(goToDestroy);
+            };
+        }
+    }
+
     void Start()
     {
         SetValuesOnEnable();
+        for (int i = 0; i < activeJuices.Length; i++)
+        {
+            activeJuices[i].juicinessSpawner.SaveResetValue();
+        }
     }
 
     void ChangeName()
@@ -131,6 +146,7 @@ public class ActiveJuiceManager : MonoBehaviour
                 activeJuices[i].juicinessSpawner.name = "Title : " + activeJuices[i].titleName;
                 juicinessText.fontSize = 50;
                 juicinessText.fontStyle = FontStyles.Bold;
+                juicinessTransform.GetComponentInChildren<Button>().gameObject.SetActive(false);
             }
         }
 
@@ -209,28 +225,38 @@ public class ActiveJuiceManager : MonoBehaviour
     {
         for (int i = 0; i < activeJuices.Length; i++)
         {
-            if (activeJuices[i].whichEffect == ActiveJuiceValues.AllEffect.ActiveEveryhing)
+            if (activeJuices[i].whichEffect == ActiveJuiceValues.AllEffect.ActiveEveryhing && activeJuices[i].whatToUse == ActiveJuiceValues.HowToModify.Toggle)
             {
                 if (!isOn)
                 {
-                    activeJuices[i].juicinessSpawner.toggle.isOn = !isOn;
+                    activeJuices[i].juicinessSpawner.toggle.SetIsOnWithoutNotify(false);
                     return;
                 }
                 else
                 {
                     for (int j = 0; j < activeJuices.Length; j++)
                     {
-                        if(activeJuices[j].whatToUse == ActiveJuiceValues.HowToModify.Toggle)
+                        if (activeJuices[j].whatToUse == ActiveJuiceValues.HowToModify.Toggle && activeJuices[j].whichEffect != ActiveJuiceValues.AllEffect.ActiveEveryhing)
                         {
-                            if (activeJuices[j].juicinessSpawner.toggle == false)
+                            if (activeJuices[j].juicinessSpawner.toggle.isOn == false)
                             {
-                                activeJuices[i].juicinessSpawner.toggle.isOn = false;
+                                activeJuices[j].juicinessSpawner.toggle.SetIsOnWithoutNotify(false);
                                 return;
                             }
                         }
                     }
+
+                    activeJuices[i].juicinessSpawner.toggle.SetIsOnWithoutNotify(true);
                 }
             }
+        }
+    }
+
+    public void ResetAllButtons()
+    {
+        for (int i = 0; i < activeJuices.Length; i++)
+        {
+            activeJuices[i].juicinessSpawner.ResetButtons();
         }
     }
 }

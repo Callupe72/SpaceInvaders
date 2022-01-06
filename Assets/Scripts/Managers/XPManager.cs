@@ -1,8 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class XPManager : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class XPManager : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] Level_Data levelData;
     [SerializeField] float timeLevelTransition = .5f;
+    [SerializeField] RectTransform xpBackground;
 
     float playerXp;
     float xpBeforeNextLvl = 2000;
@@ -47,6 +48,7 @@ public class XPManager : MonoBehaviour
 
     void Update()
     {
+        xpBackground.DOScale(1f, timeLevelTransition);
         if (canFollow)
         {
             xpBar.fillAmount = Mathf.Lerp(xpBar.fillAmount, xpBarBack.fillAmount, Time.deltaTime * speed);
@@ -69,6 +71,7 @@ public class XPManager : MonoBehaviour
 
     public void AddXP(int xp)
     {
+        xpBackground.DOScale(1.1f, 0.001f);
         playerXp += xp;
         TextMeshProUGUI text = Instantiate(xpText, xpTextParent).GetComponent<TextMeshProUGUI>();
         text.rectTransform.anchoredPosition = new Vector2(xpBarBack.fillAmount * xpBar.rectTransform.sizeDelta.x - 100 - xpBar.rectTransform.sizeDelta.x / 3, -40);
@@ -92,7 +95,7 @@ public class XPManager : MonoBehaviour
         xpBar.fillAmount = 0;
         xpBarBack.fillAmount = 0;
         player.SetStatsOnLevelUp(levelData.Data[level]);
-        levelTxt.text = (level+1).ToString();
+        levelTxt.text = (level + 1).ToString();
         if (level > 0)
         {
             xpMax += playerXp;
