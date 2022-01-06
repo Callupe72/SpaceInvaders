@@ -293,6 +293,9 @@ public class Player : MonoBehaviour
 
     public void TakeDommage(int dommage)
     {
+        if (isDead)
+            return;
+
         life -= dommage;
         if (life <= 0)
         {
