@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class ActiveJuiceManager : MonoBehaviour
 {
 
+    [Header("Debug")]
+    [SerializeField] bool generateButtons;
+
     [SerializeField] bool debug;
     [SerializeField] Transform juicinessParent;
     [SerializeField] GameObject juicinessToSpawn;
@@ -13,7 +16,7 @@ public class ActiveJuiceManager : MonoBehaviour
     [System.Serializable]
     public struct ActiveJuiceValues
     {
-        [HideInInspector] public string effectToActive;
+       [HideInInspector] public string effectToActive;
         public enum AllEffect
         {
             ActiveEveryhing,
@@ -59,24 +62,18 @@ public class ActiveJuiceManager : MonoBehaviour
 
     public static ActiveJuiceManager Instance;
 
-    [SerializeField] bool generateButtons;
-    [SerializeField] bool destroyAllButtons;
 
     void OnValidate()
     {
-        if (!debug)
-            return;
         if (generateButtons)
         {
             generateButtons = false;
+            DestroyButtons();
             GenerateButtons();
         }
-        if (destroyAllButtons)
-        {
-            destroyAllButtons = false;
-            DestroyButtons();
-        }
 
+        if (!debug)
+            return;
         ChangeName();
     }
 
@@ -105,7 +102,15 @@ public class ActiveJuiceManager : MonoBehaviour
     {
         for (int i = 0; i < activeJuices.Length; i++)
         {
-            activeJuices[i].effectToActive = activeJuices[i].whichEffect.ToString();
+
+            if(activeJuices[i].whatToUse != ActiveJuiceValues.HowToModify.Title)
+            {
+                activeJuices[i].effectToActive = (activeJuices[i].whatToUse).ToString().ToUpper() + " : " + activeJuices[i].whichEffect.ToString();
+            }
+            else
+            {
+                activeJuices[i].effectToActive = "TITLE : " + activeJuices[i].titleName;
+            }
         }
     }
 
@@ -115,7 +120,7 @@ public class ActiveJuiceManager : MonoBehaviour
         {
             Transform juicinessTransform = Instantiate(juicinessToSpawn).transform;
             TextMeshProUGUI juicinessText = juicinessTransform.GetComponentInChildren<TextMeshProUGUI>();
-            juicinessText.text = activeJuices[i].effectToActive;
+            juicinessText.text = activeJuices[i].whichEffect.ToString();
             juicinessText.transform.name = "Juice : " + activeJuices[i].effectToActive + "Txt";
             juicinessTransform.transform.parent = juicinessParent;
 
@@ -124,7 +129,6 @@ public class ActiveJuiceManager : MonoBehaviour
             switch (activeJuices[i].whatToUse)
             {
                 case ActiveJuiceValues.HowToModify.Toggle:
-                    Debug.Log("true");
                     juicinessTransform.GetComponent<JuicinessSpawner>().toggle.gameObject.SetActive(true);
                     break;
                 case ActiveJuiceValues.HowToModify.Slider:
@@ -151,7 +155,7 @@ public class ActiveJuiceManager : MonoBehaviour
         }
 
         float sizeY = juicinessParent.transform.GetComponent<GridLayoutGroup>().cellSize.y * juicinessParent.transform.childCount;
-        juicinessParent.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, sizeY);
+        juicinessParent.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, sizeY /2);
     }
 
     public float GetValueFloat(ActiveJuiceValues.AllEffect whichEffect)

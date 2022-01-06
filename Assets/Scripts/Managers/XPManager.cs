@@ -20,6 +20,9 @@ public class XPManager : MonoBehaviour
     float xpBeforeNextLvl = 2000;
     float xpMax;
 
+    [SerializeField] bool canXpBar = true;
+    [SerializeField] bool canXpText = true;
+
     int level = -1;
 
     bool canFollow;
@@ -31,6 +34,9 @@ public class XPManager : MonoBehaviour
 
     void Awake()
     {
+        canXpBar = true;
+        canXpText = true;
+
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -67,16 +73,36 @@ public class XPManager : MonoBehaviour
             levelTxt.DOColor(Color.white, timeLevelTransition);
             levelTxt.transform.DOScale(1, timeLevelTransition);
         }
+
+        if (!canXpBar)
+        {
+            if (xpBarBack.fillAmount >= 0.99)
+            {
+                LevelUp();
+            }
+        }
     }
 
     public void AddXP(int xp)
     {
-        xpBackground.DOScale(1.1f, 0.001f);
         playerXp += xp;
-        TextMeshProUGUI text = Instantiate(xpText, xpTextParent).GetComponent<TextMeshProUGUI>();
-        text.rectTransform.anchoredPosition = new Vector2(xpBarBack.fillAmount * xpBar.rectTransform.sizeDelta.x - 100 - xpBar.rectTransform.sizeDelta.x / 3, -40);
-        text.text = "+" + xp + " xp";
-        StartCoroutine(WaitBeforeFollow(xp));
+
+        if (canXpText)
+        {
+            TextMeshProUGUI text = Instantiate(xpText, xpTextParent).GetComponent<TextMeshProUGUI>();
+            text.rectTransform.anchoredPosition = new Vector2(xpBarBack.fillAmount * xpBar.rectTransform.sizeDelta.x - 100 - xpBar.rectTransform.sizeDelta.x / 3, -40);
+            text.text = "+" + xp + " xp";
+        }
+        if (canXpBar)
+        {
+            xpBackground.DOScale(1.1f, 0.001f);
+            StartCoroutine(WaitBeforeFollow(xp));
+        }
+        else
+        {
+            xpBar.fillAmount = playerXp / xpBeforeNextLvl;
+            xpBarBack.fillAmount = playerXp / xpBeforeNextLvl;
+        }
     }
 
     IEnumerator WaitBeforeFollow(int xp)
@@ -106,5 +132,25 @@ public class XPManager : MonoBehaviour
             StartCoroutine(WaitBeforeFollow(Mathf.RoundToInt(playerXp)));
         }
         xpBeforeNextLvl = levelData.Data[level].xp;
+    }
+
+    public bool GetXpBar()
+    {
+        return canXpBar;
+    }
+
+    public bool GetXpText()
+    {
+        return canXpText;
+    }
+
+    public void SetXpText(bool isTrue)
+    {
+        canXpText = isTrue;
+    }
+
+    public void SetXpBar(bool isTrue)
+    {
+        canXpBar = isTrue;
     }
 }

@@ -57,6 +57,12 @@ public class JuicinessSpawner : MonoBehaviour
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Animations:
                 break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.XpBar:
+                XPManager.Instance.SetXpBar(toggle.isOn);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.XpText:
+                XPManager.Instance.SetXpText(toggle.isOn);
+                break;
             default:
                 break;
         }
@@ -93,6 +99,12 @@ public class JuicinessSpawner : MonoBehaviour
                 toggle.isOn = CinemachineShake.Instance.GetCanShake();
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Animations:
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.XpText:
+                toggle.isOn = XPManager.Instance.GetXpText();
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.XpBar:
+                toggle.isOn = XPManager.Instance.GetXpBar();
                 break;
             default:
                 break;
