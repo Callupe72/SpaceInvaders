@@ -1,7 +1,6 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ComboManager : MonoBehaviour
 {
@@ -9,12 +8,14 @@ public class ComboManager : MonoBehaviour
     [SerializeField] float cooldownBeforeEndCombo = 3f;
     [SerializeField] float animationTime = .5f;
     //[SerializeField] Image cooldownImg;
-    Color colorFillAmount =  new Color(0,0,0,0);
+    Color colorFillAmount = new Color(0, 0, 0, 0);
     int combo;
     float timeSpent;
     bool playAnim;
 
     public static ComboManager Instance;
+    bool canCombo = true;
+
     void Awake()
     {
         if (Instance != null)
@@ -55,12 +56,19 @@ public class ComboManager : MonoBehaviour
         EnableText(true);
         timeSpent = 0;
         combo++;
-        textCombo.transform.DOScale(3, .001f);
-        textCombo.DOColor(Color.red, .001f);
+        SetText();
+        if (canCombo)
+        {
+            playAnim = true;
+            textCombo.transform.DOScale(3, .001f);
+            textCombo.DOColor(Color.red, .001f);
+        }
+        else
+        {
+            textCombo.color = Color.white;
+        }
         //cooldownImg.DOColor(Color.red, .001f);
         //cooldownImg.DOFillAmount(1, .001f);
-        playAnim = true;
-        SetText();
     }
 
     public void ResetCombo()
@@ -84,6 +92,17 @@ public class ComboManager : MonoBehaviour
     public int GetCombo()
     {
         return combo;
+    }
+
+
+    public void SetCanCombo(bool isTrue)
+    {
+        canCombo = isTrue;
+    }
+
+    public bool GetCanCombo()
+    {
+        return canCombo;
     }
 
 }

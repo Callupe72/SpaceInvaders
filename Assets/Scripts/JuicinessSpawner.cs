@@ -63,6 +63,12 @@ public class JuicinessSpawner : MonoBehaviour
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.XpText:
                 XPManager.Instance.SetXpText(toggle.isOn);
                 break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Particles:
+                ParticlesManager.Instance.SetCanParticles(toggle.isOn);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Combo:
+                ComboManager.Instance.SetCanCombo(toggle.isOn);
+                break;
             default:
                 break;
         }
@@ -106,6 +112,12 @@ public class JuicinessSpawner : MonoBehaviour
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.XpBar:
                 toggle.isOn = XPManager.Instance.GetXpBar();
                 break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Particles:
+                toggle.isOn = ParticlesManager.Instance.GetCanParticles();
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Combo:
+                toggle.isOn = ComboManager.Instance.GetCanCombo();
+                break;
             default:
                 break;
         }
@@ -130,5 +142,10 @@ public class JuicinessSpawner : MonoBehaviour
         {
             toggle.isOn = defaultValueBool;
         }
+    }
+
+    public void PlaySound(string soundToPlay)
+    {
+        AudioManager.Instance.Play2DSound(soundToPlay);
     }
 }

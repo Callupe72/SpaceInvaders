@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     float timerBetweenChangeMoveWeapon;
     bool upWeapon;
     public bool moveWeapon;
+    [SerializeField] AnimationCurve moveWeaponCurve;
+    float timeMoveWeapon;
 
     [Header("Movement")]
     [SerializeField] bool smoothMovement = false;
@@ -54,6 +56,8 @@ public class Player : MonoBehaviour
     bool isLoadingSpecialAttack;
     [SerializeField] Transform weaponToRotate;
     bool isDead = false;
+
+    public Transform particleSpawnTransform;
 
     //AIM
     [Header("Aim")]
@@ -115,13 +119,16 @@ public class Player : MonoBehaviour
                 timerBetweenChangeMoveWeapon = durationBetweenChangeMoveWeapon;
             }
 
+            timeMoveWeapon += Time.deltaTime;
+            if (timeMoveWeapon > 1)
+                timeMoveWeapon = 0;
             if (upWeapon)
             {
-                weaponToMove.transform.DOMoveY(weaponToMove.position.y + offsetMoveWeapon / 2, 1);
+                weaponToMove.transform.DOMoveY(weaponToMove.position.y + offsetMoveWeapon / 2 * moveWeaponCurve.Evaluate(timeMoveWeapon), 0.25f);
             }
             else
             {
-                weaponToMove.transform.DOMoveY(weaponToMove.position.y - offsetMoveWeapon / 2, 1);
+                weaponToMove.transform.DOMoveY(weaponToMove.position.y - offsetMoveWeapon / 2 * moveWeaponCurve.Evaluate(timeMoveWeapon), 0.25f);
             }
         }
         else

@@ -29,6 +29,8 @@ public class ActiveJuiceManager : MonoBehaviour
             XpBar,
             XpText,
             Animations,
+            Particles,
+            Combo,
         }
 
         [Header("Essentials")]
