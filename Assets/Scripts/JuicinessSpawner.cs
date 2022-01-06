@@ -11,6 +11,7 @@ public class JuicinessSpawner : MonoBehaviour
     public Slider slider;
 
     public ActiveJuiceManager.ActiveJuiceValues.HowToModify modifyValue;
+    public ActiveJuiceManager.ActiveJuiceValues.AllEffect thisEffect;
 
     public void SetText()
     {
@@ -34,5 +35,51 @@ public class JuicinessSpawner : MonoBehaviour
             default:
                 break;
         }
+
+        switch (thisEffect)
+        {
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.PostProcess:
+                PostProcessManager.Instance.SetPostProcessIsActive(toggle.isOn);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Bloom:
+                PostProcessManager.Instance.SetBloom(true, slider.value);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShipExplostion:
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Sound:
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShakeCamera:
+                CinemachineShake.Instance.SetCanShake(toggle.isOn);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Animations:
+                break;
+            default:
+                break;
+        }
     }
+
+    public void SetButtonTo()
+    {
+        switch (thisEffect)
+        {
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.PostProcess:
+                toggle.isOn = PostProcessManager.Instance.GetPostProcessIsActive();
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Bloom:
+                slider.value = PostProcessManager.Instance.GetBloom() * 10;
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShipExplostion:
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Sound:
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShakeCamera:
+                toggle.isOn = CinemachineShake.Instance.GetCanShake();
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Animations:
+                break;
+            default:
+                break;
+        }
+    }
+
 }

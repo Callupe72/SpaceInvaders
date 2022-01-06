@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ActiveJuiceManager : MonoBehaviour
 {
 
-        [SerializeField] bool debug;
+    [SerializeField] bool debug;
     [SerializeField] Transform juicinessParent;
     [SerializeField] GameObject juicinessToSpawn;
 
@@ -22,29 +22,34 @@ public class ActiveJuiceManager : MonoBehaviour
             Bloom,
             ShipExplostion,
             Sound,
+            Music,
             ShakeCamera,
             Animations,
         }
 
         [Header("Essentials")]
         public AllEffect whichEffect;
-        public bool isActive;
-
-
 
         public enum HowToModify
         {
             Toggle,
             Slider,
+            Title,
         }
 
         public HowToModify whatToUse;
 
-        [Header("Slider")]
+        [Header("IF Slider")]
 
         public float minValue;
         public float maxValue;
         public bool wholeNumbers;
+
+        [HideInInspector] public JuicinessSpawner juicinessSpawner;
+
+        [Header("IF Title")]
+
+        public string titleName;
 
     }
     [Header("ToModify")]
@@ -77,6 +82,11 @@ public class ActiveJuiceManager : MonoBehaviour
         ChangeName();
     }
 
+    void Start()
+    {
+        SetValuesOnEnable();
+    }
+
     void ChangeName()
     {
         for (int i = 0; i < activeJuices.Length; i++)
@@ -90,11 +100,12 @@ public class ActiveJuiceManager : MonoBehaviour
         for (int i = 0; i < activeJuices.Length; i++)
         {
             Transform juicinessTransform = Instantiate(juicinessToSpawn).transform;
-            juicinessTransform.GetComponentInChildren<TextMeshProUGUI>().text = activeJuices[i].effectToActive;
-            juicinessTransform.GetComponentInChildren<TextMeshProUGUI>().transform.name = "Juice : " + activeJuices[i].effectToActive + "Txt";
+            TextMeshProUGUI juicinessText = juicinessTransform.GetComponentInChildren<TextMeshProUGUI>();
+            juicinessText.text = activeJuices[i].effectToActive;
+            juicinessText.transform.name = "Juice : " + activeJuices[i].effectToActive + "Txt";
             juicinessTransform.transform.parent = juicinessParent;
 
-            juicinessTransform.transform.name = "Juciness" + activeJuices[i].effectToActive;
+            juicinessTransform.transform.name = "Juciness" + activeJuices[i].effectToActive + activeJuices[i].whatToUse;
 
             switch (activeJuices[i].whatToUse)
             {
@@ -108,13 +119,54 @@ public class ActiveJuiceManager : MonoBehaviour
                 default:
                     break;
             }
-            JuicinessSpawner juicinessSpawner = juicinessTransform.GetComponent<JuicinessSpawner>();
+            activeJuices[i].juicinessSpawner = juicinessTransform.GetComponent<JuicinessSpawner>();
+            activeJuices[i].juicinessSpawner.thisEffect = activeJuices[i].whichEffect;
+            activeJuices[i].juicinessSpawner.modifyValue = activeJuices[i].whatToUse;
+            activeJuices[i].juicinessSpawner.slider.minValue = activeJuices[i].minValue;
+            activeJuices[i].juicinessSpawner.slider.maxValue = activeJuices[i].maxValue;
+            activeJuices[i].juicinessSpawner.slider.wholeNumbers = activeJuices[i].wholeNumbers;
 
-            juicinessSpawner.modifyValue = activeJuices[i].whatToUse;
-            juicinessSpawner.slider.minValue = activeJuices[i].minValue;
-            juicinessSpawner.slider.maxValue = activeJuices[i].maxValue;
-            juicinessSpawner.slider.wholeNumbers = activeJuices[i].wholeNumbers;
+            if(activeJuices[i].whatToUse == ActiveJuiceValues.HowToModify.Title)
+            {
+                juicinessText.text = "Title : " +  activeJuices[i].titleName;
+                juicinessText.fontSize = 30;
+            }
 
+        }
+    }
+
+    public float GetValueFloat(ActiveJuiceValues.AllEffect whichEffect)
+    {
+        for (int i = 0; i < activeJuices.Length; i++)
+        {
+            if(activeJuices[i].whichEffect == whichEffect)
+            {
+                return activeJuices[i].juicinessSpawner.slider.value;
+            }
+        }
+
+        Debug.Log("No juiciness found with " + whichEffect.ToString());
+        return 0;
+    }
+
+    public bool GetValueBool(ActiveJuiceValues.AllEffect whichEffect)
+    {
+        for (int i = 0; i < activeJuices.Length; i++)
+        {
+            if (activeJuices[i].whichEffect == whichEffect)
+            {
+                return activeJuices[i].juicinessSpawner.toggle.isOn;
+            }
+        }
+        Debug.Log("No juiciness found with " + whichEffect.ToString());
+        return false;
+    }
+
+    public void SetValuesOnEnable()
+    {
+        for (int i = 0; i < activeJuices.Length; i++)
+        {
+            activeJuices[i].juicinessSpawner.SetButtonTo();
         }
     }
 

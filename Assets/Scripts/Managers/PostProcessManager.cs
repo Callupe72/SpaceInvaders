@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 public class PostProcessManager : MonoBehaviour
 {
 
-    [SerializeField] Volume v;
+    [SerializeField] Volume volume;
     Bloom b;
     Vignette vg;
     LensDistortion lsd;
@@ -26,10 +26,10 @@ public class PostProcessManager : MonoBehaviour
     }
     void Start()
     {
-        v.profile.TryGet(out b);
-        v.profile.TryGet(out vg);
-        v.profile.TryGet(out lsd);
-        v.profile.TryGet(out ca);
+        volume.profile.TryGet(out b);
+        volume.profile.TryGet(out vg);
+        volume.profile.TryGet(out lsd);
+        volume.profile.TryGet(out ca);
     }
 
     public void SetLensDistorsion(bool isActive, float intensity/*, float xMultiplier, float yMultiplier, Vector2 center, float scale*/)
@@ -67,7 +67,21 @@ public class PostProcessManager : MonoBehaviour
         b.active = isActive;
         if (isActive)
         {
-            b.intensity.value = intensity;
+            b.intensity.value = intensity * ActiveJuiceManager.Instance.GetValueFloat(ActiveJuiceManager.ActiveJuiceValues.AllEffect.Bloom);
         }
+    }
+
+    public float GetBloom()
+    {
+        return b.intensity.value;
+    }
+
+    public bool GetPostProcessIsActive()
+    {
+        return volume.enabled;
+    }
+    public void SetPostProcessIsActive(bool isActive)
+    {
+        volume.enabled = isActive;
     }
 }
