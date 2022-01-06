@@ -47,6 +47,10 @@ public class JuicinessSpawner : MonoBehaviour
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShipExplostion:
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Sound:
+                AudioManager.Instance.SetCanPlaySound(toggle.isOn);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Music:
+                if (toggle.isOn) { AudioReaction.Instance.PlayMusic(); } else { AudioReaction.Instance.PauseMusic(); }
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShakeCamera:
                 CinemachineShake.Instance.SetCanShake(toggle.isOn);
@@ -71,6 +75,10 @@ public class JuicinessSpawner : MonoBehaviour
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShipExplostion:
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Sound:
+                toggle.isOn = AudioManager.Instance.GetCanPlaySound();
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Music:
+                toggle.isOn = AudioReaction.Instance.audioSource.isPlaying;
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShakeCamera:
                 toggle.isOn = CinemachineShake.Instance.GetCanShake();

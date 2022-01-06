@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     public Slider audioVolumeSlider;
     public TextMeshProUGUI audioValueText;
 
+    bool canPlaySound = true;
+
     public float audioVolume { get; set; } = 50f;
 
     private void Awake()
@@ -57,6 +59,8 @@ public class AudioManager : MonoBehaviour
 
     public void Play2DSound(string name)
     {
+        if (!canPlaySound)
+            return;
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
         GameObject obj2D = new GameObject();
@@ -78,6 +82,9 @@ public class AudioManager : MonoBehaviour
 
     public void Play3DSound(string name, Vector3 positionToPlay)
     {
+        if (!canPlaySound)
+            return;
+
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
         GameObject obj3D = new GameObject();
@@ -115,5 +122,15 @@ public class AudioManager : MonoBehaviour
                 Destroy(audio.gameObject);
             }
         }
+    }
+
+    public void SetCanPlaySound(bool canPlay)
+    {
+        canPlaySound = canPlay;
+    }
+
+    public bool GetCanPlaySound()
+    {
+        return canPlaySound;
     }
 }

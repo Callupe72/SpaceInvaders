@@ -128,11 +128,15 @@ public class ActiveJuiceManager : MonoBehaviour
 
             if(activeJuices[i].whatToUse == ActiveJuiceValues.HowToModify.Title)
             {
-                juicinessText.text = "Title : " +  activeJuices[i].titleName;
-                juicinessText.fontSize = 30;
+                juicinessText.text = activeJuices[i].titleName;
+                activeJuices[i].juicinessSpawner.name = "Title : " + activeJuices[i].titleName;
+                juicinessText.fontSize = 50;
+                juicinessText.fontStyle = FontStyles.Bold;
             }
-
         }
+
+        float sizeY = juicinessParent.transform.GetComponent<GridLayoutGroup>().cellSize.y * juicinessParent.transform.childCount;
+        juicinessParent.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, sizeY);
     }
 
     public float GetValueFloat(ActiveJuiceValues.AllEffect whichEffect)
