@@ -23,6 +23,18 @@ public class Player : MonoBehaviour
     [SerializeField] Transform bulletSpawner;
     [SerializeField] GameObject bullet;
     [SerializeField] float timeBeforeSpecialAttack = 0.25f;
+
+    [Header("WeaponMovement")]
+    [SerializeField] float durationBetweenChangeMoveWeapon = 1f;
+    [SerializeField] float offsetMoveWeapon = 0.5f;
+    [SerializeField] float offsetMoveWeaponFire = 1f;
+    [SerializeField] Transform weaponToMove;
+    float initWeaponPosY;
+    float initWeaponPosZ;
+    float timerBetweenChangeMoveWeapon;
+    bool upWeapon;
+    public bool moveWeapon;
+
     [Header("Movement")]
     [SerializeField] bool smoothMovement = false;
     [Header("Rotate")]
@@ -77,6 +89,9 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         startingWeaponPhysicPos = weaponPhysic.transform.localPosition;
+        timerBetweenChangeMoveWeapon = durationBetweenChangeMoveWeapon;
+        initWeaponPosY = weaponToMove.transform.position.y;
+        initWeaponPosZ = weaponToMove.transform.position.z;
     }
 
     void Update()
@@ -91,6 +106,30 @@ public class Player : MonoBehaviour
             weaponToRotate.Rotate(new Vector3(0, -3 * rotateCurveEndRotate.Evaluate(actualRotateCooldown), 0));
         }
 
+        if (moveWeapon)
+        {
+            timerBetweenChangeMoveWeapon -= Time.deltaTime;
+            if (timerBetweenChangeMoveWeapon <= 0f)
+            {
+                upWeapon = !upWeapon;
+                timerBetweenChangeMoveWeapon = durationBetweenChangeMoveWeapon;
+            }
+
+            if (upWeapon)
+            {
+                weaponToMove.transform.DOMoveY(weaponToMove.position.y + offsetMoveWeapon / 2, 1);
+            }
+            else
+            {
+                weaponToMove.transform.DOMoveY(weaponToMove.position.y - offsetMoveWeapon / 2, 1);
+            }
+        }
+        else
+        {
+            weaponToMove.transform.DOMoveY(initWeaponPosY, 1);
+            timerBetweenChangeMoveWeapon = durationBetweenChangeMoveWeapon;
+            upWeapon = false;
+        }
 
         //SHOOT
         if (Input.GetButtonUp("Fire"))
@@ -105,6 +144,7 @@ public class Player : MonoBehaviour
                 //Special atack
                 Shoot(false);
                 waitBeforeShoot = 0;
+                weaponToMove.transform.DOMoveZ(initWeaponPosZ, 0.1f);
             }
             else
             {
@@ -114,6 +154,7 @@ public class Player : MonoBehaviour
                     Shoot(true);
                     waitBeforeShoot = 0;
                     isOnCooldown = true;
+                    weaponToMove.transform.DOMoveZ(weaponToMove.position .z - offsetMoveWeaponFire, 0.1f);
                 }
             }
             pressingTime = 0;
@@ -125,6 +166,10 @@ public class Player : MonoBehaviour
             weaponToRotate.Rotate(new Vector3(0, -8 * pressingTime * rotateCurveStartRotate.Evaluate(actualRotateStartCurve), 0));
             if (playerCanUsePowerShot)
             {
+                if (weaponToMove.position.z == initWeaponPosZ)
+                {
+                    weaponToMove.transform.DOMoveZ(weaponToMove.position.z - offsetMoveWeaponFire, 0.1f);
+                }
                 pressingTime += Time.deltaTime;
                 pressingTime = Mathf.Clamp(pressingTime, 0, 0.5f);
                 PostProcessManager.Instance.SetLensDistorsion(true, pressingTime);
@@ -145,6 +190,7 @@ public class Player : MonoBehaviour
             waitBeforeShoot += Time.deltaTime;
             if (waitBeforeShoot >= shootCooldown)
             {
+                weaponToMove.transform.DOMoveZ(initWeaponPosZ, 0.1f);
                 isOnCooldown = false;
             }
         }
