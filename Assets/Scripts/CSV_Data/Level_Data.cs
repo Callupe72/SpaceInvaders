@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+[System.Serializable]
 public struct LevelData
 {
     public int level;

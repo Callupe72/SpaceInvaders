@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+[System.Serializable]
+
 public struct VagueData
 {
     public int vague;
@@ -23,12 +25,6 @@ public class Vague_Data : MonoBehaviour
     void Awake()
     {
         ReadCSVFile();
-        foreach (VagueData item in Data)
-        {
-            Debug.Log(item.vague);
-            Debug.Log(item.TotalSpec);
-            Debug.Log(item.Total);
-        }
     }
 
     void ReadCSVFile()

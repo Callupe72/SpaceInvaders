@@ -1311,6 +1311,7 @@ MonoBehaviour:
   timeBeforeBeingDestroyed: 2
   breakForce: 100
   damagesOnCollision: 10
+  scaleWithMusic: 1
 --- !u!1 &5448752816474184350
 GameObject:
   m_ObjectHideFlags: 0

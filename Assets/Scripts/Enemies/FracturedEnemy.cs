@@ -9,6 +9,7 @@ public class FracturedEnemy : MonoBehaviour
     [SerializeField] int damagesOnCollision = 10;
     bool debrisMakeDamages;
     bool canScaleDown;
+    [SerializeField] bool scaleWithMusic;
     void Start()
     {
         Destroy(gameObject, timeBeforeBeingDestroyed);
@@ -31,6 +32,13 @@ public class FracturedEnemy : MonoBehaviour
     {
         if (canScaleDown)
             transform.DOScale(0, timeBeforeBeingDestroyed / 2);
+        if (scaleWithMusic)
+        {
+            foreach (Transform transform in transform)
+            {
+                transform.localScale = Vector3.one * AudioReaction.Instance.GetDropValue() * 100;
+            }
+        }
             //foreach (Transform transform in transform)
             //{
             //    transform.DOScale(0, timeBeforeBeingDestroyed / 2);
