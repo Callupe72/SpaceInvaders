@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class EnemySpawnerManager : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] Vague_Data dataWave;
+    [SerializeField] TMP_Text ennemyRestantText;
     static System.Random rnd = new System.Random();
 
     [SerializeField] GameObject[] enemiesToSpawn;
@@ -97,6 +99,8 @@ public class EnemySpawnerManager : MonoBehaviour
         {
             SpawnLine(i);
         }
+
+        ennemyRestantText.text = enemyStillAlive + "/" + (currentEnemiesPerLine * currentLineNumbers);
     }
 
     void SpawnLine(int lineIndex)
@@ -154,6 +158,7 @@ public class EnemySpawnerManager : MonoBehaviour
     public void EnemyIsKilled()
     {
         enemyStillAlive--;
+        ennemyRestantText.text = enemyStillAlive + "/" + (currentEnemiesPerLine * currentLineNumbers);
         if (enemyStillAlive == 0)
         {
             if (currentWave < dataWave.Data.Count)
