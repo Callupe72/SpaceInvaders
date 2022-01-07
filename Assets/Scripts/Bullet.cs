@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     float time;
     [SerializeField] bool destroyLine;
     bool debrisWillMakeDamages;
+    public bool bulletEnnemy = false;
 
     void Start()
     {
@@ -20,16 +21,24 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        rb.velocity = new Vector3(0, 0, speed * time / 100);
+        if (!bulletEnnemy)
+        {
+            rb.velocity = new Vector3(0, 0, speed * time / 100);
+        }
+        else
+        {
+            rb.velocity = new Vector3(0, 0, -(speed * time / 100));
+        }
+        
         Vector3 rot = rb.rotation.eulerAngles;
         rb.rotation = Quaternion.Euler(rot.x + 50, rot.y + 50, rot.z);
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.GetComponent<Enemy>())
+        if (!bulletEnnemy && other.tag == "Enemy")
         {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
             enemy.Damage(damages, destroyLine);
             enemy.SetDebrisMakeDamages(debrisWillMakeDamages);
             CinemachineShake.Instance.ShakeCamera(0.75f, .1f);
@@ -37,6 +46,11 @@ public class Bullet : MonoBehaviour
 
             if (impactBeforeDie == 0)
                 Destroy(gameObject);
+        }
+        else if(bulletEnnemy && other.tag == "Player")
+        {
+            Player player = other.gameObject.GetComponentInParent<Player>();
+            player.TakeDommage(1);
         }
     }
 

@@ -93,7 +93,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2954419753947916537}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -113,7 +113,6 @@ MonoBehaviour:
   rb: {fileID: 8797709821522956954}
   speed: 60000
   timeBeforeDestroy: 3
-  scoreDamages: {fileID: 1098862414797635225, guid: 89d0cc0feb60c72449f746f15581c362, type: 3}
   curve:
     serializedVersion: 2
     m_Curve:
@@ -157,6 +156,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   destroyLine: 0
+  bulletEnnemy: 0
 --- !u!54 &8797709821522956954
 Rigidbody:
   m_ObjectHideFlags: 0
