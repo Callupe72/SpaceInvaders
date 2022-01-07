@@ -15619,9 +15619,10 @@ GameObject:
   - component: {fileID: 1169578943}
   - component: {fileID: 1169578945}
   - component: {fileID: 1169578944}
+  - component: {fileID: 1169578946}
   m_Layer: 0
   m_Name: PlayerMesh
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15689,6 +15690,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169578942}
   m_Mesh: {fileID: 5172668025087258532, guid: 35faeb2c3cbec024c9a655c9327dcc2d, type: 3}
+--- !u!65 &1169578946
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169578942}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 6, z: 3}
+  m_Center: {x: 0, y: -3.021545, z: 0.20914154}
 --- !u!1 &1173378934
 GameObject:
   m_ObjectHideFlags: 0
@@ -16661,7 +16675,7 @@ MonoBehaviour:
   playerMesh: {fileID: 1169578943}
   weaponPhysic: {fileID: 1144562597}
   speed: 100
-  life: 100
+  life: 3
   damages: 200
   shootCooldown: 0.25
   bulletSpawner: {fileID: 1194854904}
