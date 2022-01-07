@@ -16,7 +16,7 @@ public class ActiveJuiceManager : MonoBehaviour
     [System.Serializable]
     public struct ActiveJuiceValues
     {
-       [HideInInspector] public string effectToActive;
+        [HideInInspector] public string effectToActive;
         public enum AllEffect
         {
             ActiveEveryhing,
@@ -44,6 +44,8 @@ public class ActiveJuiceManager : MonoBehaviour
         }
 
         public HowToModify whatToUse;
+
+        [Range(0, 9)] public int numpadToActive;
 
         [Header("IF Slider")]
 
@@ -105,7 +107,7 @@ public class ActiveJuiceManager : MonoBehaviour
         for (int i = 0; i < activeJuices.Length; i++)
         {
 
-            if(activeJuices[i].whatToUse != ActiveJuiceValues.HowToModify.Title)
+            if (activeJuices[i].whatToUse != ActiveJuiceValues.HowToModify.Title)
             {
                 activeJuices[i].effectToActive = (activeJuices[i].whatToUse).ToString().ToUpper() + " : " + activeJuices[i].whichEffect.ToString();
             }
@@ -146,6 +148,8 @@ public class ActiveJuiceManager : MonoBehaviour
             activeJuices[i].juicinessSpawner.slider.maxValue = activeJuices[i].maxValue;
             activeJuices[i].juicinessSpawner.slider.wholeNumbers = activeJuices[i].wholeNumbers;
 
+            activeJuices[i].juicinessSpawner.keyPress = (KeyCode)System.Enum.Parse(typeof(KeyCode), "Keypad" + activeJuices[i].numpadToActive);
+
             if (activeJuices[i].whatToUse == ActiveJuiceValues.HowToModify.Title)
             {
                 juicinessText.text = activeJuices[i].titleName;
@@ -157,7 +161,7 @@ public class ActiveJuiceManager : MonoBehaviour
         }
 
         float sizeY = juicinessParent.transform.GetComponent<GridLayoutGroup>().cellSize.y * juicinessParent.transform.childCount;
-        juicinessParent.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, sizeY /2);
+        juicinessParent.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, sizeY / 2);
     }
 
     public float GetValueFloat(ActiveJuiceValues.AllEffect whichEffect)

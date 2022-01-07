@@ -11,6 +11,8 @@ public class JuicinessSpawner : MonoBehaviour
     public ActiveJuiceManager.ActiveJuiceValues.HowToModify modifyValue;
     public ActiveJuiceManager.ActiveJuiceValues.AllEffect thisEffect;
 
+    public KeyCode keyPress;
+
     float defaultValueFloat;
     bool defaultValueBool;
 
@@ -29,6 +31,15 @@ public class JuicinessSpawner : MonoBehaviour
     public void SetText()
     {
         sliderText.text = slider.value.ToString();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (toggle.gameObject.activeInHierarchy)
+                toggle.isOn = !toggle.isOn;
+        }
     }
 
     public void ChangeValue()
