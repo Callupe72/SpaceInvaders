@@ -1,4 +1,5 @@
 //using System;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,15 +47,96 @@ public class EnemySpawnerManager : MonoBehaviour
     [SerializeField] int currentWave = -1;
 
     int enemyStillAlive;
+    bool isPinataWave;
+
+
+    [Header("Wave")]
+    [SerializeField] TextMeshProUGUI waveText;
+    [SerializeField] float waveAnimationTime;
+    float waveCurrentTime;
+    [SerializeField] AnimationCurve waveAnimCurve;
+
+
+    public static EnemySpawnerManager Instance;
+    private bool canMoveWaveTxt;
+
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     void Start()
     {
+        startTime = 1;
+        start = 1400;
+        end = -1400;
         CreateNewWave();
     }
 
-    void CreateNewWave()
+
+    void Update()
     {
+        if (canMoveWaveTxt)
+        {
+            waveCurrentTime += Time.deltaTime;
+            float xValue = Curve(DeltaTime());
+            waveText.GetComponent<RectTransform>().anchoredPosition = new Vector2(xValue, waveText.GetComponent<RectTransform>().anchoredPosition.y);
+            if(waveCurrentTime > waveAnimationTime)
+            {
+                canMoveWaveTxt = false;
+                waveText.gameObject.SetActive(false);
+            }
+        }
+    }
+    private float start;
+    private float end = -1400;
+    private float startTime;
+    float Curve(float delta)
+    {
+        return (end - start) * waveAnimCurve.Evaluate(delta * waveAnimationTime) + start;
+    }
+    float DeltaTime()
+    {
+        float timeDelta = Time.time - startTime;
+
+        if (timeDelta < waveAnimationTime)
+        {
+            return timeDelta / waveAnimationTime;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
+    public void CreateNewWave()
+    {
+        StartCoroutine(WaitBeforeCreateNewWave());
+    }
+
+
+    IEnumerator WaitBeforeCreateNewWave()
+    {
+        yield return new WaitForSeconds(1);
+        waveText.gameObject.SetActive(true);
         currentWave++;
+        waveText.text = "Wave " + (currentWave + 1).ToString();
+        waveText.GetComponent<RectTransform>().anchoredPosition = new Vector2(1400, waveText.GetComponent<RectTransform>().anchoredPosition.y);
+        waveCurrentTime = 0;
+        canMoveWaveTxt = true;
+        startTime = Time.time;
+        yield return new WaitForSeconds(waveAnimationTime);
+
+        yield return new WaitForSeconds(1);
+
 
         //GET DATA
         currentEnemiesPerLine = dataWave.Data[currentWave].ennemyByLine;
@@ -64,6 +146,11 @@ public class EnemySpawnerManager : MonoBehaviour
         currentPinata = dataWave.Data[currentWave].Pinata;
         currentNormalEnemies = (currentEnemiesPerLine * currentLineNumbers) - (currentTankEnemies + currentShooterEnemies + currentPinata);
         enemyStillAlive = (currentEnemiesPerLine * currentLineNumbers);
+
+        if (currentPinata > 0)
+        {
+            isPinataWave = true;
+        }
 
         //enemyStillAlive = waves[currentWave].GetLinesNumbers() * waves[currentWave].GetEnemyPerLine();
         //for (int i = 0; i < currentLineNumbers; i++)
@@ -93,7 +180,7 @@ public class EnemySpawnerManager : MonoBehaviour
 
         var numbers = new List<int>(Enumerable.Range(0, shipsStats.Count));
         randomizeList = numbers.OrderBy(a => rnd.Next()).ToList();
-       
+
 
         for (int i = 0; i < currentLineNumbers; i++)
         {
@@ -164,7 +251,14 @@ public class EnemySpawnerManager : MonoBehaviour
         {
             if (currentWave < dataWave.Data.Count)
             {
-                CreateNewWave();
+                if (isPinataWave)
+                {
+                    UnlockNewPowerManager.Instance.AddNewPower();
+                }
+                else
+                {
+                    CreateNewWave();
+                }
             }
             else
             {
@@ -175,13 +269,13 @@ public class EnemySpawnerManager : MonoBehaviour
 
     IEnumerator WaitToDestroyLine(Transform lineToDestroy)
     {
-        Time.timeScale = 0.5f;
-        yield return new WaitForSeconds(0.5f);
-        Time.timeScale = 1f;
+
+        SlowMotionManager.Instance.SlowMotion();
+        yield return new WaitForSeconds(1f);
+        ParticlesManager.Instance.SpawnParticles("DestroyLine", lineToDestroy, Vector3.zero, false);
         foreach (Transform enemy in lineToDestroy)
         {
             enemy.GetComponent<Enemy>().PrepareToDie();
         }
     }
-
 }

@@ -9,6 +9,7 @@ public class EnemyPinata : Enemy
     float audioReaction;
     [SerializeField] AnimationCurve destroyCurve;
     [SerializeField] float breakForce = 100;
+    int typesNum;
 
     void Start()
     {
@@ -18,15 +19,18 @@ public class EnemyPinata : Enemy
 
     void Update()
     {
-        transform.Rotate(0.1f, 0.15f, 0);
+        float audioReact = AudioReaction.Instance.GetDropValue();
+
+        transform.Rotate(0.1f *audioReact , 0.15f * audioReact, 0);
         audioReaction = 1 + factor;
-        
     }
 
     public void ChangeValue()
     {
+        typesNum++;
+        typesNum = Mathf.Clamp(typesNum, 0, principalMesh.childCount);
         principalMesh.localScale *= 1.03f;
-        for (int i = 0; i < principalMesh.childCount; i++)
+        for (int i = 0; i < typesNum; i++)
         {
             float rand = Random.Range(0, 0.07f);
             principalMesh.GetChild(i).localScale = principalMesh.GetChild(i).localScale * (1-rand);

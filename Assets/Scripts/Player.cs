@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
     [SerializeField] LineRenderer lineRenderer;
     [SerializeField] float aimDistance;
 
+    GameObject particlesLoadWeapon;
 
     //DASH
 
@@ -139,8 +140,48 @@ public class Player : MonoBehaviour
         }
 
         //SHOOT
+        if (!UnlockNewPowerManager.Instance.waitSeeNewPower)
+        {
+            PressFire();
+        }
+        
+
+        if (isOnCooldown)
+        {
+            waitBeforeShoot += Time.deltaTime;
+            if (waitBeforeShoot >= shootCooldown)
+            {
+                weaponToMove.transform.DOMoveZ(initWeaponPosZ, 0.1f);
+                isOnCooldown = false;
+            }
+        }
+
+        weaponPhysic.transform.position = transform.position + startingWeaponPhysicPos;
+
+        //AIM
+
+        if (playerCanAim)
+        {
+            Aim();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (!UnlockNewPowerManager.Instance.waitSeeNewPower)
+            Movement();
+
+    }
+
+    void PressFire()
+    {
         if (Input.GetButtonUp("Fire"))
         {
+            if (particlesLoadWeapon != null)
+            {
+                Destroy(particlesLoadWeapon);
+            }
+
             actualRotateStartCurve = 0;
             isPlayingRotateSound = false;
             actualRotateCooldown = 0;
@@ -161,7 +202,7 @@ public class Player : MonoBehaviour
                     Shoot(true);
                     waitBeforeShoot = 0;
                     isOnCooldown = true;
-                    weaponToMove.transform.DOMoveZ(weaponToMove.position .z - offsetMoveWeaponFire, 0.1f);
+                    weaponToMove.transform.DOMoveZ(weaponToMove.position.z - offsetMoveWeaponFire, 0.1f);
                 }
             }
             pressingTime = 0;
@@ -191,33 +232,12 @@ public class Player : MonoBehaviour
                 }
             }
         }
-
-        if (isOnCooldown)
+        if (Input.GetButtonDown("Fire"))
         {
-            waitBeforeShoot += Time.deltaTime;
-            if (waitBeforeShoot >= shootCooldown)
-            {
-                weaponToMove.transform.DOMoveZ(initWeaponPosZ, 0.1f);
-                isOnCooldown = false;
-            }
-        }
-
-        weaponPhysic.transform.position = transform.position + startingWeaponPhysicPos;
-
-        //AIM
-
-        if (playerCanAim)
-        {
-            Aim();
+            ParticlesManager.Instance.SpawnParticles("LoadingPlayerWeapon", bulletSpawner.transform, bulletSpawner.rotation.eulerAngles, true);
+            particlesLoadWeapon = ParticlesManager.Instance.GetLastParticles();
         }
     }
-
-    void FixedUpdate()
-    {
-        Movement();
-
-    }
-
     void Movement()
     {
         float isDashingSpeed = speed;

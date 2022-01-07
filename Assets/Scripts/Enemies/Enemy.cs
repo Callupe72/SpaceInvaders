@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
@@ -19,7 +20,6 @@ public class Enemy : MonoBehaviour
     bool debrisWillMakeDamages;
 
     [HideInInspector] public EnemySpawnerManager.ShipType shipType;
-
     void Start()
     {
         float scale = Random.Range(0.75f, 1.25f);
@@ -88,7 +88,6 @@ public class Enemy : MonoBehaviour
         AudioManager.Instance.Play3DSound("ShipExplosion", transform.position);
         Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
         transform.parent.GetComponentInParent<EnemySpawnerManager>().EnemyIsKilled();
-
         Destroy(gameObject);
     }
 

@@ -19,6 +19,8 @@ public class ParticlesManager : MonoBehaviour
 
     public Particles[] particles;
 
+    GameObject lastParticles;
+
     public static ParticlesManager Instance;
     void Awake()
     {
@@ -43,6 +45,7 @@ public class ParticlesManager : MonoBehaviour
         GameObject particleGo = Instantiate(p.particle, parentTransform.position, Quaternion.Euler(rotation));
         if(setToParent)
             particleGo.transform.parent = parentTransform;
+        lastParticles = particleGo;
         ParticleSystem particlesComponent = particleGo.GetComponent<ParticleSystem>();
         particlesComponent.Play();
         particleGo.transform.localScale = p.scale;
@@ -64,5 +67,10 @@ public class ParticlesManager : MonoBehaviour
     public bool GetCanParticles()
     {
         return canParticle;
+    }
+
+    public GameObject GetLastParticles()
+    {
+        return lastParticles;
     }
 }
