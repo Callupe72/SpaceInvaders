@@ -7,10 +7,18 @@ public class CinemachineShake : MonoBehaviour
 {
     CinemachineVirtualCamera cinemachineVirtualCamera;
     float shakerTime;
+    float shakerTimeTotal;
+    float startingIntensity;
+
 
     [SerializeField] bool canShake = true;
 
     public static CinemachineShake Instance;
+
+    void Start()
+    {
+        ShakeCamera(5, .1f);
+    }
 
     void Awake()
     {
@@ -29,12 +37,11 @@ public class CinemachineShake : MonoBehaviour
 
     public void ShakeCamera(float intensity, float time)
     {
-        if (!canShake)
-            return;
-
         CinemachineBasicMultiChannelPerlin cinemachineMultiChannelPerlin = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cinemachineMultiChannelPerlin.m_AmplitudeGain = intensity;
         shakerTime = time;
+        startingIntensity = intensity;
+        shakerTimeTotal = intensity;
     }
 
     void Update()
@@ -42,12 +49,9 @@ public class CinemachineShake : MonoBehaviour
         if (shakerTime > 0)
         {
             shakerTime -= Time.deltaTime;
-            if (shakerTime <= 0f)
-            {
                 CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
-            }
+                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = Mathf.Lerp(startingIntensity,0f, 1 -(shakerTime / shakerTimeTotal));
+            
         }
     }
 

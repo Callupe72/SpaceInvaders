@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.Damage(damages, destroyLine);
             enemy.SetDebrisMakeDamages(debrisWillMakeDamages);
-            CinemachineShake.Instance.ShakeCamera(0.75f, .1f);
+            CinemachineShake.Instance.ShakeCamera(5f, 1f);
             impactBeforeDie--;
 
             if (impactBeforeDie == 0)
