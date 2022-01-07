@@ -35,10 +35,12 @@ public class JuicinessSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(keyPress))
         {
             if (toggle.gameObject.activeInHierarchy)
+            {
                 toggle.isOn = !toggle.isOn;
+            }
         }
     }
 

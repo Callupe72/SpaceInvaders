@@ -24,7 +24,6 @@ public class SlowMotionManager : MonoBehaviour
         slowMoCurrentTime += Time.unscaledDeltaTime;
         Time.timeScale += (1f / slowMoCurrentTime) * Time.unscaledDeltaTime;
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0, 1);
-        Debug.Log(Time.timeScale);
     }
 
     public void SlowMotion(float slowMotionFactor)
