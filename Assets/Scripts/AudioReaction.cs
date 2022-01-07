@@ -52,14 +52,16 @@ public class AudioReaction : MonoBehaviour
             foreach (var sample in clipSampleData)
             {
                 clipLoudness += Mathf.Abs(sample);
-                if (clipLoudness > 200)
-                {
-                    dropValue = clipLoudness;
-                }
-                else
-                {
-                    dropValue = 100;
-                }
+                //if (clipLoudness > 200)
+                //{
+                //    dropValue = clipLoudness;
+                //}
+                //else
+                //{
+                //    dropValue = 100;
+                //}
+
+                dropValue = clipLoudness;
 
                PostProcessManager.Instance.SetBloom(true,clipLoudness * soundImpact / 1000);
             }

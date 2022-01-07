@@ -4,16 +4,39 @@ using UnityEngine;
 
 public class EnemyPinata : Enemy
 {
-    float factor;
+    [Header("Pinata")]
+    [SerializeField] Transform principalMesh;
     float audioReaction;
+    [SerializeField] AnimationCurve destroyCurve;
+    [SerializeField] float breakForce = 100;
+
+    void Start()
+    {
+        
+    }
+
 
     void Update()
     {
-        audioReaction = AudioReaction.Instance.GetDropValue();
-        transform.localScale = Vector3.one * audioReaction;
-        foreach (Transform item in transform)
+        transform.Rotate(0.1f, 0.15f, 0);
+        audioReaction = 1 + factor;
+        
+    }
+
+    public void ChangeValue()
+    {
+        principalMesh.localScale *= 1.03f;
+        for (int i = 0; i < principalMesh.childCount; i++)
         {
-            item.localScale = Vector3.one * (1 - factor);
+            float rand = Random.Range(0, 0.07f);
+            principalMesh.GetChild(i).localScale = principalMesh.GetChild(i).localScale * (1-rand);
         }
+        //foreach (Rigidbody rb in principalMesh.transform.GetComponentsInChildren<Rigidbody>())
+        //{
+        //    Vector3 force = (rb.transform.position - principalMesh.transform.position).normalized * breakForce;
+        //    force = new Vector3(100,100,100);
+        //    Debug.Log(force);
+        //    rb.AddForce(force);
+        //}
     }
 }

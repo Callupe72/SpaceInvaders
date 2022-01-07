@@ -34,14 +34,15 @@ public class ParticlesManager : MonoBehaviour
     }
 
 
-    public void SpawnParticles(string name, Transform parentTransform, Vector3 rotation)
+    public void SpawnParticles(string name, Transform parentTransform, Vector3 rotation, bool setToParent)
     {
         if (!canParticle)
             return;
         Particles p = Array.Find(particles, particle => particle.name == name);
 
         GameObject particleGo = Instantiate(p.particle, parentTransform.position, Quaternion.Euler(rotation));
-        particleGo.transform.parent = parentTransform;
+        if(setToParent)
+            particleGo.transform.parent = parentTransform;
         ParticleSystem particlesComponent = particleGo.GetComponent<ParticleSystem>();
         particlesComponent.Play();
         particleGo.transform.localScale = p.scale;

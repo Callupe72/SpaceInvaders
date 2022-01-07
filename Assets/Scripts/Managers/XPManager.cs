@@ -124,7 +124,7 @@ public class XPManager : MonoBehaviour
         levelTxt.text = (level + 1).ToString();
         if (level > 0)
         {
-            ParticlesManager.Instance.SpawnParticles("LevelUp", FindObjectOfType<Player>().particleSpawnTransform, new Vector3(-90,0,0)); ;
+            ParticlesManager.Instance.SpawnParticles("LevelUp", FindObjectOfType<Player>().particleSpawnTransform, new Vector3(-90,0,0), true) ;
             xpMax += playerXp;
             playerXp -= xpBeforeNextLvl;
             levelTxt.DOColor(Color.red, 0.001f);

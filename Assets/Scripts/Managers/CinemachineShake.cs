@@ -15,11 +15,6 @@ public class CinemachineShake : MonoBehaviour
 
     public static CinemachineShake Instance;
 
-    void Start()
-    {
-        ShakeCamera(5, .1f);
-    }
-
     void Awake()
     {
         if (Instance != null)
@@ -33,6 +28,11 @@ public class CinemachineShake : MonoBehaviour
         }
         cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
 
+    }
+
+   void Start()
+    {
+        ShakeCamera(0, 0);
     }
 
     public void ShakeCamera(float intensity, float time)

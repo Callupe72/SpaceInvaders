@@ -146,6 +146,7 @@ public class EnemySpawnerManager : MonoBehaviour
                 break;
         }
         GameObject enemy = Instantiate(enemyToSpawn, pos, Quaternion.Euler(rot));
+        enemy.GetComponent<Enemy>().shipType = shipType;
         enemy.name = "EnemyL" + lineNum + "N" + enemyIndex;
         enemy.transform.parent = parent;
     }
@@ -179,7 +180,7 @@ public class EnemySpawnerManager : MonoBehaviour
         Time.timeScale = 1f;
         foreach (Transform enemy in lineToDestroy)
         {
-            enemy.GetComponent<Enemy>().Die();
+            enemy.GetComponent<Enemy>().PrepareToDie();
         }
     }
 
