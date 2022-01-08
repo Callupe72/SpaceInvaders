@@ -15,6 +15,25 @@ public class EnemySpawnerManager : MonoBehaviour
 
     [SerializeField] GameObject[] enemiesToSpawn;
 
+
+    [Header("Speed")]
+    [SerializeField] float horizontalSpeed = 1f;
+    [SerializeField] float horizontalTime = 1f;
+    [SerializeField] float frontSpeed = 1f;
+    [SerializeField] float frontTime = 1f;
+    [SerializeField] bool wasRight;
+
+    float speedCurrentTime;
+
+    Vector3 startingPos;
+
+    Direction currentDirection;
+    public enum Direction
+    {
+        Front,
+        Left,
+        Right,
+    }
     public enum ShipType
     {
         Normal,
@@ -33,7 +52,7 @@ public class EnemySpawnerManager : MonoBehaviour
         public int enemyNum;
     }
     List<int> randomizeList = new List<int>();
-    public List<ShipStats> shipsStats = new List<ShipStats>();
+    List<ShipStats> shipsStats = new List<ShipStats>();
     int currentLineNumbers;
     int currentEnemiesPerLine;
     int currentTankEnemies;
@@ -75,6 +94,7 @@ public class EnemySpawnerManager : MonoBehaviour
 
     void Start()
     {
+        startingPos = transform.position;
         startTime = 1;
         start = 1400;
         end = -1400;
@@ -89,16 +109,89 @@ public class EnemySpawnerManager : MonoBehaviour
             waveCurrentTime += Time.deltaTime;
             float xValue = Curve(DeltaTime());
             waveText.GetComponent<RectTransform>().anchoredPosition = new Vector2(xValue, waveText.GetComponent<RectTransform>().anchoredPosition.y);
-            if(waveCurrentTime > waveAnimationTime)
+            if (waveCurrentTime > waveAnimationTime)
             {
                 canMoveWaveTxt = false;
                 waveText.gameObject.SetActive(false);
             }
         }
+
+        if (GameManager.Instance.currentGameState == GameManager.GameState.InPause || GameManager.Instance.currentGameState == GameManager.GameState.Defeat)
+            return;
+
+
+        if (!isPinataWave && enemyStillAlive > 0)
+        {
+            switch (currentDirection)
+            {
+                case Direction.Front:
+                    Movement(new Vector3(0, 0, -1));
+                    break;
+                case Direction.Left:
+                    Movement(new Vector3(-1, 0, 0));
+                    break;
+                case Direction.Right:
+                    Movement(new Vector3(1, 0, 0));
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
-    private float start;
-    private float end = -1400;
-    private float startTime;
+
+    void Movement(Vector3 dir)
+    {
+        speedCurrentTime += Time.deltaTime;
+        Vector3 newPos = Vector3.zero;
+        float time = 0;
+        if (time == 0)
+        {
+            if (dir.y != 0)
+            {
+                //GO Left / right
+                newPos = dir * horizontalSpeed + transform.position;
+                time = horizontalTime;
+            }
+            else
+            {
+                newPos = dir * frontSpeed + transform.position;
+                time = frontTime;
+            }
+        }
+
+        transform.DOMove(newPos, time);
+        if (speedCurrentTime > time)
+        {
+            speedCurrentTime = 0;
+            currentDirection = NewDir();
+        }
+    }
+
+    Direction NewDir()
+    {
+        if (currentDirection == Direction.Front)
+        {
+            if (wasRight)
+            {
+                wasRight = false;
+                return Direction.Right;
+            }
+            else
+            {
+                wasRight = true;
+                return Direction.Left;
+            }
+        }
+        else
+        {
+            return Direction.Front;
+        }
+    }
+
+    float start;
+    float end = -1400;
+    float startTime;
     float Curve(float delta)
     {
         return (end - start) * waveAnimCurve.Evaluate(delta * waveAnimationTime) + start;
@@ -126,6 +219,7 @@ public class EnemySpawnerManager : MonoBehaviour
     IEnumerator WaitBeforeCreateNewWave()
     {
         yield return new WaitForSeconds(1);
+        transform.position = startingPos;
         waveText.gameObject.SetActive(true);
         currentWave++;
         waveText.text = "Wave " + (currentWave + 1).ToString();
@@ -147,10 +241,7 @@ public class EnemySpawnerManager : MonoBehaviour
         currentNormalEnemies = (currentEnemiesPerLine * currentLineNumbers) - (currentTankEnemies + currentShooterEnemies + currentPinata);
         enemyStillAlive = (currentEnemiesPerLine * currentLineNumbers);
 
-        if (currentPinata > 0)
-        {
-            isPinataWave = true;
-        }
+        isPinataWave = currentPinata > 0;
 
         //enemyStillAlive = waves[currentWave].GetLinesNumbers() * waves[currentWave].GetEnemyPerLine();
         //for (int i = 0; i < currentLineNumbers; i++)

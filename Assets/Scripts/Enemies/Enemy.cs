@@ -8,9 +8,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float life = 100;
     protected float maxLife;
     protected float factor;
-    [SerializeField] float speed = 10f;
-    [Header("Other")]
-    [SerializeField] Rigidbody rb;
     [Header("Die")]
     [SerializeField] FracturedEnemy fracturedEnemy;
     [SerializeField] GameObject scoreDamages;
@@ -32,7 +29,6 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.Instance.currentGameState == GameManager.GameState.InPause || GameManager.Instance.currentGameState == GameManager.GameState.Defeat)
             return;
-        rb.velocity = new Vector3(0, 0, -speed / 100);
     }
 
     public void Damage(int damages, bool destroyLine)
@@ -43,8 +39,9 @@ public class Enemy : MonoBehaviour
         int rand = RandomXpGiven();
         XPManager.Instance.AddXP(rand);
         Vector3 spawnPos = transform.position;
-        spawnPos = new Vector3(spawnPos.x, spawnPos.y + 1, spawnPos.z);
+        spawnPos = new Vector3(spawnPos.x, spawnPos.y, spawnPos.z - 30);
         ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.identity).GetComponent<ScoreDamages>();
+        scoreOverEnemy.transform.parent = transform;
         //scoreOverEnemy.transform.parent = transform;
         scoreOverEnemy.SetText(damages);
         ScoreManager.Instance.AddScore(damages);

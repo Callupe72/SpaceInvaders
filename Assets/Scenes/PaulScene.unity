@@ -6451,10 +6451,14 @@ MonoBehaviour:
   - {fileID: 3361561308991374416, guid: 997486bf50253a1408501865856bcdbc, type: 3}
   - {fileID: 2195842747286191977, guid: 9c9d11daf23b63443a8ea1192c640694, type: 3}
   - {fileID: 2282698327388474806, guid: 397d373ca1eac234e81d1dd1162e3f9d, type: 3}
-  shipsStats: []
+  horizontalSpeed: 10
+  horizontalTime: 1
+  frontSpeed: 10
+  frontTime: 1
+  wasRight: 0
   spaceBetweenLines: 20
   spaceBetweenEnemies: 8
-  currentWave: 3
+  currentWave: -1
   waveText: {fileID: 1701158001}
   waveAnimationTime: 3
   waveAnimCurve:
@@ -29850,7 +29854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1e-45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -29862,7 +29866,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.5904e-41
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}

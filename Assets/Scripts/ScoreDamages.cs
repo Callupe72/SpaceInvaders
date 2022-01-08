@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI ;
 using TMPro;
 using DG.Tweening;
 
@@ -24,7 +25,7 @@ public class ScoreDamages : MonoBehaviour
         lastPos = transform.position;
         lastPos = new Vector3(lastPos.x, lastPos.y + 1.5f, lastPos.z);
         yield return new WaitForSeconds(fadeOutTime);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     void Update()
