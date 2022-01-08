@@ -20,6 +20,8 @@ public class EnemyShooter : Enemy
 
     private void Update()
     {
+        if (GameManager.Instance.currentGameState == GameManager.GameState.InPause || GameManager.Instance.currentGameState == GameManager.GameState.Defeat)
+            return;
         if (timerShoot > 0)
         {
             timerShoot -= Time.deltaTime;

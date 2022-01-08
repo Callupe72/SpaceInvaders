@@ -30,12 +30,15 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.Instance.currentGameState == GameManager.GameState.InPause || GameManager.Instance.currentGameState == GameManager.GameState.Defeat)
+            return;
         rb.velocity = new Vector3(0, 0, -speed / 100);
     }
 
     public void Damage(int damages, bool destroyLine)
     {
         life -= damages;
+        ParticlesManager.Instance.SpawnParticles("EnemyTakesDamages", transform, transform.rotation.eulerAngles, false);
         ChangeFactor();
         int rand = RandomXpGiven();
         XPManager.Instance.AddXP(rand);

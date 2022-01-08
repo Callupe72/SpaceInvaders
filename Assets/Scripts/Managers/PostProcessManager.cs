@@ -10,6 +10,23 @@ public class PostProcessManager : MonoBehaviour
     Vignette vg;
     LensDistortion lsd;
     ChromaticAberration ca;
+    ColorAdjustments colorA;
+
+
+    //Color adjustment
+    public enum PlayerState
+    {
+        isWaiting,
+        isGoingRed,
+        isGoingWhite,
+    }
+
+    Color currentColor;
+    float currentTime;
+    PlayerState playerState;
+
+    Player player;
+
 
     public static PostProcessManager Instance;
     void Awake()
@@ -30,6 +47,7 @@ public class PostProcessManager : MonoBehaviour
         volume.profile.TryGet(out vg);
         volume.profile.TryGet(out lsd);
         volume.profile.TryGet(out ca);
+        volume.profile.TryGet(out colorA);
     }
 
     public void SetLensDistorsion(bool isActive, float intensity/*, float xMultiplier, float yMultiplier, Vector2 center, float scale*/)
@@ -83,5 +101,50 @@ public class PostProcessManager : MonoBehaviour
     public void SetPostProcessIsActive(bool isActive)
     {
         volume.enabled = isActive;
+    }
+
+    void Update()
+    {
+        //COLOR ADJUSTMENT
+        switch (playerState)
+        {
+            case PlayerState.isWaiting:
+                break;
+            case PlayerState.isGoingRed:
+                currentTime += Time.deltaTime;
+                colorA.colorFilter.value = currentColor;
+                currentColor = Color.Lerp(Color.white, Color.red, currentTime);
+                if (currentTime > 0.1f)
+                {
+                    currentTime = -1;
+                    playerState = PlayerState.isGoingWhite;
+                }
+                break;
+            case PlayerState.isGoingWhite:
+                currentTime += Time.deltaTime;
+                colorA.colorFilter.value = currentColor;
+                currentColor = Color.Lerp(Color.red, Color.white, currentTime);
+                if (currentTime > player.invisibilityTime)
+                {
+                    playerState = PlayerState.isWaiting;
+                    player.isInvisibility = false;
+                    currentTime = 0;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void PlayerIsTouch(Player playerDamage)
+    {
+        if (!player)
+        {
+            player = playerDamage;
+        }
+
+        playerState = PlayerState.isGoingRed;
+        player.isInvisibility = true;
+        currentTime = 0;
     }
 }

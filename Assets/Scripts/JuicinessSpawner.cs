@@ -86,6 +86,15 @@ public class JuicinessSpawner : MonoBehaviour
                 break;
         }
 
+        if (toggle.gameObject.activeInHierarchy)
+        {
+            ActiveJuiceManager.Instance.SpawnText(thisEffect.ToString(), toggle.isOn);
+        }
+        else
+        {
+            ActiveJuiceManager.Instance.SpawnText(thisEffect.ToString(), slider.value);
+        }
+
         if (thisEffect != ActiveJuiceManager.ActiveJuiceValues.AllEffect.ActiveEveryhing)
         {
             if (toggle.gameObject.activeInHierarchy)
@@ -93,7 +102,6 @@ public class JuicinessSpawner : MonoBehaviour
                 ActiveJuiceManager.Instance.ChangeActiveAllToggle(toggle.isOn);
             }
         }
-
     }
 
     public void SetButtonTo()
@@ -101,35 +109,35 @@ public class JuicinessSpawner : MonoBehaviour
         switch (thisEffect)
         {
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.PostProcess:
-                toggle.isOn = PostProcessManager.Instance.GetPostProcessIsActive();
+                toggle.SetIsOnWithoutNotify(PostProcessManager.Instance.GetPostProcessIsActive());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Bloom:
-                slider.value = PostProcessManager.Instance.GetBloom() * 10;
+                slider.SetValueWithoutNotify(PostProcessManager.Instance.GetBloom() * 10);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShipExplostion:
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Sound:
-                toggle.isOn = AudioManager.Instance.GetCanPlaySound();
+                toggle.SetIsOnWithoutNotify(AudioManager.Instance.GetCanPlaySound());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Music:
-                toggle.isOn = AudioReaction.Instance.audioSource.isPlaying;
+                toggle.SetIsOnWithoutNotify(AudioReaction.Instance.audioSource.isPlaying);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShakeCamera:
-                toggle.isOn = CinemachineShake.Instance.GetCanShake();
+                toggle.SetIsOnWithoutNotify(CinemachineShake.Instance.GetCanShake());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Animations:
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.XpText:
-                toggle.isOn = XPManager.Instance.GetXpText();
+                toggle.SetIsOnWithoutNotify(XPManager.Instance.GetXpText());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.XpBar:
-                toggle.isOn = XPManager.Instance.GetXpBar();
+                toggle.SetIsOnWithoutNotify(XPManager.Instance.GetXpBar());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Particles:
-                toggle.isOn = ParticlesManager.Instance.GetCanParticles();
+                toggle.SetIsOnWithoutNotify(ParticlesManager.Instance.GetCanParticles());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Combo:
-                toggle.isOn = ComboManager.Instance.GetCanCombo();
+                toggle.SetIsOnWithoutNotify(ComboManager.Instance.GetCanCombo());
                 break;
             default:
                 break;
@@ -138,7 +146,7 @@ public class JuicinessSpawner : MonoBehaviour
 
     public void ResetToDefaultValue()
     {
-        if(thisEffect == ActiveJuiceManager.ActiveJuiceValues.AllEffect.ActiveEveryhing)
+        if (thisEffect == ActiveJuiceManager.ActiveJuiceValues.AllEffect.ActiveEveryhing)
         {
             ActiveJuiceManager.Instance.ResetAllButtons();
         }
@@ -150,11 +158,14 @@ public class JuicinessSpawner : MonoBehaviour
         if (slider.gameObject.activeInHierarchy)
         {
             slider.value = defaultValueFloat;
+            ActiveJuiceManager.Instance.SpawnText(thisEffect.ToString(), slider);
         }
         else
         {
             toggle.isOn = defaultValueBool;
+            ActiveJuiceManager.Instance.SpawnText(thisEffect.ToString(), defaultValueBool);
         }
+
     }
 
     public void PlaySound(string soundToPlay)

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ActiveJuiceManager : MonoBehaviour
@@ -11,7 +12,12 @@ public class ActiveJuiceManager : MonoBehaviour
     [SerializeField] bool debug;
     [SerializeField] Transform juicinessParent;
     [SerializeField] GameObject juicinessToSpawn;
+    [SerializeField] EventSystem eventSystem;
 
+    [SerializeField] Transform juicinessTextParent;
+    [SerializeField] GameObject juicinessTextInstance;
+    public bool menuIsActive;
+    [SerializeField] RectTransform juicinessArray;
 
     [System.Serializable]
     public struct ActiveJuiceValues
@@ -66,7 +72,6 @@ public class ActiveJuiceManager : MonoBehaviour
 
     public static ActiveJuiceManager Instance;
 
-
     void OnValidate()
     {
         if (generateButtons)
@@ -120,6 +125,7 @@ public class ActiveJuiceManager : MonoBehaviour
 
     void GenerateButtons()
     {
+        eventSystem.firstSelectedGameObject = null;
         for (int i = 0; i < activeJuices.Length; i++)
         {
             Transform juicinessTransform = Instantiate(juicinessToSpawn).transform;
@@ -134,9 +140,17 @@ public class ActiveJuiceManager : MonoBehaviour
             {
                 case ActiveJuiceValues.HowToModify.Toggle:
                     juicinessTransform.GetComponent<JuicinessSpawner>().toggle.gameObject.SetActive(true);
+                    if (eventSystem.firstSelectedGameObject == null)
+                    {
+                        eventSystem.firstSelectedGameObject = juicinessTransform.GetComponent<JuicinessSpawner>().toggle.gameObject;
+                    }
                     break;
                 case ActiveJuiceValues.HowToModify.Slider:
                     juicinessTransform.GetComponent<JuicinessSpawner>().slider.gameObject.SetActive(true);
+                    if (eventSystem.firstSelectedGameObject == null)
+                    {
+                        eventSystem.firstSelectedGameObject = juicinessTransform.GetComponent<JuicinessSpawner>().slider.gameObject;
+                    }
                     break;
                 default:
                     break;
@@ -157,8 +171,10 @@ public class ActiveJuiceManager : MonoBehaviour
                 juicinessText.fontSize = 50;
                 juicinessText.fontStyle = FontStyles.Bold;
                 juicinessTransform.GetComponentInChildren<Button>().gameObject.SetActive(false);
-            }
+            }  
+
         }
+
 
         float sizeY = juicinessParent.transform.GetComponent<GridLayoutGroup>().cellSize.y * juicinessParent.transform.childCount;
         juicinessParent.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, sizeY / 2);
@@ -260,6 +276,7 @@ public class ActiveJuiceManager : MonoBehaviour
                 }
             }
         }
+
     }
 
     public void ResetAllButtons()
@@ -267,6 +284,40 @@ public class ActiveJuiceManager : MonoBehaviour
         for (int i = 0; i < activeJuices.Length; i++)
         {
             activeJuices[i].juicinessSpawner.ResetButtons();
+        }
+    }
+
+    public void SpawnText(string power, bool isEnable)
+    {
+        SetText(power, isEnable, Mathf.Infinity);
+    }
+
+    public void SpawnText(string power, float value)
+    {
+        SetText(power, true, value);
+    }
+
+    void SetText(string power, bool isEnable, float value)
+    {
+        GameObject inst = Instantiate(juicinessTextInstance, juicinessTextParent);
+        inst.transform.parent = juicinessTextParent;
+        inst.transform.position = Vector3.zero;
+
+        TextMeshProUGUI text = inst.GetComponentInChildren<TextMeshProUGUI>();
+
+        if(value == Mathf.Infinity)
+        {
+            text.color = isEnable ? Color.green : Color.red;
+            string enable = isEnable ? "Enable " : "Disable";
+            text.text = power + " : " + enable;
+            Destroy(inst, 2f);
+        
+        }
+        else
+        {
+            text.color = value != 0 ? Color.green : Color.red;
+            text.text = power + " : " + value;
+            Destroy(inst, 2f);
         }
     }
 }

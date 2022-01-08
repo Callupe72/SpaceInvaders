@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [Header("PlayerStats")]
     [SerializeField] float speed = 10;
     [SerializeField] float life = 3;
+    [SerializeField] Life lifeCanva;
     [SerializeField] float damages = 200;
     [Header("Shoot")]
     [SerializeField] float shootCooldown = 0.25f;
@@ -80,6 +81,11 @@ public class Player : MonoBehaviour
     bool isReloadingDash;
     bool isPlayingRotateSound;
 
+    [Header("Take Damages")]
+    public float invisibilityTime = 1f;
+    [HideInInspector] public bool isInvisibility;
+
+
     //POWER UPS
 
     [HideInInspector] public bool playerCanDestroyLine = false;
@@ -101,6 +107,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
         if (rotateWeapon)
         {
             actualRotateCooldown += Time.deltaTime;
@@ -142,9 +149,12 @@ public class Player : MonoBehaviour
         //SHOOT
         if (!UnlockNewPowerManager.Instance.waitSeeNewPower)
         {
+            if (GameManager.Instance.currentGameState == GameManager.GameState.InPause || GameManager.Instance.currentGameState == GameManager.GameState.Defeat)
+                return;
+
             PressFire();
         }
-        
+
 
         if (isOnCooldown)
         {
@@ -164,13 +174,18 @@ public class Player : MonoBehaviour
         {
             Aim();
         }
+
+        if (Input.GetKeyDown(KeyCode.M))
+            TakeDommage(1);
     }
 
     void FixedUpdate()
     {
+        if (GameManager.Instance.currentGameState == GameManager.GameState.InPause || GameManager.Instance.currentGameState == GameManager.GameState.Defeat)
+            return;
+
         if (!UnlockNewPowerManager.Instance.waitSeeNewPower)
             Movement();
-
     }
 
     void PressFire()
@@ -366,10 +381,16 @@ public class Player : MonoBehaviour
 
     public void TakeDommage(int dommage)
     {
+        PostProcessManager.Instance.PlayerIsTouch(this);
+        CinemachineShake.Instance.ShakeCamera(7, .5f);
+
+        life -= dommage;
+
+        lifeCanva.SetColorLife(Mathf.RoundToInt(life));
+
         if (isDead)
             return;
 
-        life -= dommage;
         if (life <= 0)
         {
             life = 0;

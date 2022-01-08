@@ -1,21 +1,20 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool isPause = false;
     [SerializeField] GameObject pauseMenu;
-
+    [SerializeField] RectTransform juicinessArray;
     public enum GameState
     {
         InGame,
+        InPause,
+        InJuicinessMenu,
         Victory,
         Defeat,
     }
 
-    GameState currentGameState;
+    public GameState currentGameState;
 
     public static GameManager Instance;
     void Awake()
@@ -33,15 +32,44 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (isPause)
+        if (currentGameState == GameState.InPause)
             Pause();
+        else if (currentGameState == GameState.InJuicinessMenu)
+            JuicinessMenu();
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Pause"))
+        if (currentGameState != GameState.InJuicinessMenu)
         {
-            Pause();
+            if (Input.GetButtonDown("Pause"))
+            {
+                Pause();
+            }
+        }
+
+        if (currentGameState != GameState.InPause)
+        {
+            if (Input.GetButtonDown("JuicinessMenu"))
+            {
+                JuicinessMenu();
+            }
+        }
+    }
+
+    void JuicinessMenu()
+    {
+        currentGameState = currentGameState == GameState.InJuicinessMenu ? GameState.InGame : GameState.InJuicinessMenu;
+
+        ActiveJuiceManager.Instance.menuIsActive = currentGameState == GameState.InJuicinessMenu;
+
+        if (currentGameState == GameState.InJuicinessMenu)
+        {
+            juicinessArray.anchoredPosition = new Vector2(-50, 0);
+        }
+        else
+        {
+            juicinessArray.anchoredPosition = new Vector2(99999, 0);
         }
     }
 
@@ -74,12 +102,13 @@ public class GameManager : MonoBehaviour
 
     void Pause()
     {
-        isPause = !isPause;
+        currentGameState = currentGameState == GameState.InPause ? GameState.InGame : GameState.InPause;
 
-        pauseMenu.SetActive(isPause);
-        Time.timeScale = Convert.ToInt32(!isPause);
+        bool isInPause = currentGameState == GameState.InPause;
+        pauseMenu.SetActive(isInPause);
+        Time.timeScale = Convert.ToInt32(!isInPause);
 
-        if (isPause)
+        if (currentGameState == GameState.InPause)
         {
             GameIsPaused();
         }
