@@ -387,8 +387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 10000
-  speed: 0
-  rb: {fileID: 0}
+  soundToPlayOnDamages: HitPinata
+  soundToPlayOnDie: DestroyPinata
   fracturedEnemy: {fileID: -8716586036654775229, guid: 1d8144ec2087d5b4db480d7f8ba9a379, type: 3}
   scoreDamages: {fileID: 1098862414797635225, guid: 89d0cc0feb60c72449f746f15581c362, type: 3}
   randomXpGivenMin: 100

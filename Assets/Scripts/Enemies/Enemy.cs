@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float life = 100;
     protected float maxLife;
     protected float factor;
+    [SerializeField] string soundToPlayOnDamages;
+    [SerializeField] string soundToPlayOnDie;
     [Header("Die")]
     [SerializeField] FracturedEnemy fracturedEnemy;
     [SerializeField] GameObject scoreDamages;
@@ -40,11 +42,11 @@ public class Enemy : MonoBehaviour
         XPManager.Instance.AddXP(rand);
         Vector3 spawnPos = transform.position;
         spawnPos = new Vector3(spawnPos.x, spawnPos.y, spawnPos.z - 30);
-        ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.identity).GetComponent<ScoreDamages>();
-        scoreOverEnemy.transform.parent = transform;
-        //scoreOverEnemy.transform.parent = transform;
+        ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.Euler(Vector3.zero)).GetComponent<ScoreDamages>();
+        scoreOverEnemy.transform.parent = EnemySpawnerManager.Instance.scoreParent;
         scoreOverEnemy.SetText(damages);
         ScoreManager.Instance.AddScore(damages);
+        AudioManager.Instance.Play3DSound(soundToPlayOnDamages, transform.position);
         if (life <= 0)
         {
             GetComponentInChildren<Collider>().enabled = false;
@@ -85,7 +87,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         ComboManager.Instance.AddCombo();
-        AudioManager.Instance.Play3DSound("ShipExplosion", transform.position);
+        AudioManager.Instance.Play3DSound(soundToPlayOnDie, transform.position);
         Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
         transform.parent.GetComponentInParent<EnemySpawnerManager>().EnemyIsKilled();
         Destroy(gameObject);

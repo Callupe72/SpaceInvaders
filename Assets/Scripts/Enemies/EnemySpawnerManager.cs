@@ -15,6 +15,8 @@ public class EnemySpawnerManager : MonoBehaviour
 
     [SerializeField] GameObject[] enemiesToSpawn;
 
+    public Transform scoreParent;
+
 
     [Header("Speed")]
     [SerializeField] float horizontalSpeed = 1f;
@@ -70,7 +72,7 @@ public class EnemySpawnerManager : MonoBehaviour
 
 
     [Header("Wave")]
-    [SerializeField] TextMeshProUGUI waveText;
+    [SerializeField] GameObject waveParent;
     [SerializeField] float waveAnimationTime;
     float waveCurrentTime;
     [SerializeField] AnimationCurve waveAnimCurve;
@@ -95,26 +97,26 @@ public class EnemySpawnerManager : MonoBehaviour
     void Start()
     {
         startingPos = transform.position;
-        startTime = 1;
-        start = 1400;
-        end = -1400;
+        //startTime = 1;
+        //start = 1400;
+        //end = -1400;
         CreateNewWave();
     }
 
 
     void Update()
     {
-        if (canMoveWaveTxt)
-        {
-            waveCurrentTime += Time.deltaTime;
-            float xValue = Curve(DeltaTime());
-            waveText.GetComponent<RectTransform>().anchoredPosition = new Vector2(xValue, waveText.GetComponent<RectTransform>().anchoredPosition.y);
-            if (waveCurrentTime > waveAnimationTime)
-            {
-                canMoveWaveTxt = false;
-                waveText.gameObject.SetActive(false);
-            }
-        }
+        //if (canMoveWaveTxt)
+        //{
+        //    waveCurrentTime += Time.deltaTime;
+        //    float xValue = Curve(DeltaTime());
+        //    waveText.GetComponent<RectTransform>().anchoredPosition = new Vector2(xValue, waveText.GetComponent<RectTransform>().anchoredPosition.y);
+        //    if (waveCurrentTime > waveAnimationTime)
+        //    {
+        //        canMoveWaveTxt = false;
+        //        waveText.gameObject.SetActive(false);
+        //    }
+        //}
 
         if (GameManager.Instance.currentGameState == GameManager.GameState.InPause || GameManager.Instance.currentGameState == GameManager.GameState.Defeat)
             return;
@@ -189,26 +191,26 @@ public class EnemySpawnerManager : MonoBehaviour
         }
     }
 
-    float start;
-    float end = -1400;
-    float startTime;
-    float Curve(float delta)
-    {
-        return (end - start) * waveAnimCurve.Evaluate(delta * waveAnimationTime) + start;
-    }
-    float DeltaTime()
-    {
-        float timeDelta = Time.time - startTime;
+    //float start;
+    //float end = -1400;
+    //float startTime;
+    //float Curve(float delta)
+    //{
+    //    return (end - start) * waveAnimCurve.Evaluate(delta * waveAnimationTime) + start;
+    //}
+    //float DeltaTime()
+    //{
+    //    float timeDelta = Time.time - startTime;
 
-        if (timeDelta < waveAnimationTime)
-        {
-            return timeDelta / waveAnimationTime;
-        }
-        else
-        {
-            return 1;
-        }
-    }
+    //    if (timeDelta < waveAnimationTime)
+    //    {
+    //        return timeDelta / waveAnimationTime;
+    //    }
+    //    else
+    //    {
+    //        return 1;
+    //    }
+    //}
 
     public void CreateNewWave()
     {
@@ -218,17 +220,18 @@ public class EnemySpawnerManager : MonoBehaviour
 
     IEnumerator WaitBeforeCreateNewWave()
     {
+
+        currentWave++;
         yield return new WaitForSeconds(1);
         transform.position = startingPos;
-        waveText.gameObject.SetActive(true);
-        currentWave++;
-        waveText.text = "Wave " + (currentWave + 1).ToString();
-        waveText.GetComponent<RectTransform>().anchoredPosition = new Vector2(1400, waveText.GetComponent<RectTransform>().anchoredPosition.y);
+        waveParent.gameObject.SetActive(true);
+        waveParent.GetComponentInChildren<TextMeshProUGUI>().text = "Wave " + (currentWave + 1).ToString();
+        //waveText.GetComponent<RectTransform>().anchoredPosition = new Vector2(1400, waveText.GetComponent<RectTransform>().anchoredPosition.y);
         waveCurrentTime = 0;
         canMoveWaveTxt = true;
-        startTime = Time.time;
+        //startTime = Time.time;
         yield return new WaitForSeconds(waveAnimationTime);
-
+        waveParent.gameObject.SetActive(false);
         yield return new WaitForSeconds(1);
 
 
