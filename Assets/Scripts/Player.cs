@@ -293,7 +293,7 @@ public class Player : MonoBehaviour
         #endregion
 
 
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        float horizontal = Input.GetAxisRaw("HorizontalMove");
         if (rotateOnMove)
         {
             transform.DORotate(new Vector3(0, 0, -horizontal * maxRotation), rotationTime);
