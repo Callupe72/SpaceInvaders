@@ -38,8 +38,6 @@ public class Player : MonoBehaviour
     [SerializeField] AnimationCurve moveWeaponCurve;
     float timeMoveWeapon;
 
-    [Header("Movement")]
-    [SerializeField] bool smoothMovement = false;
     [Header("Rotate")]
     [SerializeField] bool rotateOnMove = true;
     [SerializeField] int maxRotation = 30;
@@ -59,6 +57,12 @@ public class Player : MonoBehaviour
     bool isDead = false;
 
     public Transform particleSpawnTransform;
+
+    [Header("Flip")]
+    [SerializeField] Transform mesh = null;
+    [SerializeField] bool canFlip = false;
+    [SerializeField] float flipShipTimer = 0f;
+    [Range(0, 2)] [SerializeField] float FlipTime = 0.5f;
 
     //AIM
     [Header("Aim")]
@@ -107,6 +111,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
         if (rotateWeapon)
         {
             actualRotateCooldown += Time.deltaTime;
@@ -298,12 +303,24 @@ public class Player : MonoBehaviour
         {
             transform.DORotate(new Vector3(0, 0, -horizontal * maxRotation), rotationTime);
             //playerMesh.transform.DORotate(new Vector3(horizontal * maxRotation * 3 - 90, 90, -90), rotationTime);
+
+            flipShipTimer += Time.deltaTime;
+            if (canFlip)
+            {
+                mesh.DORotate(new Vector3(0, 0, 360 * Mathf.RoundToInt(-horizontal)), FlipTime, RotateMode.LocalAxisAdd).SetEase(Ease.OutFlash).
+                    OnComplete(() => mesh.DORotate(new Vector3(0, 0, 0), 0.2f));
+                flipShipTimer = 0f;
+                canFlip = false;
+            }
         }
 
         if (Mathf.Abs(horizontal) != 1)
         {
+            if (flipShipTimer >= 2f)
+                canFlip = true;
             horizontal = 0;
             rotateOnMove = false;
+            flipShipTimer = 0f;
         }
         else
             rotateOnMove = true;
@@ -366,7 +383,7 @@ public class Player : MonoBehaviour
             //Special Attack
             AudioManager.Instance.Play2DSound("PowerShot");
             bulletTransform.SetDamages(Mathf.RoundToInt(damages));
-            bulletTransform.SetImpactBeforeDie(Mathf.RoundToInt(AudioReaction.Instance.GetDropValue()) * 2);
+            bulletTransform.SetImpactBeforeDie(Mathf.RoundToInt(AudioReaction.Instance.GetDropValue() * 2));
             bulletTransform.transform.localScale = Vector3.one * 0.3f;
             TrailRenderer bulletTrail = bulletTransform.GetComponent<TrailRenderer>();
             bulletTrail.startWidth = 0.3f;
