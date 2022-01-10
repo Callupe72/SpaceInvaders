@@ -314,7 +314,7 @@ public class EnemySpawnerManager : MonoBehaviour
             case ShipType.Normal:
                 break;
             case ShipType.Shooter:
-                rot = new Vector3(-180, 0, 90);
+                rot = new Vector3(-180, 0, 270);
                 enemyToSpawn = enemiesToSpawn[1];
                 break;
             case ShipType.Tank:

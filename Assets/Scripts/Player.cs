@@ -294,18 +294,21 @@ public class Player : MonoBehaviour
 
 
         float horizontal = Input.GetAxisRaw("HorizontalMove");
+
         if (rotateOnMove)
         {
             transform.DORotate(new Vector3(0, 0, -horizontal * maxRotation), rotationTime);
             //playerMesh.transform.DORotate(new Vector3(horizontal * maxRotation * 3 - 90, 90, -90), rotationTime);
         }
-        if (!smoothMovement)
+
+        if (Mathf.Abs(horizontal) != 1)
         {
-            if (Mathf.Abs(horizontal) != 1)
-            {
-                horizontal = 0;
-            }
+            horizontal = 0;
+            rotateOnMove = false;
         }
+        else
+            rotateOnMove = true;
+
         rb.velocity = new Vector3(horizontal * Time.fixedDeltaTime * isDashingSpeed, rb.velocity.y, rb.velocity.z);
 
 
