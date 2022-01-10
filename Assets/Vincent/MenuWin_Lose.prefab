@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 7582079058309583995}
-  optionPanel: {fileID: 7582079057553959012}
+  creditPanel: {fileID: 7582079057553959012}
   text: {fileID: 7582079056896405733}
   Title: 
 --- !u!1 &7582079057390703071

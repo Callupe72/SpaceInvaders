@@ -5,10 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class MenuPause : MonoBehaviour
 {
+    [SerializeField] GameObject mainMenu = null;
+    [SerializeField] GameObject creditPanel = null;
 
     public void Continue()
     {
         GameManager.Instance.Pause();
+    }
+
+    public void Credits()
+    {
+        mainMenu.SetActive(false);
+        creditPanel.SetActive(true);
+    }
+
+    public void ReturnMenu()
+    {
+        mainMenu.SetActive(true);
+        creditPanel.SetActive(false);
     }
 
     public void Restart()

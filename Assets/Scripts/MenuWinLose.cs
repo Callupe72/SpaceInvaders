@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class MenuWinLose : MonoBehaviour
 {
     [SerializeField] GameObject mainMenu = null;
-    [SerializeField] GameObject optionPanel = null;
+    [SerializeField] GameObject creditPanel = null;
     [SerializeField] TMP_Text text = null;
     [HideInInspector] public string Title = "";
 
@@ -19,13 +19,13 @@ public class MenuWinLose : MonoBehaviour
     public void Credits()
     {
         mainMenu.SetActive(false);
-        optionPanel.SetActive(true);
+        creditPanel.SetActive(true);
     }
 
     public void ReturnMenu()
     {
         mainMenu.SetActive(true);
-        optionPanel.SetActive(false);
+        creditPanel.SetActive(false);
     }
 
     public void MainMenu()
