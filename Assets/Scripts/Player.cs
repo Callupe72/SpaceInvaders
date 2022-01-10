@@ -107,7 +107,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
         if (rotateWeapon)
         {
             actualRotateCooldown += Time.deltaTime;
@@ -367,7 +366,7 @@ public class Player : MonoBehaviour
             //Special Attack
             AudioManager.Instance.Play2DSound("PowerShot");
             bulletTransform.SetDamages(Mathf.RoundToInt(damages));
-            bulletTransform.SetImpactBeforeDie(AudioReaction.Instance.GetDropValue() * 2);
+            bulletTransform.SetImpactBeforeDie(Mathf.RoundToInt(AudioReaction.Instance.GetDropValue()) * 2);
             bulletTransform.transform.localScale = Vector3.one * 0.3f;
             TrailRenderer bulletTrail = bulletTransform.GetComponent<TrailRenderer>();
             bulletTrail.startWidth = 0.3f;

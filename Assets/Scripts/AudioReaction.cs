@@ -75,9 +75,9 @@ public class AudioReaction : MonoBehaviour
         volumeTxt.text = volumeSlider.value.ToString();
     }
 
-    public int GetDropValue()
+    public float GetDropValue()
     {
-        return Mathf.RoundToInt(dropValue) / 100;
+        return dropValue / 100;
     }
 
     public void PauseMusic()

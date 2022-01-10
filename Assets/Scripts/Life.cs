@@ -52,8 +52,6 @@ public class Life : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(0, 0, 0.25f);
-
         if (canGrow)
         {
             transform.DOScale(2, growTime);
@@ -71,6 +69,13 @@ public class Life : MonoBehaviour
             {
                 canGrow = false;
             }
+        }
+        else
+        {
+
+            float scale = 1 + AudioReaction.Instance.GetDropValue() / 2;
+            transform.localScale = Vector3.one * scale;
+            transform.Rotate(0, 0, 0.25f);
         }
     }
 }
