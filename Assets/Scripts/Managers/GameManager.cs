@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         menuWinLose.Title = "Defeat";
     }
 
-    void Pause()
+    public void Pause()
     {
         currentGameState = currentGameState == GameState.InPause ? GameState.InGame : GameState.InPause;
 
