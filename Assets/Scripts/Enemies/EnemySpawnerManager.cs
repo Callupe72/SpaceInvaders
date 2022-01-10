@@ -144,6 +144,9 @@ public class EnemySpawnerManager : MonoBehaviour
 
     void Movement(Vector3 dir)
     {
+        if (GameManager.Instance.currentGameState == GameManager.GameState.InPause || GameManager.Instance.currentGameState == GameManager.GameState.Defeat)
+            return;
+
         speedCurrentTime += Time.deltaTime;
         Vector3 newPos = Vector3.zero;
         float time = 0;

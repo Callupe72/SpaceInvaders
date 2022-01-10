@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
     [SerializeField] RectTransform juicinessArray;
+    [SerializeField] MenuWinLose menuWinLose;
+
     public enum GameState
     {
         InGame,
@@ -93,14 +95,17 @@ public class GameManager : MonoBehaviour
 
     void Victory()
     {
-        Debug.Log("Victory");
+        menuWinLose.gameObject.SetActive(true);
+        menuWinLose.Title = "Victory";
+
     }
     void Defeat()
     {
-        Debug.Log("Defeat");
+        menuWinLose.gameObject.SetActive(true);
+        menuWinLose.Title = "Defeat";
     }
 
-    void Pause()
+    public void Pause()
     {
         currentGameState = currentGameState == GameState.InPause ? GameState.InGame : GameState.InPause;
 
