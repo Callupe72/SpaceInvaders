@@ -17,7 +17,6 @@ public class EnemySpawnerManager : MonoBehaviour
 
     public Transform scoreParent;
 
-
     [Header("Speed")]
     [SerializeField] float horizontalSpeed = 1f;
     [SerializeField] float horizontalTime = 1f;
@@ -28,6 +27,7 @@ public class EnemySpawnerManager : MonoBehaviour
     float speedCurrentTime;
 
     Vector3 startingPos;
+
 
     Direction currentDirection;
     public enum Direction
@@ -81,6 +81,8 @@ public class EnemySpawnerManager : MonoBehaviour
     public static EnemySpawnerManager Instance;
     private bool canMoveWaveTxt;
 
+    float xPosition = 10;
+
     void Awake()
     {
         if (Instance != null)
@@ -103,6 +105,14 @@ public class EnemySpawnerManager : MonoBehaviour
         CreateNewWave();
     }
 
+    void OnDrawGizmos()
+    {
+        Color col = Color.red;
+        col = new Vector4(1, 0, 0, 0.5f);
+        Gizmos.color = col;
+
+        Gizmos.DrawCube(transform.position, new Vector3(xPosition, 30, 20));
+    }
 
     void Update()
     {
@@ -285,6 +295,8 @@ public class EnemySpawnerManager : MonoBehaviour
         }
 
         ennemyRestantText.text = enemyStillAlive + "/" + (currentEnemiesPerLine * currentLineNumbers);
+
+        xPosition = currentEnemiesPerLine * spaceBetweenEnemies + currentEnemiesPerLine % 2 + (horizontalSpeed*2); 
     }
 
     void SpawnLine(int lineIndex)

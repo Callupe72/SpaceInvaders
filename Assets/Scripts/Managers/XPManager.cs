@@ -87,13 +87,13 @@ public class XPManager : MonoBehaviour
     {
         playerXp += xp;
 
-        if (canXpText)
+        if (canXpText && xp > 0)
         {
             TextMeshProUGUI text = Instantiate(xpText, xpTextParent).GetComponent<TextMeshProUGUI>();
             text.rectTransform.anchoredPosition = new Vector2(xpBarBack.fillAmount * xpBar.rectTransform.sizeDelta.x - 100 - xpBar.rectTransform.sizeDelta.x / 3, -40);
             text.text = "+" + xp + " xp";
         }
-        if (canXpBar)
+        if (canXpBar && xp > 0)
         {
             xpBackground.DOScale(1.1f, 0.001f);
             StartCoroutine(WaitBeforeFollow(xp));
