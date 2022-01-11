@@ -85,10 +85,10 @@ public class Enemy : MonoBehaviour
             GetComponent<Collider>().enabled = false;
             StartCoroutine(WaitBeforeDestroy());
         }
-        else if (EnemySpawnerManager.Instance.GetEnemyStillAlive() == 1)
+        if (EnemySpawnerManager.Instance.GetEnemyStillAlive() == 1)
         {
             CVM.enabled = true;
-            SlowMotionManager.Instance.SlowMotion(2f);
+            SlowMotionManager.Instance.SlowMotion(3f);
             StartCoroutine(WaitBeforeDestroy());
         }
         else

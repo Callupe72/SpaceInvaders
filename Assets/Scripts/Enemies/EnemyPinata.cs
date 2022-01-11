@@ -25,6 +25,7 @@ public class EnemyPinata : Enemy
         float audioReact = AudioReaction.Instance.GetDropValue();
 
         transform.Rotate(0.1f *audioReact , 0.15f * audioReact, 0);
+        transform.DOScale(0.1f *audioReact , 0.15f * audioReact, 0);
         audioReaction = 1 + factor;
     }
 

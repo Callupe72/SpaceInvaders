@@ -956,7 +956,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "6a32a61714064c5ebc023be7784e0dca",
     "m_Id": 0,
-    "m_DisplayName": "EdgeWidth",
+    "m_DisplayName": "BorderWidth",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
