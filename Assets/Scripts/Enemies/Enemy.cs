@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     public void Damage(int damages, bool destroyLine)
     {
-        if (CVM.enabled)
+        if (CVM != null  && CVM.enabled)
         {
             return;
         }
