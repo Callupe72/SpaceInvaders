@@ -21,6 +21,7 @@ public class DissolveEffect : MonoBehaviour
 
     [HideInInspector] public List<Material> mat;
     [HideInInspector] public List<Texture> texture;
+    [HideInInspector] public Material[] oldMat;
     bool dissolve;
     bool alreadyCalled;
     bool showOn;
@@ -87,6 +88,9 @@ public class DissolveEffect : MonoBehaviour
                     mat[i].SetFloat("_BorderWidth", borderWidth);
                     mat[i].SetColor("_BaseColor", color);
                 }
+
+                oldMat = mesh.sharedMaterials;
+
                 mesh.sharedMaterials = mat.ToArray();
 
                 if (_showOn)
@@ -235,6 +239,8 @@ public class DissolveEffect : MonoBehaviour
 
                 if (_dissolveValue >= 0.95f)
                 {
+                    mesh.sharedMaterials = oldMat;
+
                     if (dieAfter)
                     {
                         Die();
@@ -278,8 +284,16 @@ public class DissolveEffect : MonoBehaviour
                     {
                         Die();
                     }
+
+                    //mesh.sharedMaterials = mat.ToArray();
+
                     dissolve = false;
                     alreadyCalled = false;
+
+
+                    mesh.sharedMaterials = oldMat;
+
+                    this.enabled = false;
                 }
             }
             if (dissolveMultipleObj)
