@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         scoreOverEnemy.transform.parent = EnemySpawnerManager.Instance.scoreParent;
         scoreOverEnemy.SetText(damages);
         ScoreManager.Instance.AddScore(damages);
-        AudioManager.Instance.Play3DSound(soundToPlayOnDamages, transform.position);
+        AudioManager.Instance.Play2DSound(soundToPlayOnDamages);
         if (life <= 0)
         {
             GetComponentInChildren<Collider>().enabled = false;
@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         ComboManager.Instance.AddCombo();
-        AudioManager.Instance.Play3DSound(soundToPlayOnDie, transform.position);
+        AudioManager.Instance.Play2DSound(soundToPlayOnDie);
         Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
         CVM.transform.parent = transform.parent;
         Destroy(CVM, 2f);
@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator WaitBeforeDestroy()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.8f);
         Die();
     }
 
