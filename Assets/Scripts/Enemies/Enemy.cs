@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using Cinemachine;
 
 public class Enemy : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] int randomXpGivenMin = 100;
     [SerializeField] int randomXpGivenMax = 150;
     bool debrisWillMakeDamages;
+    [Header("Cam")]
+    public CinemachineVirtualCamera CVM = null;
 
     [HideInInspector] public EnemySpawnerManager.ShipType shipType;
     void Start()
@@ -35,6 +38,10 @@ public class Enemy : MonoBehaviour
 
     public void Damage(int damages, bool destroyLine)
     {
+        if (CVM.enabled)
+        {
+            return;
+        }
         life -= damages;
         ParticlesManager.Instance.SpawnParticles("EnemyTakesDamages", transform, transform.rotation.eulerAngles, false);
         ChangeFactor();
@@ -78,6 +85,12 @@ public class Enemy : MonoBehaviour
             GetComponent<Collider>().enabled = false;
             StartCoroutine(WaitBeforeDestroy());
         }
+        else if (EnemySpawnerManager.Instance.GetEnemyStillAlive() == 1)
+        {
+            CVM.enabled = true;
+            SlowMotionManager.Instance.SlowMotion(2f);
+            StartCoroutine(WaitBeforeDestroy());
+        }
         else
         {
             Die();
@@ -89,6 +102,8 @@ public class Enemy : MonoBehaviour
         ComboManager.Instance.AddCombo();
         AudioManager.Instance.Play3DSound(soundToPlayOnDie, transform.position);
         Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
+        CVM.transform.parent = transform.parent;
+        Destroy(CVM, 2f);
         transform.parent.GetComponentInParent<EnemySpawnerManager>().EnemyIsKilled();
         Destroy(gameObject);
     }

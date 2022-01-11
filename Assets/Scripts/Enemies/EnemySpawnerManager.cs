@@ -358,21 +358,32 @@ public class EnemySpawnerManager : MonoBehaviour
         ennemyRestantText.text = enemyStillAlive + "/" + (currentEnemiesPerLine * currentLineNumbers);
         if (enemyStillAlive == 0)
         {
-            if (currentWave < dataWave.Data.Count)
+            StartCoroutine(WaitBeforeStartWave());
+        }
+    }
+
+    public int GetEnemyStillAlive()
+    {
+        return enemyStillAlive;
+    }
+
+    IEnumerator WaitBeforeStartWave()
+    {
+        yield return new WaitForSeconds(1f);
+        if (currentWave < dataWave.Data.Count)
+        {
+            if (isPinataWave)
             {
-                if (isPinataWave)
-                {
-                    UnlockNewPowerManager.Instance.AddNewPower();
-                }
-                else
-                {
-                    CreateNewWave();
-                }
+                UnlockNewPowerManager.Instance.AddNewPower();
             }
             else
             {
-                GameManager.Instance.ChangeGameState(GameManager.GameState.Victory);
+                CreateNewWave();
             }
+        }
+        else
+        {
+            GameManager.Instance.ChangeGameState(GameManager.GameState.Victory);
         }
     }
 
