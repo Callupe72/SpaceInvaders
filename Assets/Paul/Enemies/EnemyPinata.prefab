@@ -391,8 +391,8 @@ MonoBehaviour:
   soundToPlayOnDie: DestroyPinata
   fracturedEnemy: {fileID: -8716586036654775229, guid: 1d8144ec2087d5b4db480d7f8ba9a379, type: 3}
   scoreDamages: {fileID: 1098862414797635225, guid: 89d0cc0feb60c72449f746f15581c362, type: 3}
-  randomXpGivenMin: 100
-  randomXpGivenMax: 150
+  randomXpGivenMin: 0
+  randomXpGivenMax: 0
   shipType: 0
   principalMesh: {fileID: 3934337171321249957}
   destroyCurve:
