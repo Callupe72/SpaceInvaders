@@ -84,7 +84,7 @@ MonoBehaviour:
   randomXpGivenMax: 60
   shipType: 0
   damages: 1
-  prefabBullet: {fileID: 2954419753947916537, guid: a965b604af9ff4a4da3ebad0015a052d, type: 3}
+  prefabBullet: {fileID: 2954419753947916537, guid: 9e99b55f4855e3c47bf3b6e45b8f0c77, type: 3}
   posBullet: {fileID: 1054131700472492746}
   durationBetweenShootMin: 2
   durationBetweenShootMax: 5

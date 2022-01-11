@@ -30,8 +30,12 @@ public class Bullet : MonoBehaviour
             rb.velocity = new Vector3(0, 0, -(speed * time / 100));
         }
         
-        Vector3 rot = rb.rotation.eulerAngles;
-        rb.rotation = Quaternion.Euler(rot.x + 50, rot.y + 50, rot.z);
+        if (!bulletEnnemy)
+        {
+            Vector3 rot = rb.rotation.eulerAngles;
+            rb.rotation = Quaternion.Euler(rot.x + 50, rot.y + 50, rot.z);
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)

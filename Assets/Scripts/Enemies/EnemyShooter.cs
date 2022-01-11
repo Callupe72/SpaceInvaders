@@ -35,7 +35,7 @@ public class EnemyShooter : Enemy
 
     public void Shoot()
     {
-        GameObject go = Instantiate(prefabBullet, posBullet.position, Quaternion.Euler(transform.forward), transform );
+        GameObject go = Instantiate(prefabBullet, posBullet.position, Quaternion.Euler(new Vector3(90,0,90)), transform );
         go.GetComponent<Bullet>().bulletEnnemy = true;
     }
 }
