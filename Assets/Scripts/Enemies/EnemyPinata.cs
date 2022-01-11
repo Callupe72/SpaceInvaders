@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class EnemyPinata : Enemy
 
     void Start()
     {
-        foreach (Transform item in transform.GetChild(0))
+        foreach (Transform item in transform.GetChild(0).transform.GetChild(0))
         {
             item.GetComponent<DissolveEffect>().ChangeMat(true);
         }
@@ -25,6 +26,8 @@ public class EnemyPinata : Enemy
         float audioReact = AudioReaction.Instance.GetDropValue();
 
         transform.Rotate(0.1f *audioReact , 0.15f * audioReact, 0);
+        audioReact = Mathf.Clamp(audioReact, .5f, 3);
+        transform.GetChild(0).transform.DOScale(audioReact * .3f, .01f);
         audioReaction = 1 + factor;
     }
 

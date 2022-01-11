@@ -3,8 +3,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] Transform playerMesh;
-
+    enum PlayerDirection
+    {
+        Right,
+        Normal,
+        Left,
+    }
 
     [Header("FloatingWeapon")]
     [SerializeField] Transform weaponPhysic;
@@ -12,7 +16,6 @@ public class Player : MonoBehaviour
 
     float forceFactor;
     Vector3 floatForce;
-
 
     [Header("PlayerStats")]
     [SerializeField] float speed = 10;
@@ -59,10 +62,12 @@ public class Player : MonoBehaviour
     public Transform particleSpawnTransform;
 
     [Header("Flip")]
-    [SerializeField] Transform mesh = null;
-    [SerializeField] bool canFlip = false;
-    [SerializeField] float flipShipTimer = 0f;
-    [Range(0, 2)] [SerializeField] float FlipTime = 0.5f;
+    [SerializeField] Animator meshAnimator = null;
+    float flipShipTimer = 0f;
+    float oldFlipShipTimer = 0f;
+    float normalModeTimer = 0f;
+    PlayerDirection oldDirection = PlayerDirection.Normal;
+    PlayerDirection newDirection = PlayerDirection.Normal;
 
     //AIM
     [Header("Aim")]
@@ -181,6 +186,13 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
             TakeDommage(1);
+
+    }
+
+    void LateUpdate()
+    {
+        meshAnimator.SetBool("FlipRight", false);
+        meshAnimator.SetBool("FlipLeft", false);
     }
 
     void FixedUpdate()
@@ -296,31 +308,17 @@ public class Player : MonoBehaviour
 
         #endregion
 
-
         float horizontal = Input.GetAxisRaw("HorizontalMove");
-
+        ChangeState(horizontal);
         if (rotateOnMove)
-        {
             transform.DORotate(new Vector3(0, 0, -horizontal * maxRotation), rotationTime);
-            //playerMesh.transform.DORotate(new Vector3(horizontal * maxRotation * 3 - 90, 90, -90), rotationTime);
+        if (oldFlipShipTimer >= 1f)
+            ChangeDirection();
 
-            flipShipTimer += Time.deltaTime;
-            if (canFlip)
-            {
-                mesh.DORotate(new Vector3(0, 0, 360 * Mathf.RoundToInt(-horizontal)), FlipTime, RotateMode.LocalAxisAdd).SetEase(Ease.OutFlash).
-                    OnComplete(() => mesh.DORotate(new Vector3(0, 0, 0), 0.2f));
-                flipShipTimer = 0f;
-                canFlip = false;
-            }
-        }
-
-        if (Mathf.Abs(horizontal) != 1)
+        if (Mathf.Approximately(horizontal, 0))
         {
-            if (flipShipTimer >= 2f)
-                canFlip = true;
             horizontal = 0;
             rotateOnMove = false;
-            flipShipTimer = 0f;
         }
         else
             rotateOnMove = true;
@@ -416,5 +414,42 @@ public class Player : MonoBehaviour
             isDead = true;
             GameManager.Instance.ChangeGameState(GameManager.GameState.Defeat);
         }
+    }
+
+    private void ChangeState(float direction)
+    {
+        oldDirection = newDirection;
+
+        oldFlipShipTimer = flipShipTimer;
+        flipShipTimer += Time.fixedDeltaTime;
+        normalModeTimer += Time.fixedDeltaTime;
+
+        if (Mathf.Approximately(direction, 0))
+        {
+            if (normalModeTimer >= 0.2f)
+                newDirection = PlayerDirection.Normal;
+        }
+        else if (direction > 0f)
+        {
+            newDirection = PlayerDirection.Right;
+            normalModeTimer = 0f;
+        }
+        else
+        {
+            newDirection = PlayerDirection.Left;
+            normalModeTimer = 0f;
+        }
+
+        if (oldDirection != newDirection)
+            flipShipTimer = 0f;
+    }
+
+    private void ChangeDirection()
+    {
+        //Debug.Log($"Dans la fonction, old : {oldDirection} new : {newDirection}");
+        if (oldDirection == PlayerDirection.Left && newDirection == PlayerDirection.Right)
+            meshAnimator.SetBool("FlipRight", true);
+        else if (oldDirection == PlayerDirection.Right && newDirection == PlayerDirection.Left)
+            meshAnimator.SetBool("FlipLeft", true);
     }
 }
