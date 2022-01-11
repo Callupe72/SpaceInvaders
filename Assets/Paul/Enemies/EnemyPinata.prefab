@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1385974181464999877}
   - component: {fileID: 5167980167881707548}
   - component: {fileID: 8700435524218788967}
+  - component: {fileID: 2480441676724226520}
   m_Layer: 0
   m_Name: asteroid_fracture_03
   m_TagString: Untagged
@@ -81,6 +82,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2480441676724226520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687263689000060373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.01
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
 --- !u!1 &728361055856589288
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +116,7 @@ GameObject:
   - component: {fileID: 698237240444977479}
   - component: {fileID: 5361233934985917899}
   - component: {fileID: 9176402967106051364}
+  - component: {fileID: 1760974194549176502}
   m_Layer: 0
   m_Name: asteroid_fracture_06
   m_TagString: Untagged
@@ -162,6 +187,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1760974194549176502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728361055856589288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.01
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
 --- !u!1 &1668419112788831741
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +317,7 @@ GameObject:
   - component: {fileID: 742626216264084322}
   - component: {fileID: 6246027818852339304}
   - component: {fileID: 5528432211066961076}
+  - component: {fileID: 4602177890492674275}
   m_Layer: 0
   m_Name: asteroid_fracture_04
   m_TagString: Untagged
@@ -339,6 +388,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4602177890492674275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738207255504457117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.01
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
 --- !u!1 &2282698327388474806
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +516,7 @@ GameObject:
   - component: {fileID: 4069840213706760558}
   - component: {fileID: 6224827512289378988}
   - component: {fileID: 9077075902354840273}
+  - component: {fileID: 2193219875652743434}
   m_Layer: 0
   m_Name: asteroid_fracture_07
   m_TagString: Untagged
@@ -514,6 +587,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2193219875652743434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2394469047898127018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.01
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
 --- !u!1 &2620793156764337728
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +621,7 @@ GameObject:
   - component: {fileID: 4491520707125881733}
   - component: {fileID: 8660654731350227628}
   - component: {fileID: 205552236931568295}
+  - component: {fileID: 6851719544184200401}
   m_Layer: 0
   m_Name: asteroid_fracture_01
   m_TagString: Untagged
@@ -595,6 +692,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6851719544184200401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2620793156764337728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.01
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
 --- !u!1 &3939185883715002706
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,6 +726,7 @@ GameObject:
   - component: {fileID: 6909164094231975391}
   - component: {fileID: 2901027317968916568}
   - component: {fileID: 3849621485911670231}
+  - component: {fileID: 2161815063936113989}
   m_Layer: 0
   m_Name: asteroid_fracture_02
   m_TagString: Untagged
@@ -676,6 +797,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2161815063936113989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3939185883715002706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.01
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
 --- !u!1 &3947853727746150769
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,6 +831,7 @@ GameObject:
   - component: {fileID: 9019867295260851776}
   - component: {fileID: 4511220454851894925}
   - component: {fileID: 5594694192824746386}
+  - component: {fileID: 2537468943509992222}
   m_Layer: 0
   m_Name: asteroid_fracture_10
   m_TagString: Untagged
@@ -757,6 +902,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2537468943509992222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3947853727746150769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.01
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
 --- !u!1 &4454695976162540063
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,6 +1057,7 @@ GameObject:
   - component: {fileID: 1976209317613657327}
   - component: {fileID: 2709846863375726683}
   - component: {fileID: 7480943481116973165}
+  - component: {fileID: 5410945548051608978}
   m_Layer: 0
   m_Name: asteroid_fracture_08
   m_TagString: Untagged
@@ -959,6 +1128,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5410945548051608978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6168920999991961763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.01
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
 --- !u!1 &8116714947081742647
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,6 +1162,7 @@ GameObject:
   - component: {fileID: 7844603873008231333}
   - component: {fileID: 7427152322908435924}
   - component: {fileID: 6730763913178370449}
+  - component: {fileID: 3724541491736167271}
   m_Layer: 0
   m_Name: asteroid_fracture_05
   m_TagString: Untagged
@@ -1040,6 +1233,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3724541491736167271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116714947081742647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.01
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
 --- !u!1 &8901457809333121715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,6 +1267,7 @@ GameObject:
   - component: {fileID: 5713180772811749184}
   - component: {fileID: 8056138564713317477}
   - component: {fileID: 1786360140092195464}
+  - component: {fileID: 6564201119944557483}
   m_Layer: 0
   m_Name: asteroid_fracture_09
   m_TagString: Untagged
@@ -1121,3 +1338,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6564201119944557483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8901457809333121715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.01
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
