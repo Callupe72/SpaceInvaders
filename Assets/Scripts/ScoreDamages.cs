@@ -37,4 +37,9 @@ public class ScoreDamages : MonoBehaviour
             text.transform.DOMove(lastPos, fadeOutTime);
         }
     }
+
+    public TextMeshProUGUI GetText()
+    {
+        return text;
+    }
 }

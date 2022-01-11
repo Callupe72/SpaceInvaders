@@ -39,7 +39,7 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int scoreToAdd)
     {
         canFade = false;
-        score += scoreToAdd;
+        score += (scoreToAdd + ComboManager.Instance.GetCombo());
         scoreText.text = score.ToString();
         scoreText.DOColor(Color.red, 0.01f);
         scoreText.transform.DOScale(maximumScale, 0.01f);

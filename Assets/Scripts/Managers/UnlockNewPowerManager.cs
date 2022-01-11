@@ -39,7 +39,7 @@ public class UnlockNewPowerManager : MonoBehaviour
 
     [SerializeField] PowerStruct[] powers;
 
-    int powerToUnlockIndex = -1;
+    [SerializeField] int powerToUnlockIndex = -1;
 
     public static UnlockNewPowerManager Instance;
     void Awake()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -146,5 +147,13 @@ public class PostProcessManager : MonoBehaviour
         playerState = PlayerState.isGoingRed;
         player.isInvisibility = true;
         currentTime = 0;
+    }
+
+    public void DashChangeAberation()
+    {
+        DOTween.To(() => ca.intensity.value, x => ca.intensity.value = x, 0, .01f);
+        DOTween.To(() => lsd.intensity.value, x => lsd.intensity.value = x, 0, .01f);
+        DOTween.To(() => 10, x => ca.intensity.value = x, 0, .5f);
+        DOTween.To(() => .25f, x => lsd.intensity.value = x, 0, .5f);
     }
 }

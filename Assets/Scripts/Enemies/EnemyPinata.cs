@@ -14,12 +14,21 @@ public class EnemyPinata : Enemy
 
     void Start()
     {
+
         foreach (Transform item in transform.GetChild(0).transform.GetChild(0))
         {
             item.GetComponent<DissolveEffect>().ChangeMat(true);
         }
+
+        StartCoroutine(WaitBeforeShow());
     }
 
+    IEnumerator WaitBeforeShow()
+    {
+        yield return new WaitForSeconds(1.8f);
+        transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(true);
+
+    }
 
     void Update()
     {

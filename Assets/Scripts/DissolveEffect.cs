@@ -304,7 +304,7 @@ public class DissolveEffect : MonoBehaviour
             {
                 if (mesh)
                 {
-                    _dissolveValue = mesh.sharedMaterial.GetFloat("_DissolveScale");
+                    //_dissolveValue = mesh.sharedMaterial.GetFloat("_DissolveScale");
                 }
                 else
                 {

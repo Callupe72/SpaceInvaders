@@ -49,6 +49,7 @@ public class ParticlesManager : MonoBehaviour
         ParticleSystem particlesComponent = particleGo.GetComponent<ParticleSystem>();
         particlesComponent.Play();
         particleGo.transform.localScale = p.scale;
+        lastParticles.name = name;
         particlesComponent.playbackSpeed = p.speed;
         foreach (Transform item in particleGo.transform)
         {
@@ -62,6 +63,14 @@ public class ParticlesManager : MonoBehaviour
     public void SetCanParticles(bool isTrue)
     {
         canParticle = isTrue;
+    }
+
+    void Update()
+    {
+        if (GameObject.Find("LoadingPlayerWeapon") && !Input.GetButton("Fire"))
+        {
+            Destroy(GameObject.Find("LoadingPlayerWeapon"));
+        }
     }
 
     public bool GetCanParticles()

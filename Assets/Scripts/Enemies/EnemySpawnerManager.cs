@@ -83,6 +83,8 @@ public class EnemySpawnerManager : MonoBehaviour
 
     float xPosition = 10;
 
+    Player player;
+
     void Awake()
     {
         if (Instance != null)
@@ -103,6 +105,7 @@ public class EnemySpawnerManager : MonoBehaviour
         //start = 1400;
         //end = -1400;
         CreateNewWave();
+        player = FindObjectOfType<Player>();
     }
 
     void OnDrawGizmos()
@@ -296,7 +299,12 @@ public class EnemySpawnerManager : MonoBehaviour
 
         ennemyRestantText.text = enemyStillAlive + "/" + (currentEnemiesPerLine * currentLineNumbers);
 
-        xPosition = currentEnemiesPerLine * spaceBetweenEnemies + currentEnemiesPerLine % 2 + (horizontalSpeed*2); 
+        xPosition = currentEnemiesPerLine * spaceBetweenEnemies + currentEnemiesPerLine % 2 + (horizontalSpeed * 2);
+
+        if (isPinataWave)
+            xPosition += 20 * 2;
+
+        player.SetMixMaxPos(-xPosition, xPosition);
     }
 
     void SpawnLine(int lineIndex)
@@ -355,6 +363,7 @@ public class EnemySpawnerManager : MonoBehaviour
     public void EnemyIsKilled()
     {
         enemyStillAlive--;
+        enemyStillAlive = Mathf.Clamp(enemyStillAlive, 0, 999999);
         ennemyRestantText.text = enemyStillAlive + "/" + (currentEnemiesPerLine * currentLineNumbers);
         if (enemyStillAlive == 0)
         {

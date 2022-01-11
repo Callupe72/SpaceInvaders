@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using Cinemachine;
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
@@ -38,11 +39,11 @@ public class Enemy : MonoBehaviour
 
     public void Damage(int damages, bool destroyLine)
     {
-        if (CVM != null  && CVM.enabled)
+        if (CVM != null  && CVM.gameObject.activeInHierarchy)
         {
             return;
         }
-        life -= damages;
+        life -= damages * Mathf.RoundToInt(AudioReaction.Instance.GetDropValue());
         ParticlesManager.Instance.SpawnParticles("EnemyTakesDamages", transform, transform.rotation.eulerAngles, false);
         ChangeFactor();
         int rand = RandomXpGiven();
@@ -50,10 +51,18 @@ public class Enemy : MonoBehaviour
         Vector3 spawnPos = transform.position;
         spawnPos = new Vector3(spawnPos.x, spawnPos.y, spawnPos.z - 30);
         ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.Euler(Vector3.zero)).GetComponent<ScoreDamages>();
+        scoreOverEnemy.transform.localScale = Vector3.one * scoreOverEnemy.transform.localScale.x * Mathf.Clamp(AudioReaction.Instance.GetDropValue(), 1, 100);
+        Color oldColor = scoreOverEnemy.GetText().fontMaterial.GetColor(ShaderUtilities.ID_OutlineColor);
+        var intensity = (oldColor.r + oldColor.g + oldColor.b);
+        var factor =  AudioReaction.Instance.GetDropValue() * 3;
+        Color newColor = new Color(oldColor.r * factor, oldColor.g * factor, oldColor.b * factor, oldColor.a);
+        scoreOverEnemy.GetText().fontMaterial.SetColor(ShaderUtilities.ID_OutlineColor, newColor);
+        scoreOverEnemy.GetText().fontMaterial.SetFloat(ShaderUtilities.ID_OutlineWidth, .3f);
         scoreOverEnemy.transform.parent = EnemySpawnerManager.Instance.scoreParent;
-        scoreOverEnemy.SetText(damages);
-        ScoreManager.Instance.AddScore(damages);
+        scoreOverEnemy.SetText(damages * Mathf.RoundToInt(AudioReaction.Instance.GetDropValue()));
+        ScoreManager.Instance.AddScore(damages * Mathf.RoundToInt(AudioReaction.Instance.GetDropValue()));
         AudioManager.Instance.Play2DSound(soundToPlayOnDamages);
+        CinemachineShake.Instance.ShakeCamera(AudioReaction.Instance.GetDropValue(), .5f);
         if (life <= 0)
         {
             GetComponentInChildren<Collider>().enabled = false;
@@ -83,11 +92,10 @@ public class Enemy : MonoBehaviour
             ParticlesManager.Instance.SpawnParticles("PinataDeath", transform, Vector3.zero, false);
             SlowMotionManager.Instance.SlowMotion(2);
             GetComponent<Collider>().enabled = false;
-            StartCoroutine(WaitBeforeDestroy());
         }
         if (EnemySpawnerManager.Instance.GetEnemyStillAlive() == 1)
         {
-            CVM.enabled = true;
+            CVM.gameObject.SetActive(true);
             SlowMotionManager.Instance.SlowMotion(3f);
             StartCoroutine(WaitBeforeDestroy());
         }

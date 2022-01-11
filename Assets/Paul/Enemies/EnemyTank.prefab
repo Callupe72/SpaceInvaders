@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 969494646205254244}
   - component: {fileID: 4241139240630093249}
   - component: {fileID: 2107538265248297227}
-  - component: {fileID: 1493897598459497802}
+  - component: {fileID: 8872239797105483242}
   m_Layer: 0
   m_Name: EnemyMesh
   m_TagString: Enemy
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1493897598459497802
-MeshCollider:
+--- !u!65 &8872239797105483242
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,10 +92,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3415640298642719631, guid: 9883753aa1702a84a81c006078b88e1b, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 4.1378665, y: 10.983865, z: 2.7543123}
+  m_Center: {x: 0, y: -4.1155252, z: 0.4427762}
 --- !u!1 &2195842747286191977
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1307355349164888398
 Transform:
   m_ObjectHideFlags: 0
@@ -189,7 +188,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4040328980003087183}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 

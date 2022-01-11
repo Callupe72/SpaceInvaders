@@ -56,11 +56,12 @@ public class ComboManager : MonoBehaviour
         EnableText(true);
         timeSpent = 0;
         combo++;
+        combo = Mathf.Clamp(combo, 0, 100);
         SetText();
         if (canCombo)
         {
             playAnim = true;
-            textCombo.transform.DOScale(3, .001f);
+            textCombo.transform.DOScale(3 * 1 + (combo / 100), .001f);
             textCombo.DOColor(Color.red, .001f);
         }
         else
@@ -104,5 +105,4 @@ public class ComboManager : MonoBehaviour
     {
         return canCombo;
     }
-
 }

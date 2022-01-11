@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class AudioReaction : MonoBehaviour
@@ -63,7 +61,7 @@ public class AudioReaction : MonoBehaviour
 
                 dropValue = clipLoudness;
 
-               PostProcessManager.Instance.SetBloom(true,clipLoudness * soundImpact / 1000);
+                PostProcessManager.Instance.SetBloom(true, clipLoudness * soundImpact / 1000);
             }
         }
 
@@ -77,7 +75,7 @@ public class AudioReaction : MonoBehaviour
 
     public float GetDropValue()
     {
-        return dropValue / 100;
+        return Mathf.Clamp(dropValue / 100, 1, 100);
     }
 
     public void PauseMusic()

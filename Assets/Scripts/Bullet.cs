@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
         if (!bulletEnnemy && other.tag == "Enemy")
         {
             Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
-            enemy.Damage(damages * impactBeforeDie, destroyLine);
+            enemy.Damage(damages, destroyLine);
             enemy.SetDebrisMakeDamages(debrisWillMakeDamages);
             CinemachineShake.Instance.ShakeCamera(5f, 1f);
             impactBeforeDie--;

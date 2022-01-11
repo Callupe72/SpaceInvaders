@@ -47,4 +47,11 @@ public class DashEffect : MonoBehaviour
         particle.Play();
         Destroy(gameObject, particle.duration);
     }
+
+    public void ActiveParticles()
+    {
+        transform.rotation = skin.transform.rotation;
+        transform.position = skin.transform.position;
+        particle.Play();
+    }
 }

@@ -93,17 +93,23 @@ public class Player : MonoBehaviour
     [Header("Take Damages")]
     public float invisibilityTime = 1f;
     [HideInInspector] public bool isInvisibility;
-
+    public DashEffect dashEffect;
+    [SerializeField] GameObject shield;
 
     //POWER UPS
 
     [HideInInspector] public bool playerCanDestroyLine = false;
     [HideInInspector] public bool playerCanAim = false;
-    [HideInInspector] public bool playerShield = false;
+    [HideInInspector] public bool playerCanShield = false;
     [HideInInspector] public bool playerCanUsePowerShot = true;
     [HideInInspector] public bool playerCanDash = true;
     [HideInInspector] public bool playerCanMakeDamagesOnDash = false;
     [HideInInspector] public bool debrisMakesDamages = false;
+    [SerializeField] float timeBeforeLooping;
+
+    [SerializeField] Vector2 minMaxPos;
+
+    public GameObject[] border;
 
     void Start()
     {
@@ -116,6 +122,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        float currentXPos = Mathf.Clamp(transform.position.x, minMaxPos.x, minMaxPos.y);
+        transform.position = new Vector3(currentXPos, transform.position.y, transform.position.z);
 
         if (rotateWeapon)
         {
@@ -161,7 +169,8 @@ public class Player : MonoBehaviour
             if (GameManager.Instance.currentGameState == GameManager.GameState.InPause || GameManager.Instance.currentGameState == GameManager.GameState.Defeat)
                 return;
 
-            PressFire();
+            if (!shield.activeInHierarchy)
+                PressFire();
         }
 
 
@@ -202,6 +211,19 @@ public class Player : MonoBehaviour
 
         if (!UnlockNewPowerManager.Instance.waitSeeNewPower)
             Movement();
+
+        if (playerCanShield && !UnlockNewPowerManager.Instance.waitSeeNewPower)
+        {
+            
+            shield.gameObject.SetActive(Input.GetButton("Shield"));
+            if (Input.GetButtonDown("Shield"))
+            {
+                if (ParticlesManager.Instance.GetLastParticles() && ParticlesManager.Instance.GetLastParticles().name == "LoadingPlayerWeapon")
+                {
+                    Destroy(ParticlesManager.Instance.GetLastParticles());
+                }
+            }
+        }
     }
 
     void PressFire()
@@ -278,6 +300,10 @@ public class Player : MonoBehaviour
         {
             if (Input.GetButton("Dash") && !isDashing && !isReloadingDash)
             {
+                PostProcessManager.Instance.DashChangeAberation();
+                CinemachineShake.Instance.ShakeCamera(5, 1f);
+                AudioManager.Instance.Play2DSound("Dash");
+                dashEffect.ActiveParticles();
                 isDashingSpeed = dashSpeed;
                 isDashing = true;
                 dashTimeCalculator = 0;
@@ -312,7 +338,7 @@ public class Player : MonoBehaviour
         ChangeState(horizontal);
         if (rotateOnMove)
             transform.DORotate(new Vector3(0, 0, -horizontal * maxRotation), rotationTime);
-        if (oldFlipShipTimer >= 1f)
+        if (oldFlipShipTimer >= timeBeforeLooping)
             ChangeDirection();
 
         if (Mathf.Approximately(horizontal, 0))
@@ -321,11 +347,18 @@ public class Player : MonoBehaviour
             rotateOnMove = false;
         }
         else
+        {
             rotateOnMove = true;
+        }
 
-        rb.velocity = new Vector3(horizontal * Time.fixedDeltaTime * isDashingSpeed, rb.velocity.y, rb.velocity.z);
+        float hasShield = 1;
 
+        if (shield.activeInHierarchy)
+        {
+            hasShield = 0.25f;
+        }
 
+        rb.velocity = new Vector3(horizontal * Time.fixedDeltaTime * isDashingSpeed * 2 * hasShield, rb.velocity.y, rb.velocity.z);
         //forceFactor = 1.0f - ((weaponRigidbody.transform.position.y - waterLevel) / floatThreshold);
 
         //if (forceFactor > 0.0f)
@@ -380,7 +413,7 @@ public class Player : MonoBehaviour
         {
             //Special Attack
             AudioManager.Instance.Play2DSound("PowerShot");
-            bulletTransform.SetDamages(Mathf.RoundToInt(damages));
+            bulletTransform.SetDamages(Mathf.RoundToInt(damages) * 2);
             bulletTransform.SetImpactBeforeDie(Mathf.RoundToInt(AudioReaction.Instance.GetDropValue() * 2));
             bulletTransform.transform.localScale = Vector3.one * 0.3f;
             TrailRenderer bulletTrail = bulletTransform.GetComponent<TrailRenderer>();
@@ -398,8 +431,9 @@ public class Player : MonoBehaviour
 
     public void TakeDommage(int dommage)
     {
+        AudioManager.Instance.Play2DSound("PlayerLooseLife");
         PostProcessManager.Instance.PlayerIsTouch(this);
-        CinemachineShake.Instance.ShakeCamera(7, .5f);
+        CinemachineShake.Instance.ShakeCamera(10, .7f);
 
         life -= dommage;
 
@@ -451,5 +485,12 @@ public class Player : MonoBehaviour
             meshAnimator.SetBool("FlipRight", true);
         else if (oldDirection == PlayerDirection.Right && newDirection == PlayerDirection.Left)
             meshAnimator.SetBool("FlipLeft", true);
+    }
+
+    public void SetMixMaxPos(float min, float max)
+    {
+        minMaxPos = new Vector2(min, max);
+        border[0].transform.DOMoveX(min - 7, 1);
+        border[1].transform.DOMoveX(max + 7, 1);
     }
 }
