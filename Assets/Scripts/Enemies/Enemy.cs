@@ -56,7 +56,8 @@ public class Enemy : MonoBehaviour
             return;
         }
         life -= damages * Mathf.RoundToInt(AudioReaction.Instance.GetDropValue());
-        ParticlesManager.Instance.SpawnParticles("EnemyTakesDamages", transform, transform.rotation.eulerAngles, false);
+        if(ParticlesManager.Instance.GetCanParticles())
+            ParticlesManager.Instance.SpawnParticles("EnemyTakesDamages", transform, transform.rotation.eulerAngles, false);
         ChangeFactor();
         int rand = RandomXpGiven();
         XPManager.Instance.AddXP(rand);
@@ -121,13 +122,16 @@ public class Enemy : MonoBehaviour
     {
         ComboManager.Instance.AddCombo();
         AudioManager.Instance.Play2DSound(soundToPlayOnDie);
-        if (!isLast)
-            Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
-        else
+        if (ActiveJuiceManager.Instance.ExplosionIsOn)
         {
-            FracturedEnemy frac = Instantiate(fracturedEnemy, transform.position, Quaternion.identity).GetComponent<FracturedEnemy>();
-            frac.SetBreakForce(1);
+            if (!isLast)
+                Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
+            else
+            {
+                FracturedEnemy frac = Instantiate(fracturedEnemy, transform.position, Quaternion.identity).GetComponent<FracturedEnemy>();
+                frac.SetBreakForce(1);
 
+            }
         }
         CVM.transform.parent = transform.parent;
         Destroy(CVM, 2f);

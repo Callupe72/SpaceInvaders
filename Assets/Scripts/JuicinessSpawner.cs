@@ -58,6 +58,7 @@ public class JuicinessSpawner : MonoBehaviour
                 PostProcessManager.Instance.SetBloom(true, slider.value);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShipExplostion:
+                ActiveJuiceManager.Instance.ExplosionIsOn = toggle.isOn;
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Sound:
                 AudioManager.Instance.SetCanPlaySound(toggle.isOn);
@@ -82,6 +83,9 @@ public class JuicinessSpawner : MonoBehaviour
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Combo:
                 ComboManager.Instance.SetCanCombo(toggle.isOn);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.BarrelRoll:
+                ActiveJuiceManager.Instance.BarrelRoll = toggle.isOn;
                 break;
             default:
                 break;

@@ -481,6 +481,10 @@ public class Player : MonoBehaviour
     private void ChangeDirection()
     {
         //Debug.Log($"Dans la fonction, old : {oldDirection} new : {newDirection}");
+        if (!ActiveJuiceManager.Instance.BarrelRoll)
+        {
+            return;
+        }
         if (oldDirection == PlayerDirection.Left && newDirection == PlayerDirection.Right)
             meshAnimator.SetBool("FlipRight", true);
         else if (oldDirection == PlayerDirection.Right && newDirection == PlayerDirection.Left)

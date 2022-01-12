@@ -28,7 +28,6 @@ public class EnemySpawnerManager : MonoBehaviour
 
     Vector3 startingPos;
 
-
     Direction currentDirection;
     public enum Direction
     {
@@ -401,7 +400,8 @@ public class EnemySpawnerManager : MonoBehaviour
 
         SlowMotionManager.Instance.SlowMotion();
         yield return new WaitForSeconds(1f);
-        ParticlesManager.Instance.SpawnParticles("DestroyLine", lineToDestroy, Vector3.zero, false);
+        if (ActiveJuiceManager.Instance.ExplosionIsOn)
+            ParticlesManager.Instance.SpawnParticles("DestroyLine", lineToDestroy, Vector3.zero, false);
         foreach (Transform enemy in lineToDestroy)
         {
             enemy.GetComponent<Enemy>().PrepareToDie();
