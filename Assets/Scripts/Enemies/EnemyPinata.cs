@@ -18,7 +18,7 @@ public class EnemyPinata : Enemy
         {
             item.GetComponent<DissolveEffect>().ChangeMat(true);
         }
-
+        CVM.transform.parent = transform.parent.parent.parent;
         StartCoroutine(WaitBeforeShow());
     }
 
