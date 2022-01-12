@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] RectTransform juicinessArray;
     [SerializeField] MenuWinLose menuWinLose;
+    [SerializeField] GameObject juicinessEvent;
 
     public enum GameState
     {
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
 
         ActiveJuiceManager.Instance.menuIsActive = currentGameState == GameState.InJuicinessMenu;
 
+        juicinessEvent.SetActive(currentGameState == GameState.InJuicinessMenu);
         if (currentGameState == GameState.InJuicinessMenu)
         {
             juicinessArray.anchoredPosition = new Vector2(-50, 0);

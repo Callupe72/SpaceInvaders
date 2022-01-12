@@ -57,4 +57,9 @@ public class FracturedEnemy : MonoBehaviour
     {
         return debrisMakeDamages;
     }
+
+    public void SetBreakForce(float force)
+    {
+        breakForce = force;
+    }
 }

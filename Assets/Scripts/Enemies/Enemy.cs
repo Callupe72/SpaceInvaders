@@ -1,8 +1,7 @@
-using System.Collections;
-using UnityEngine;
-using DG.Tweening;
 using Cinemachine;
+using System.Collections;
 using TMPro;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -31,7 +30,7 @@ public class Enemy : MonoBehaviour
         transform.localScale = Vector3.one * scale;
         maxLife = life;
         ChangeFactor();
-        if(shipType != EnemySpawnerManager.ShipType.Pinata && shipType != EnemySpawnerManager.ShipType.Shooter)
+        if (shipType != EnemySpawnerManager.ShipType.Pinata && shipType != EnemySpawnerManager.ShipType.Shooter)
         {
             foreach (Transform item in transform)
             {
@@ -52,7 +51,7 @@ public class Enemy : MonoBehaviour
 
     public void Damage(int damages, bool destroyLine)
     {
-        if (CVM != null  && CVM.gameObject.activeInHierarchy)
+        if (CVM != null && CVM.gameObject.activeInHierarchy)
         {
             return;
         }
@@ -67,7 +66,7 @@ public class Enemy : MonoBehaviour
         scoreOverEnemy.transform.localScale = Vector3.one * scoreOverEnemy.transform.localScale.x * Mathf.Clamp(AudioReaction.Instance.GetDropValue(), 1, 100);
         Color oldColor = scoreOverEnemy.GetText().fontMaterial.GetColor(ShaderUtilities.ID_OutlineColor);
         var intensity = (oldColor.r + oldColor.g + oldColor.b);
-        var factor =  AudioReaction.Instance.GetDropValue() * 3;
+        var factor = AudioReaction.Instance.GetDropValue() * 3;
         Color newColor = new Color(oldColor.r * factor, oldColor.g * factor, oldColor.b * factor, oldColor.a);
         scoreOverEnemy.GetText().fontMaterial.SetColor(ShaderUtilities.ID_OutlineColor, newColor);
         scoreOverEnemy.GetText().fontMaterial.SetFloat(ShaderUtilities.ID_OutlineWidth, .3f);
@@ -114,15 +113,22 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Die();
+            Die(false);
         }
     }
 
-    void Die()
+    void Die(bool isLast)
     {
         ComboManager.Instance.AddCombo();
         AudioManager.Instance.Play2DSound(soundToPlayOnDie);
-        Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
+        if (!isLast)
+            Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
+        else
+        {
+            FracturedEnemy frac = Instantiate(fracturedEnemy, transform.position, Quaternion.identity).GetComponent<FracturedEnemy>();
+            frac.SetBreakForce(1);
+
+        }
         CVM.transform.parent = transform.parent;
         Destroy(CVM, 2f);
         transform.parent.GetComponentInParent<EnemySpawnerManager>().EnemyIsKilled();
@@ -132,7 +138,7 @@ public class Enemy : MonoBehaviour
     IEnumerator WaitBeforeDestroy()
     {
         yield return new WaitForSeconds(1.8f);
-        Die();
+        Die(true);
     }
 
     public void SetDebrisMakeDamages(bool isTrue)
