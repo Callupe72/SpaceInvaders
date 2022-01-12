@@ -69,6 +69,7 @@ public class JuicinessSpawner : MonoBehaviour
                 CinemachineShake.Instance.SetCanShake(toggle.isOn);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Animations:
+                ActiveJuiceManager.Instance.AnimationIsOn = toggle.isOn;
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.XpBar:
                 XPManager.Instance.SetXpBar(toggle.isOn);

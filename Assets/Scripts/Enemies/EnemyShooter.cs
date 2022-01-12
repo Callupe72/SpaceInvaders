@@ -16,7 +16,7 @@ public class EnemyShooter : Enemy
     private void Start()
     {
         timerShoot = Random.Range(durationBetweenShootMin, durationBetweenShootMax);
-        foreach (Transform item in transform.GetChild(0).transform.GetChild(0))
+        foreach (Transform item in transform.GetChild(0).transform)
         {
             item.gameObject.GetComponent<DissolveEffect>().activeEffectAfterTime = timeBeforeShow;
             item.GetComponent<DissolveEffect>().ChangeMat(true);

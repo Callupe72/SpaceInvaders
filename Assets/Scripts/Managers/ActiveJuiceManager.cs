@@ -19,6 +19,8 @@ public class ActiveJuiceManager : MonoBehaviour
     public bool menuIsActive;
     [SerializeField] RectTransform juicinessArray;
 
+    public bool AnimationIsOn = true;
+
     [System.Serializable]
     public struct ActiveJuiceValues
     {
