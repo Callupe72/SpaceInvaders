@@ -326,7 +326,6 @@ public class EnemySpawnerManager : MonoBehaviour
             SpawnEnemy(lineIndex, i, pos, line.transform, shipsStats[randomizeList[index]].shipType);
         }
     }
-
     void SpawnEnemy(int lineNum, int enemyIndex, Vector3 pos, Transform parent, ShipType shipType)
     {
         GameObject enemyToSpawn = enemiesToSpawn[0];
