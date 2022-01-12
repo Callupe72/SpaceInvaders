@@ -66,6 +66,7 @@ GameObject:
   - component: {fileID: 1927464555195082139}
   - component: {fileID: 4421212692478415185}
   - component: {fileID: 7225833161793106159}
+  - component: {fileID: 7675131282692673565}
   m_Layer: 0
   m_Name: EnemyMesh
   m_TagString: Enemy
@@ -149,6 +150,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.237756, y: 13.4117985, z: 4.5211983}
   m_Center: {x: 0, y: -5.095663, z: 0.58002806}
+--- !u!114 &7675131282692673565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2763998461563007108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 2, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &3537975332111751369
 GameObject:
   m_ObjectHideFlags: 0
