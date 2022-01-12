@@ -350,6 +350,7 @@ public class EnemySpawnerManager : MonoBehaviour
         }
         GameObject enemy = Instantiate(enemyToSpawn, pos, Quaternion.Euler(rot));
         enemy.GetComponent<Enemy>().shipType = shipType;
+        enemy.GetComponent<Enemy>().SetTimeBeforeShow(((float)currentLineNumbers - (float)lineNum +1 ) / 5);
         enemy.name = "EnemyL" + lineNum + "N" + enemyIndex;
         enemy.transform.parent = parent;
     }

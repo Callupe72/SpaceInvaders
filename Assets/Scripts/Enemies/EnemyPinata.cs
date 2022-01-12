@@ -14,7 +14,6 @@ public class EnemyPinata : Enemy
 
     void Start()
     {
-
         foreach (Transform item in transform.GetChild(0).transform.GetChild(0))
         {
             item.GetComponent<DissolveEffect>().ChangeMat(true);

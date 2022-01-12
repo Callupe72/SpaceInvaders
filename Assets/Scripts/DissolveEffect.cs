@@ -16,7 +16,7 @@ public class DissolveEffect : MonoBehaviour
     [ColorUsage(true, true)] public Color color;
 
     [HideInInspector] public List<MeshRenderer> multiMesh;
-    [HideInInspector] public float activeEffectAfterTime;
+    public float activeEffectAfterTime;
     [HideInInspector] public bool dissolveMultipleObj;
 
     [HideInInspector] public List<Material> mat;
@@ -27,25 +27,32 @@ public class DissolveEffect : MonoBehaviour
     bool showOn;
     float _dissolveValue;
     Color colorTexture;
+    bool canDissolve;
 
     void Update()
     {
-        Dissolve(dissolveMultipleObj);
+        if(canDissolve)
+            Dissolve(dissolveMultipleObj);
     }
     public void ChangeMat(bool _showOn)
     {
         showOn = _showOn;
+
+        if (activeEffectAfterTime == 0)
+            canDissolve = true;
+
         if (dissolveMultipleObj)
         {
             for (int i = 0; i < transform.childCount; i++)
             {
                 multiMesh.Add(transform.GetChild(i).GetComponent<MeshRenderer>());
             }
-            StartCoroutine(WaitBeforeDissolve());
+            StartCoroutine(WaitBeforeDissolve(true));
             return;
         }
         else
         {
+            StartCoroutine(WaitBeforeDissolve(false));
             if (GetComponent<MeshRenderer>())
                 mesh = GetComponent<MeshRenderer>();
             else
@@ -152,10 +159,13 @@ public class DissolveEffect : MonoBehaviour
 
     }
 
-    IEnumerator WaitBeforeDissolve()
+    IEnumerator WaitBeforeDissolve(bool isMultiple)
     {
         yield return new WaitForSeconds(activeEffectAfterTime);
-        ChangeMultipleMesh();
+        if (isMultiple)
+            ChangeMultipleMesh();
+        else
+            canDissolve = true;
     }
 
     void ChangeMultipleMesh()

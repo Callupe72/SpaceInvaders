@@ -23,12 +23,25 @@ public class Enemy : MonoBehaviour
     public CinemachineVirtualCamera CVM = null;
 
     [HideInInspector] public EnemySpawnerManager.ShipType shipType;
+
+    protected float timeBeforeShow;
     void Start()
     {
         float scale = Random.Range(0.75f, 1.25f);
         transform.localScale = Vector3.one * scale;
         maxLife = life;
         ChangeFactor();
+        if(shipType != EnemySpawnerManager.ShipType.Pinata && shipType != EnemySpawnerManager.ShipType.Shooter)
+        {
+            foreach (Transform item in transform)
+            {
+                if (item.GetComponent<DissolveEffect>())
+                {
+                    item.GetComponent<DissolveEffect>().activeEffectAfterTime = timeBeforeShow;
+                    item.GetComponent<DissolveEffect>().ChangeMat(true);
+                }
+            }
+        }
     }
 
     void FixedUpdate()
@@ -154,5 +167,10 @@ public class Enemy : MonoBehaviour
     public int RandomXpGiven()
     {
         return Random.Range(randomXpGivenMin, randomXpGivenMax);
+    }
+
+    public void SetTimeBeforeShow(float time)
+    {
+        timeBeforeShow = time;
     }
 }
