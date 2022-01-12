@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
         int rand = RandomXpGiven();
         XPManager.Instance.AddXP(rand);
         Vector3 spawnPos = transform.position;
-        spawnPos = new Vector3(spawnPos.x, spawnPos.y, spawnPos.z - 30);
+        spawnPos = new Vector3(spawnPos.x, spawnPos.y + 10, spawnPos.z - 30);
         ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.Euler(Vector3.zero)).GetComponent<ScoreDamages>();
         scoreOverEnemy.transform.localScale = Vector3.one * scoreOverEnemy.transform.localScale.x * Mathf.Clamp(AudioReaction.Instance.GetDropValue(), 1, 100);
         Color oldColor = scoreOverEnemy.GetText().fontMaterial.GetColor(ShaderUtilities.ID_OutlineColor);
