@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     protected float timeBeforeShow;
     void Start()
     {
-        float scale = Random.Range(0.75f, 1.25f);
+        float scale = Random.Range(1.5f, 2f);
         transform.localScale = Vector3.one * scale;
         maxLife = life;
         ChangeFactor();
@@ -66,7 +66,6 @@ public class Enemy : MonoBehaviour
         ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.Euler(Vector3.zero)).GetComponent<ScoreDamages>();
         scoreOverEnemy.transform.localScale = Vector3.one * scoreOverEnemy.transform.localScale.x * Mathf.Clamp(AudioReaction.Instance.GetDropValue(), 1, 100);
         Color oldColor = scoreOverEnemy.GetText().fontMaterial.GetColor(ShaderUtilities.ID_OutlineColor);
-        var intensity = (oldColor.r + oldColor.g + oldColor.b);
         var factor = AudioReaction.Instance.GetDropValue() * 3;
         Color newColor = new Color(oldColor.r * factor, oldColor.g * factor, oldColor.b * factor, oldColor.a);
         scoreOverEnemy.GetText().fontMaterial.SetColor(ShaderUtilities.ID_OutlineColor, newColor);
@@ -102,6 +101,7 @@ public class Enemy : MonoBehaviour
     {
         if (shipType == EnemySpawnerManager.ShipType.Pinata)
         {
+            AudioManager.Instance.Play2DSound(soundToPlayOnDie);
             ParticlesManager.Instance.SpawnParticles("PinataDeath", transform, Vector3.zero, false);
             SlowMotionManager.Instance.SlowMotion(2);
             GetComponent<Collider>().enabled = false;
@@ -121,7 +121,8 @@ public class Enemy : MonoBehaviour
     void Die(bool isLast)
     {
         ComboManager.Instance.AddCombo();
-        AudioManager.Instance.Play2DSound(soundToPlayOnDie);
+        if (shipType == EnemySpawnerManager.ShipType.Pinata)
+            AudioManager.Instance.Play2DSound(soundToPlayOnDie);
         if (ActiveJuiceManager.Instance.ExplosionIsOn)
         {
             if (!isLast)
@@ -130,7 +131,6 @@ public class Enemy : MonoBehaviour
             {
                 FracturedEnemy frac = Instantiate(fracturedEnemy, transform.position, Quaternion.identity).GetComponent<FracturedEnemy>();
                 frac.SetBreakForce(1);
-
             }
         }
         CVM.transform.parent = transform.parent;
@@ -141,7 +141,10 @@ public class Enemy : MonoBehaviour
 
     IEnumerator WaitBeforeDestroy()
     {
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(1f);
+        if(shipType == EnemySpawnerManager.ShipType.Pinata)
+            AudioManager.Instance.Play2DSound(soundToPlayOnDie);
+        yield return new WaitForSeconds(.8f);
         Die(true);
     }
 
@@ -162,6 +165,8 @@ public class Enemy : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("FracturedDebries"))
             {
+
+                Debug.Log("Debries");
                 FracturedEnemy parent = collision.gameObject.GetComponentInParent<FracturedEnemy>();
 
                 if (parent.GetDebrisMakeDamages())
