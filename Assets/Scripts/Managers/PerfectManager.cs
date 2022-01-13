@@ -29,7 +29,7 @@ public class PerfectManager : MonoBehaviour
     {
         if (AudioReaction.Instance.GetDropValue() < 2)
             return;
-        perfectText.transform.DOScale(5, .01f);
+        perfectText.transform.DOScale(3, .01f);
         perfectText.DOColor(Color.red, .01f);
 
         int random = Random.Range(0, perfectsWords.Length);
