@@ -103,7 +103,8 @@ public class Enemy : MonoBehaviour
         if (shipType == EnemySpawnerManager.ShipType.Pinata)
         {
             AudioManager.Instance.Play2DSound(soundToPlayOnDie);
-            ParticlesManager.Instance.SpawnParticles("PinataDeath", transform, Vector3.zero, false);
+            if(ParticlesManager.Instance.GetCanParticles())
+                ParticlesManager.Instance.SpawnParticles("PinataDeath", transform, Vector3.zero, false);
             SlowMotionManager.Instance.SlowMotion(2);
             GetComponent<Collider>().enabled = false;
         }

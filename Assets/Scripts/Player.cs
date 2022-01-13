@@ -111,6 +111,9 @@ public class Player : MonoBehaviour
 
     public GameObject[] border;
 
+    bool activeTrails = true;
+    [SerializeField] GameObject[] trails;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -123,10 +126,19 @@ public class Player : MonoBehaviour
     void Update()
     {
         //for (int i = 0; i < border.Length; i++)
-        
+
         //{
         //    border[i].transform.localScale = new Vector3(Mathf.Clamp(AudioReaction.Instance.GetDropValue(),2,100),9000, 2);
         //}
+
+        if (activeTrails != ActiveJuiceManager.Instance.TrailsIsOn && trails.Length > 0)
+        {
+            activeTrails = ActiveJuiceManager.Instance.TrailsIsOn;
+            foreach (GameObject item in trails)
+            {
+                item.SetActive(activeTrails);
+            }
+        }
 
         float currentXPos = Mathf.Clamp(transform.position.x, minMaxPos.x, minMaxPos.y);
         transform.position = new Vector3(currentXPos, transform.position.y, transform.position.z);
