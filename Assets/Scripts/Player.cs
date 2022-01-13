@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
     public float invisibilityTime = 1f;
     [HideInInspector] public bool isInvisibility;
     [SerializeField] GameObject shield;
-    [SerializeField] FracturedEnemy fracturedPlayer;
+    [SerializeField] GameObject fracturedPlayer;
 
     //POWER UPS
 
@@ -523,8 +523,8 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
-        Instantiate(fracturedPlayer, transform.position, Quaternion.identity);
-        //Destroy(gameObject);
+        Instantiate(fracturedPlayer, meshAnimator.transform.GetChild(0).transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     IEnumerator DefeatPanel()

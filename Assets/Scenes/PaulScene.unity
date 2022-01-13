@@ -31851,7 +31851,7 @@ MonoBehaviour:
   hasLife: {r: 1, g: 0, b: 0, a: 1}
   hasNotLife: {r: 0.3207547, g: 0, b: 0, a: 0.78431374}
   growTime: 0.3
-  rotate: 0
+  rotate: 1
 --- !u!1 &1187587202
 GameObject:
   m_ObjectHideFlags: 0
@@ -32788,7 +32788,7 @@ MonoBehaviour:
   invisibilityTime: 1
   isInvisibility: 0
   shield: {fileID: 406609416}
-  fracturedPlayer: {fileID: 5702494597323840040, guid: 86a7aa6f30f4e594c84d55f84f0785aa, type: 3}
+  fracturedPlayer: {fileID: 5401023303234540878, guid: 1d8144ec2087d5b4db480d7f8ba9a379, type: 3}
   playerCanDestroyLine: 1
   playerCanAim: 1
   playerCanShield: 1
@@ -40532,7 +40532,7 @@ RectTransform:
   m_GameObject: {fileID: 1635297948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1179887083}
   m_Father: {fileID: 1878540098}
@@ -40540,7 +40540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 35, y: 26}
+  m_AnchoredPosition: {x: 150, y: 125}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &1639951518
