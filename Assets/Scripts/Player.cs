@@ -93,7 +93,6 @@ public class Player : MonoBehaviour
     [Header("Take Damages")]
     public float invisibilityTime = 1f;
     [HideInInspector] public bool isInvisibility;
-    public DashEffect dashEffect;
     [SerializeField] GameObject shield;
 
     //POWER UPS
@@ -321,7 +320,7 @@ public class Player : MonoBehaviour
                 PostProcessManager.Instance.DashChangeAberation();
                 CinemachineShake.Instance.ShakeCamera(5, 1f);
                 AudioManager.Instance.Play2DSound("Dash");
-                dashEffect.ActiveParticles();
+                ParticlesManager.Instance.SpawnParticles("DashEffect", transform, Vector3.zero, true);
                 isDashingSpeed = dashSpeed;
                 isDashing = true;
                 dashTimeCalculator = 0;

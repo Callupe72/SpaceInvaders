@@ -10867,19 +10867,19 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 150aee38b5d848b42b75593618992bb7, type: 2}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0.020013386
+      value: 1.02e-43
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0.016013384
+      value: 4.5904e-41
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0.021013385
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
@@ -28946,11 +28946,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 150aee38b5d848b42b75593618992bb7, type: 2}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1e-45
+      value: -7505356
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 4.5904e-41
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.y
@@ -30796,6 +30796,10 @@ MonoBehaviour:
   - name: EnemyTakesDamages
     particle: {fileID: 107336, guid: 3547e5e490f502041ae6e8a59042e4bd, type: 3}
     scale: {x: 25, y: 25, z: 25}
+    speed: 1
+  - name: DashEffect
+    particle: {fileID: 6647362647526199734, guid: 2652483378e7dbf45b4f50dc772bf1d9, type: 3}
+    scale: {x: 1, y: 1, z: 1}
     speed: 1
 --- !u!1 &1105495521
 GameObject:
@@ -37894,7 +37898,6 @@ MonoBehaviour:
   cooldownReloadDash: 0.25
   invisibilityTime: 1
   isInvisibility: 0
-  dashEffect: {fileID: 1976781865}
   shield: {fileID: 406609416}
   playerCanDestroyLine: 1
   playerCanAim: 1
@@ -52346,15 +52349,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 150aee38b5d848b42b75593618992bb7, type: 2}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: -78.35724
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 2.8239e-41
+      value: 4.5904e-41
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6e-44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.z
