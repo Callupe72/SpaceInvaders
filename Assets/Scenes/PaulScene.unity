@@ -6534,22 +6534,26 @@ MonoBehaviour:
   timePlayerValidNewPower: 1
   powers:
   - powerName: Charged Attack
-    powerImg: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    powerImg: {fileID: 21300000, guid: e16a36d2573f9d343babd6b5a3b9fba2, type: 3}
     powerDescription: Hold the fire button and unleash an heavy attack
     attackId: 0
   - powerName: Aim
-    powerImg: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    powerImg: {fileID: 21300000, guid: 12a50dc9ccedc3f46bc228096cb657aa, type: 3}
     powerDescription: Where you aiming at ?!
     attackId: 4
-  - powerName: Destroy lines
-    powerImg: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    powerDescription: "Destroying enemy ships now create chain reactions !\r"
-    attackId: 3
   - powerName: Dash
-    powerImg: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    powerImg: {fileID: 21300000, guid: f52c1812e3926bc49bbaa8b64ee3c64c, type: 3}
     powerDescription: Dodge enemy missiles and destroy enemy that gets too close
       !
     attackId: 1
+  - powerName: Destroy lines
+    powerImg: {fileID: 21300000, guid: c01c50daf968d544c8269aa66a507d1a, type: 3}
+    powerDescription: "Destroying enemy ships now create chain reactions !\r"
+    attackId: 3
+  - powerName: Shield
+    powerImg: {fileID: 21300000, guid: c01c50daf968d544c8269aa66a507d1a, type: 3}
+    powerDescription: "Destroying enemy ships now create chain reactions !\r"
+    attackId: 3
   powerToUnlockIndex: -1
 --- !u!1 &124456624
 GameObject:
@@ -10863,19 +10867,19 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 150aee38b5d848b42b75593618992bb7, type: 2}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1e-45
+      value: 0.020013386
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 0.016013384
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 2.3722033e-27
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.5905e-41
+      value: 0.021013385
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
@@ -28942,11 +28946,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 150aee38b5d848b42b75593618992bb7, type: 2}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 2e-44
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.y
@@ -52342,15 +52346,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 150aee38b5d848b42b75593618992bb7, type: 2}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 4e-45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 4.5905e-41
+      value: 2.8239e-41
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 6e-44
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.z
@@ -52765,7 +52769,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 6e54b6154844d2245a7e1382fbc6e7e2, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

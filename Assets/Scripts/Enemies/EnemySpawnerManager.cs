@@ -235,7 +235,6 @@ public class EnemySpawnerManager : MonoBehaviour
 
     IEnumerator WaitBeforeCreateNewWave()
     {
-
         currentWave++;
         AudioManager.Instance.Play2DSound("Alarm");
         yield return new WaitForSeconds(1);
