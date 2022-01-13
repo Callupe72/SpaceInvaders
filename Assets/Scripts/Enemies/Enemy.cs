@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
             return;
         }
         life -= damages * Mathf.RoundToInt(AudioReaction.Instance.GetDropValue());
-        if(ParticlesManager.Instance.GetCanParticles())
+        if (ParticlesManager.Instance.GetCanParticles())
             ParticlesManager.Instance.SpawnParticles("EnemyTakesDamages", transform, transform.rotation.eulerAngles, false);
         ChangeFactor();
         int rand = RandomXpGiven();
@@ -75,6 +75,7 @@ public class Enemy : MonoBehaviour
         ScoreManager.Instance.AddScore(damages * Mathf.RoundToInt(AudioReaction.Instance.GetDropValue()));
         AudioManager.Instance.Play2DSound(soundToPlayOnDamages);
         CinemachineShake.Instance.ShakeCamera(AudioReaction.Instance.GetDropValue(), .5f);
+        PerfectManager.Instance.SpawnText();
         if (life <= 0)
         {
             GetComponentInChildren<Collider>().enabled = false;
@@ -121,8 +122,7 @@ public class Enemy : MonoBehaviour
     void Die(bool isLast)
     {
         ComboManager.Instance.AddCombo();
-        if (shipType == EnemySpawnerManager.ShipType.Pinata)
-            AudioManager.Instance.Play2DSound(soundToPlayOnDie);
+        AudioManager.Instance.Play2DSound(soundToPlayOnDie);
         if (ActiveJuiceManager.Instance.ExplosionIsOn)
         {
             if (!isLast)
@@ -142,7 +142,7 @@ public class Enemy : MonoBehaviour
     IEnumerator WaitBeforeDestroy()
     {
         yield return new WaitForSeconds(1f);
-        if(shipType == EnemySpawnerManager.ShipType.Pinata)
+        if (shipType == EnemySpawnerManager.ShipType.Pinata)
             AudioManager.Instance.Play2DSound(soundToPlayOnDie);
         yield return new WaitForSeconds(.8f);
         Die(true);
@@ -165,8 +165,6 @@ public class Enemy : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("FracturedDebries"))
             {
-
-                Debug.Log("Debries");
                 FracturedEnemy parent = collision.gameObject.GetComponentInParent<FracturedEnemy>();
 
                 if (parent.GetDebrisMakeDamages())
