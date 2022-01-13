@@ -25,6 +25,7 @@ public class UnlockNewPowerManager : MonoBehaviour
         DashMakesDamages,
         DestroyLine,
         Aim,
+        UseShield,
         DebriesCanMakesDamages,
     }
     [System.Serializable]
@@ -77,6 +78,14 @@ public class UnlockNewPowerManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Equals))
+        {
+            for (int i = powerToUnlockIndex; i < powers.Length; i++)
+            {
+                AddNewPower();
+            }
+        }
+
         if (waitSeeNewPower)
         {
             if (Input.GetButton("Fire"))
@@ -121,6 +130,9 @@ public class UnlockNewPowerManager : MonoBehaviour
                 break;
             case AttackId.DebriesCanMakesDamages:
                 player.debrisMakesDamages = true;
+                break;
+            case AttackId.UseShield:
+                player.playerCanShield = true;
                 break;
             default:
                 break;

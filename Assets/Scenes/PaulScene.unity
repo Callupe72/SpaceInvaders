@@ -6136,7 +6136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
+  m_AmplitudeGain: 0.553039
   m_FrequencyGain: 5
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &94671548
@@ -6500,12 +6500,12 @@ MonoBehaviour:
     powerDescription: Dodge enemy missiles and destroy enemy that gets too close
       !
     attackId: 1
-  - powerName: Destroy lines
-    powerImg: {fileID: 21300000, guid: 1b3a1f7e2c8f9b240a8a76ee2b03ccae, type: 3}
-    powerDescription: "Destroying enemy ships now create chain reactions !\r"
-    attackId: 3
   - powerName: Shield
     powerImg: {fileID: 21300000, guid: c01c50daf968d544c8269aa66a507d1a, type: 3}
+    powerDescription: "Destroying enemy ships now create chain reactions !\r"
+    attackId: 5
+  - powerName: Destroy lines
+    powerImg: {fileID: 21300000, guid: 1b3a1f7e2c8f9b240a8a76ee2b03ccae, type: 3}
     powerDescription: "Destroying enemy ships now create chain reactions !\r"
     attackId: 3
   powerToUnlockIndex: -1
@@ -32789,13 +32789,13 @@ MonoBehaviour:
   isInvisibility: 0
   shield: {fileID: 406609416}
   fracturedPlayer: {fileID: 5401023303234540878, guid: 1d8144ec2087d5b4db480d7f8ba9a379, type: 3}
-  playerCanDestroyLine: 1
-  playerCanAim: 1
-  playerCanShield: 1
-  playerCanUsePowerShot: 1
-  playerCanDash: 1
-  playerCanMakeDamagesOnDash: 1
-  debrisMakesDamages: 1
+  playerCanDestroyLine: 0
+  playerCanAim: 0
+  playerCanShield: 0
+  playerCanUsePowerShot: 0
+  playerCanDash: 0
+  playerCanMakeDamagesOnDash: 0
+  debrisMakesDamages: 0
   timeBeforeLooping: 0.1
   minMaxPos: {x: 0, y: 0}
   border:
@@ -44971,7 +44971,7 @@ Transform:
   m_GameObject: {fileID: 1821378211}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 9.056992}
-  m_LocalScale: {x: 0.44172, y: 0.44172, z: 0.44172}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 1213732302}
   m_RootOrder: 2

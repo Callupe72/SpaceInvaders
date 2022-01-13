@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AudioReaction : MonoBehaviour
@@ -61,7 +62,8 @@ public class AudioReaction : MonoBehaviour
 
                 dropValue = clipLoudness;
 
-                PostProcessManager.Instance.SetBloom(true, clipLoudness * soundImpact / 1000);
+                if (!SceneManager.GetActiveScene().name.Contains("Menu"))
+                    PostProcessManager.Instance.SetBloom(true, clipLoudness * soundImpact / 1000);
             }
         }
 
