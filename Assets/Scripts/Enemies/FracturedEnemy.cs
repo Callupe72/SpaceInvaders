@@ -8,7 +8,6 @@ public class FracturedEnemy : MonoBehaviour
     [SerializeField] float breakForce;
     [SerializeField] int damagesOnCollision = 10;
     bool debrisMakeDamages;
-    bool canScaleDown;
 
     void Start()
     {

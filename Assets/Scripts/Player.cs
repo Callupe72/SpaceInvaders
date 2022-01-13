@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -94,6 +95,7 @@ public class Player : MonoBehaviour
     public float invisibilityTime = 1f;
     [HideInInspector] public bool isInvisibility;
     [SerializeField] GameObject shield;
+    [SerializeField] FracturedEnemy fracturedPlayer;
 
     //POWER UPS
 
@@ -467,14 +469,8 @@ public class Player : MonoBehaviour
             life = 0;
             isDead = true;
             GameManager.Instance.ChangeGameState(GameManager.GameState.Defeat);
+            Die();
         }
-    }
-
-    public void AddLife(int lifeToAdd)
-    {
-        life += lifeToAdd;
-        life = Mathf.Clamp(life, 1, 3);
-        lifeCanva.SetColorLife(Mathf.RoundToInt(life));
     }
 
     private void ChangeState(float direction)
@@ -523,5 +519,24 @@ public class Player : MonoBehaviour
         minMaxPos = new Vector2(min, max);
         border[0].transform.DOMoveX(min - 7, 1);
         border[1].transform.DOMoveX(max + 7, 1);
+    }
+
+    private void Die()
+    {
+        Instantiate(fracturedPlayer, transform.position, Quaternion.identity);
+        //Destroy(gameObject);
+    }
+
+    IEnumerator DefeatPanel()
+    {
+        yield return new WaitForSeconds(5f);
+        GameManager.Instance.Defeat();
+    }
+
+    public void AddLife(int lifeToAdd)
+    {
+        life += lifeToAdd;
+        life = Mathf.Clamp(life, 1, 3);
+        lifeCanva.SetColorLife(Mathf.RoundToInt(life));
     }
 }

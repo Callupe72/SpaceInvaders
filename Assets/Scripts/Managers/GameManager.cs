@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         menuWinLose.Title = "Victory";
 
     }
-    void Defeat()
+    public void Defeat()
     {
         menuWinLose.gameObject.SetActive(true);
         menuWinLose.Title = "Defeat";
