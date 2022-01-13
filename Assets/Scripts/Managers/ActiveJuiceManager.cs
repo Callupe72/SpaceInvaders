@@ -25,6 +25,7 @@ public class ActiveJuiceManager : MonoBehaviour
     public bool ZoomIsOn = true;
     public bool SlowmotionIsOn = true;
     public bool TrailsIsOn = true;
+    public bool PerfectTextIsOn = true;
 
     [System.Serializable]
     public struct ActiveJuiceValues
@@ -48,6 +49,7 @@ public class ActiveJuiceManager : MonoBehaviour
             SlowMotion,
             Zoom,
             Trails,
+            PerfectText,
         }
 
         [Header("Essentials")]
