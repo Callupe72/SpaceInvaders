@@ -71,7 +71,7 @@ public class AudioManager : MonoBehaviour
 
         source2D.clip = s.clip;
         source2D.loop = s.canLoop;
-        source2D.volume = s.volume * (audioVolume / 100);
+        source2D.volume = s.volume * (audioVolume / 100 * (Mathf.Clamp(AudioReaction.Instance.GetDropValue(),.5f,5)));
         source2D.pitch = s.pitch;
         source2D.PlayOneShot(source2D.clip);
 

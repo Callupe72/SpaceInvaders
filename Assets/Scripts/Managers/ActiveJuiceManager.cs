@@ -19,6 +19,10 @@ public class ActiveJuiceManager : MonoBehaviour
     public bool menuIsActive;
     [SerializeField] RectTransform juicinessArray;
 
+    public bool AnimationIsOn = true;
+    public bool ExplosionIsOn = true;
+    public bool BarrelRoll = true;
+
     [System.Serializable]
     public struct ActiveJuiceValues
     {
@@ -37,6 +41,7 @@ public class ActiveJuiceManager : MonoBehaviour
             Animations,
             Particles,
             Combo,
+            BarrelRoll,
         }
 
         [Header("Essentials")]

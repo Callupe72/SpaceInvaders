@@ -28,7 +28,6 @@ public class EnemySpawnerManager : MonoBehaviour
 
     Vector3 startingPos;
 
-
     Direction currentDirection;
     public enum Direction
     {
@@ -350,6 +349,7 @@ public class EnemySpawnerManager : MonoBehaviour
         }
         GameObject enemy = Instantiate(enemyToSpawn, pos, Quaternion.Euler(rot));
         enemy.GetComponent<Enemy>().shipType = shipType;
+        enemy.GetComponent<Enemy>().SetTimeBeforeShow(((float)currentLineNumbers - (float)lineNum +1 ) / 5);
         enemy.name = "EnemyL" + lineNum + "N" + enemyIndex;
         enemy.transform.parent = parent;
     }
@@ -400,7 +400,8 @@ public class EnemySpawnerManager : MonoBehaviour
 
         SlowMotionManager.Instance.SlowMotion();
         yield return new WaitForSeconds(1f);
-        ParticlesManager.Instance.SpawnParticles("DestroyLine", lineToDestroy, Vector3.zero, false);
+        if (ActiveJuiceManager.Instance.ExplosionIsOn)
+            ParticlesManager.Instance.SpawnParticles("DestroyLine", lineToDestroy, Vector3.zero, false);
         foreach (Transform enemy in lineToDestroy)
         {
             enemy.GetComponent<Enemy>().PrepareToDie();

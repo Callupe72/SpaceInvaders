@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 4085783014403646206}
   - component: {fileID: 4199637715327056385}
   - component: {fileID: 3011012956832270409}
+  - component: {fileID: 1045663039611896172}
   m_Layer: 0
   m_Name: spaceship_04_1_w
   m_TagString: Enemy
@@ -203,6 +204,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1045663039611896172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6819545355870490234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 4, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &7248681152417235655
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +350,7 @@ GameObject:
   - component: {fileID: 9032805682579632987}
   - component: {fileID: 7278550776943198878}
   - component: {fileID: 454870987952025624}
+  - component: {fileID: 3200513342347790117}
   m_Layer: 0
   m_Name: spaceship_04_1
   m_TagString: Enemy
@@ -408,3 +434,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.916324, y: 15.915529, z: 4.0024633}
   m_Center: {x: 0.0000014305122, y: -8.069379, z: 0.2990061}
+--- !u!114 &3200513342347790117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216308051430118907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 0
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 4, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []

@@ -14,12 +14,11 @@ public class EnemyPinata : Enemy
 
     void Start()
     {
-
         foreach (Transform item in transform.GetChild(0).transform.GetChild(0))
         {
             item.GetComponent<DissolveEffect>().ChangeMat(true);
         }
-
+        CVM.transform.parent = transform.parent.parent.parent;
         StartCoroutine(WaitBeforeShow());
     }
 
@@ -35,7 +34,7 @@ public class EnemyPinata : Enemy
         float audioReact = AudioReaction.Instance.GetDropValue();
 
         transform.Rotate(0.1f *audioReact , 0.15f * audioReact, 0);
-        audioReact = Mathf.Clamp(audioReact, .5f, 3);
+        audioReact = Mathf.Clamp(audioReact, 1, 1.5f);
         transform.GetChild(0).transform.DOScale(audioReact * .3f, .01f);
         audioReaction = 1 + factor;
     }

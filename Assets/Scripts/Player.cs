@@ -122,6 +122,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        //for (int i = 0; i < border.Length; i++)
+        
+        //{
+        //    border[i].transform.localScale = new Vector3(Mathf.Clamp(AudioReaction.Instance.GetDropValue(),2,100),9000, 2);
+        //}
+
         float currentXPos = Mathf.Clamp(transform.position.x, minMaxPos.x, minMaxPos.y);
         transform.position = new Vector3(currentXPos, transform.position.y, transform.position.z);
 
@@ -481,6 +487,10 @@ public class Player : MonoBehaviour
     private void ChangeDirection()
     {
         //Debug.Log($"Dans la fonction, old : {oldDirection} new : {newDirection}");
+        if (!ActiveJuiceManager.Instance.BarrelRoll)
+        {
+            return;
+        }
         if (oldDirection == PlayerDirection.Left && newDirection == PlayerDirection.Right)
             meshAnimator.SetBool("FlipRight", true);
         else if (oldDirection == PlayerDirection.Right && newDirection == PlayerDirection.Left)
