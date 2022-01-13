@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
         ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.Euler(Vector3.zero)).GetComponent<ScoreDamages>();
         scoreOverEnemy.transform.localScale = Vector3.one * scoreOverEnemy.transform.localScale.x * Mathf.Clamp(AudioReaction.Instance.GetDropValue(), 1, 100);
         Color oldColor = scoreOverEnemy.GetText().fontMaterial.GetColor(ShaderUtilities.ID_OutlineColor);
-        var factor = AudioReaction.Instance.GetDropValue() * 3;
+        var factor = AudioReaction.Instance.GetDropValue() * 1;
         Color newColor = new Color(oldColor.r * factor, oldColor.g * factor, oldColor.b * factor, oldColor.a);
         scoreOverEnemy.GetText().fontMaterial.SetColor(ShaderUtilities.ID_OutlineColor, newColor);
         scoreOverEnemy.GetText().fontMaterial.SetFloat(ShaderUtilities.ID_OutlineWidth, .3f);

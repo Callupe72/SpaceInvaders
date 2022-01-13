@@ -1,7 +1,6 @@
-using System.Collections;
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.UI;
 
 public class Life : MonoBehaviour
@@ -14,6 +13,8 @@ public class Life : MonoBehaviour
     bool canGrow;
     [SerializeField] float growTime = 1f;
     float currentrGrowTime;
+
+    [SerializeField] bool rotate;
 
     void Start()
     {
@@ -60,7 +61,7 @@ public class Life : MonoBehaviour
             for (int i = 0; i < imgs.Length; i++)
             {
                 imgs[i].DOColor(imgsColor[i], growTime);
-                if(imgsSize[i] != 1)
+                if (imgsSize[i] != 1)
                 {
                     imgs[i].transform.DOScale(imgsSize[i], growTime);
                 }
@@ -75,7 +76,8 @@ public class Life : MonoBehaviour
 
             float scale = 1 + AudioReaction.Instance.GetDropValue() / 2;
             transform.localScale = Vector3.one * scale;
-            transform.Rotate(0, 0, 0.25f);
+            if (rotate)
+                transform.Rotate(0, 0, 0.25f);
         }
     }
 }

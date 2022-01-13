@@ -11220,6 +11220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: {fileID: 653260036}
+  bloomValue: 0.7
 --- !u!1 &456856604
 GameObject:
   m_ObjectHideFlags: 0
@@ -16021,6 +16022,12 @@ MonoBehaviour:
   juicinessTextInstance: {fileID: 509881826350052172, guid: 0a854fc57d558cf41b6992107e0d38a0, type: 3}
   menuIsActive: 0
   juicinessArray: {fileID: 0}
+  AnimationIsOn: 1
+  ExplosionIsOn: 1
+  BarrelRollIsOn: 1
+  ZoomIsOn: 1
+  SlowmotionIsOn: 1
+  TrailsIsOn: 1
   activeJuices:
   - effectToActive: 'TITLE : Active Everything'
     whichEffect: 0
@@ -27005,6 +27012,7 @@ MonoBehaviour:
   hasLife: {r: 1, g: 0, b: 0, a: 1}
   hasNotLife: {r: 0.3207547, g: 0, b: 0, a: 0.78431374}
   growTime: 0.3
+  rotate: 0
 --- !u!1 &1179988792
 GameObject:
   m_ObjectHideFlags: 0
@@ -32530,6 +32538,7 @@ MonoBehaviour:
   timeBeforeLooping: 0
   minMaxPos: {x: 0, y: 0}
   border: []
+  trails: []
 --- !u!54 &1213732304
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -40925,6 +40934,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1870557786}
   juicinessArray: {fileID: 432840956}
   menuWinLose: {fileID: 0}
+  juicinessEvent: {fileID: 0}
   currentGameState: 0
 --- !u!1 &1457494320
 GameObject:

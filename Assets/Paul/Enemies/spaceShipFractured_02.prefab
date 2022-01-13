@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6778689837000250072}
   - component: {fileID: 8071534700410988266}
   - component: {fileID: 5673134298880811384}
-  - component: {fileID: 4554211097048606478}
+  - component: {fileID: 7857850349187244215}
   m_Layer: 7
   m_Name: spaceship_02_cell.007
   m_TagString: FracturedDebries
@@ -99,20 +99,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &4554211097048606478
-MeshCollider:
+--- !u!114 &7857850349187244215
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298936134133536912}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4614760655150684215, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &339247856020774764
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +135,7 @@ GameObject:
   - component: {fileID: 4289133360096572638}
   - component: {fileID: 2928158618102940140}
   - component: {fileID: 5558716113991081873}
-  - component: {fileID: 8900469539197843029}
+  - component: {fileID: 1436397752914051662}
   m_Layer: 7
   m_Name: spaceship_02_cell.019
   m_TagString: FracturedDebries
@@ -212,20 +222,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &8900469539197843029
-MeshCollider:
+--- !u!114 &1436397752914051662
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339247856020774764}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4228814848483465559, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &1315761895697387069
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +258,7 @@ GameObject:
   - component: {fileID: 3854675742980288486}
   - component: {fileID: 1292526221018972396}
   - component: {fileID: 7940768268595064658}
-  - component: {fileID: 3880913188942981078}
+  - component: {fileID: 5935581491338637691}
   m_Layer: 7
   m_Name: spaceship_02_cell.003
   m_TagString: FracturedDebries
@@ -325,20 +345,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &3880913188942981078
-MeshCollider:
+--- !u!114 &5935581491338637691
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315761895697387069}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4274392156769628478, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &2190856420714217552
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +381,7 @@ GameObject:
   - component: {fileID: 5219640964401058195}
   - component: {fileID: 907168091771171443}
   - component: {fileID: 3079851372443454871}
-  - component: {fileID: 3130566286362617346}
+  - component: {fileID: 1003388029149456173}
   m_Layer: 7
   m_Name: spaceship_02_cell.006
   m_TagString: FracturedDebries
@@ -438,20 +468,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &3130566286362617346
-MeshCollider:
+--- !u!114 &1003388029149456173
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2190856420714217552}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -115219099071031432, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &2369954366573693263
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +504,7 @@ GameObject:
   - component: {fileID: 6230877079698034820}
   - component: {fileID: 17655850563778741}
   - component: {fileID: 4159990965888932925}
-  - component: {fileID: 7417741618431423273}
+  - component: {fileID: 5154673603881011937}
   m_Layer: 7
   m_Name: spaceship_02_cell.011
   m_TagString: FracturedDebries
@@ -551,20 +591,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &7417741618431423273
-MeshCollider:
+--- !u!114 &5154673603881011937
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2369954366573693263}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8589490034701032049, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &2542821907631831144
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +627,7 @@ GameObject:
   - component: {fileID: 8753758497889420352}
   - component: {fileID: 3421306153058988946}
   - component: {fileID: 1345632959103351011}
-  - component: {fileID: 7481711624701637773}
+  - component: {fileID: 106152898633031389}
   m_Layer: 7
   m_Name: spaceship_02_cell
   m_TagString: FracturedDebries
@@ -664,20 +714,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &7481711624701637773
-MeshCollider:
+--- !u!114 &106152898633031389
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2542821907631831144}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6969478715058716807, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &2695919624877093930
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +750,7 @@ GameObject:
   - component: {fileID: 7245093883835058148}
   - component: {fileID: 3803368175213459163}
   - component: {fileID: 4825291167438672336}
-  - component: {fileID: 3592274375472796261}
+  - component: {fileID: 5725806617606386659}
   m_Layer: 7
   m_Name: spaceship_02_cell.004
   m_TagString: FracturedDebries
@@ -777,20 +837,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &3592274375472796261
-MeshCollider:
+--- !u!114 &5725806617606386659
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2695919624877093930}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8707487912936922006, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &3193688864977511673
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +873,7 @@ GameObject:
   - component: {fileID: 7511951555228604915}
   - component: {fileID: 9214813562374403683}
   - component: {fileID: 2751370182684303227}
-  - component: {fileID: 7269186877686093668}
+  - component: {fileID: 4477562628905656463}
   m_Layer: 7
   m_Name: spaceship_02_cell.010
   m_TagString: FracturedDebries
@@ -890,20 +960,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &7269186877686093668
-MeshCollider:
+--- !u!114 &4477562628905656463
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3193688864977511673}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4696655950033204972, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &3757177492211854714
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +996,7 @@ GameObject:
   - component: {fileID: 7014184824530134750}
   - component: {fileID: 7641821620078265933}
   - component: {fileID: 4059102376091227542}
-  - component: {fileID: 1986587366273366870}
+  - component: {fileID: 297550153363054705}
   m_Layer: 7
   m_Name: spaceship_02_cell.021
   m_TagString: FracturedDebries
@@ -1003,20 +1083,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1986587366273366870
-MeshCollider:
+--- !u!114 &297550153363054705
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3757177492211854714}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1953653703268399646, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &4688337758635781547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +1119,7 @@ GameObject:
   - component: {fileID: 4951656116857774212}
   - component: {fileID: 5341542169124635795}
   - component: {fileID: 2445740221035765590}
-  - component: {fileID: 7950185101212454065}
+  - component: {fileID: 2173909155638868172}
   m_Layer: 7
   m_Name: spaceship_02_cell.005
   m_TagString: FracturedDebries
@@ -1116,20 +1206,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &7950185101212454065
-MeshCollider:
+--- !u!114 &2173909155638868172
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4688337758635781547}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -521151390743834660, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &4936289544520354192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,7 +1242,7 @@ GameObject:
   - component: {fileID: 6728186084633438829}
   - component: {fileID: 3452943368905990127}
   - component: {fileID: 7090549666977723221}
-  - component: {fileID: 8606155765473788782}
+  - component: {fileID: 1970409523525773317}
   m_Layer: 7
   m_Name: spaceship_02_cell.002
   m_TagString: FracturedDebries
@@ -1229,20 +1329,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &8606155765473788782
-MeshCollider:
+--- !u!114 &1970409523525773317
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4936289544520354192}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2681690080914994909, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &5401023303234540878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,7 +1379,7 @@ Transform:
   m_GameObject: {fileID: 5401023303234540878}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00015105306}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 6062140365364071320}
   - {fileID: 1004604905365871457}
@@ -1308,10 +1418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28b25ad34a534f46a8e8e3fff72acf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeBeingDestroyed: 2
   breakForce: 100
   damagesOnCollision: 10
-  scaleWithMusic: 1
 --- !u!1 &5448752816474184350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1432,7 @@ GameObject:
   - component: {fileID: 4515966699268321932}
   - component: {fileID: 9215529368227923696}
   - component: {fileID: 911056622629528102}
-  - component: {fileID: 5226301402829165158}
+  - component: {fileID: 7645380490182534496}
   m_Layer: 7
   m_Name: spaceship_02_cell.009
   m_TagString: FracturedDebries
@@ -1411,20 +1519,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &5226301402829165158
-MeshCollider:
+--- !u!114 &7645380490182534496
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5448752816474184350}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1919842668918368883, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &5791865449678356905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1555,7 @@ GameObject:
   - component: {fileID: 2015226433431443487}
   - component: {fileID: 62637596833838094}
   - component: {fileID: 5306736774213142495}
-  - component: {fileID: 4999169712795047212}
+  - component: {fileID: 7740482547277493693}
   m_Layer: 7
   m_Name: spaceship_02_cell.018
   m_TagString: FracturedDebries
@@ -1524,20 +1642,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &4999169712795047212
-MeshCollider:
+--- !u!114 &7740482547277493693
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5791865449678356905}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3196019836041236043, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &6824209110046160135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,7 +1678,7 @@ GameObject:
   - component: {fileID: 5916491600946363755}
   - component: {fileID: 558186926004604773}
   - component: {fileID: 1386526876522354780}
-  - component: {fileID: 3781763730046706600}
+  - component: {fileID: 7096509181323637421}
   m_Layer: 7
   m_Name: spaceship_02_cell.008
   m_TagString: FracturedDebries
@@ -1637,20 +1765,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &3781763730046706600
-MeshCollider:
+--- !u!114 &7096509181323637421
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6824209110046160135}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -449247562706126238, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &7041399079688477857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,7 +1801,7 @@ GameObject:
   - component: {fileID: 9002651607672316436}
   - component: {fileID: 8623627068964819811}
   - component: {fileID: 8594280142220110614}
-  - component: {fileID: 783588316730711860}
+  - component: {fileID: 7007955239590728274}
   m_Layer: 7
   m_Name: spaceship_02_cell.014
   m_TagString: FracturedDebries
@@ -1750,20 +1888,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &783588316730711860
-MeshCollider:
+--- !u!114 &7007955239590728274
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7041399079688477857}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1458712950769991080, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &7340440553296433198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,7 +1924,7 @@ GameObject:
   - component: {fileID: 3685160140391077161}
   - component: {fileID: 4255821466251215713}
   - component: {fileID: 9150847663893433300}
-  - component: {fileID: 1478557624135586704}
+  - component: {fileID: 2419644176949586218}
   m_Layer: 7
   m_Name: spaceship_02_cell.012
   m_TagString: FracturedDebries
@@ -1863,20 +2011,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1478557624135586704
-MeshCollider:
+--- !u!114 &2419644176949586218
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7340440553296433198}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2699702382333723722, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &8245055114618570276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,7 +2047,7 @@ GameObject:
   - component: {fileID: 5223161883934992671}
   - component: {fileID: 5132102601625733697}
   - component: {fileID: 4391998089635620281}
-  - component: {fileID: 3517527794008480580}
+  - component: {fileID: 5390883327416913263}
   m_Layer: 7
   m_Name: spaceship_02_cell.015
   m_TagString: FracturedDebries
@@ -1976,20 +2134,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &3517527794008480580
-MeshCollider:
+--- !u!114 &5390883327416913263
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8245055114618570276}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5733959322854636881, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &8297008409378716181
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,7 +2170,7 @@ GameObject:
   - component: {fileID: 3339032416658260149}
   - component: {fileID: 459575810208354730}
   - component: {fileID: 3346826160231010590}
-  - component: {fileID: 8426354056803858080}
+  - component: {fileID: 3020937170423839967}
   m_Layer: 7
   m_Name: spaceship_02_cell.001
   m_TagString: FracturedDebries
@@ -2089,20 +2257,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &8426354056803858080
-MeshCollider:
+--- !u!114 &3020937170423839967
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8297008409378716181}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6677609986385114063, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &8453565032759277404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,7 +2293,7 @@ GameObject:
   - component: {fileID: 88102083396086481}
   - component: {fileID: 839954365473489202}
   - component: {fileID: 6159226322452025742}
-  - component: {fileID: 3839081971354890017}
+  - component: {fileID: 6542781599884191408}
   m_Layer: 7
   m_Name: spaceship_02_cell.017
   m_TagString: FracturedDebries
@@ -2202,20 +2380,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &3839081971354890017
-MeshCollider:
+--- !u!114 &6542781599884191408
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8453565032759277404}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -669860084452633827, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &8460578896082429757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2228,7 +2416,7 @@ GameObject:
   - component: {fileID: 5522313087375257157}
   - component: {fileID: 8953544459088535193}
   - component: {fileID: 9067024412372205470}
-  - component: {fileID: 3292370726996552646}
+  - component: {fileID: 1691533512903667323}
   m_Layer: 7
   m_Name: spaceship_02_cell.016
   m_TagString: FracturedDebries
@@ -2315,20 +2503,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &3292370726996552646
-MeshCollider:
+--- !u!114 &1691533512903667323
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8460578896082429757}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2892716815703202254, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &8542253218542749921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,7 +2539,7 @@ GameObject:
   - component: {fileID: 1027953983298338432}
   - component: {fileID: 2937649452002941178}
   - component: {fileID: 6227400068835547827}
-  - component: {fileID: 7188174073703631965}
+  - component: {fileID: 7817971461439892400}
   m_Layer: 7
   m_Name: spaceship_02_cell.020
   m_TagString: FracturedDebries
@@ -2428,20 +2626,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &7188174073703631965
-MeshCollider:
+--- !u!114 &7817971461439892400
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8542253218542749921}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6255595402303214510, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []
 --- !u!1 &8628850007804753725
 GameObject:
   m_ObjectHideFlags: 0
@@ -2454,7 +2662,7 @@ GameObject:
   - component: {fileID: 9030102338589125438}
   - component: {fileID: 5338540891140488055}
   - component: {fileID: 8305164213501600184}
-  - component: {fileID: 2375238096012316794}
+  - component: {fileID: 3335121127947801556}
   m_Layer: 7
   m_Name: spaceship_02_cell.013
   m_TagString: FracturedDebries
@@ -2541,17 +2749,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &2375238096012316794
-MeshCollider:
+--- !u!114 &3335121127947801556
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8628850007804753725}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8813994933045113400, guid: 929ea3341e4fdc14dac6f776420b3b53, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15a9dab51433d4aa97984c16d91095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieAfter: 1
+  shader: {fileID: -6465566751694194690, guid: 84caf5b6eaf996448b9fd92530b2005f, type: 3}
+  borderWidth: 0.03
+  noiseScale: 6
+  speed: 5
+  color: {r: 95.87451, g: 0, b: 0, a: 1}
+  multiMesh: []
+  activeEffectAfterTime: 0
+  dissolveMultipleObj: 0
+  mat: []
+  texture: []
+  oldMat: []

@@ -29,6 +29,8 @@ public class DissolveEffect : MonoBehaviour
     Color colorTexture;
     bool canDissolve;
 
+    Color emission;
+
     void Update()
     {
         if(canDissolve)
