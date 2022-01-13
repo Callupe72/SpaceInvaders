@@ -523,6 +523,7 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        ScoreManager.Instance.SeeScore();
         Instantiate(fracturedPlayer, meshAnimator.transform.GetChild(0).transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

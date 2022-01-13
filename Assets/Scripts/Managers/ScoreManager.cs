@@ -7,6 +7,7 @@ using DG.Tweening;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI DefeatVictoryScoreText;
     int score;
     bool canFade;
     [SerializeField] float fadeTime = 0.5f;
@@ -44,5 +45,10 @@ public class ScoreManager : MonoBehaviour
         scoreText.DOColor(Color.red, 0.01f);
         scoreText.transform.DOScale(maximumScale, 0.01f);
         canFade = true;
+    }
+
+    public void SeeScore()
+    {
+        DefeatVictoryScoreText.text = score.ToString();
     }
 }

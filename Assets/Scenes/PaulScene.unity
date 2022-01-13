@@ -10890,6 +10890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 582919122}
+  DefeatVictoryScoreText: {fileID: 1405182469}
   fadeTime: 0.5
   maximumScale: 5
 --- !u!4 &428824028
@@ -35787,6 +35788,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f077ceefb211f9c41a215a9d6738be26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1405182469 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4254815297827293581, guid: a1dab545275f9bf4290e9a67b5b1c7fc, type: 3}
+  m_PrefabInstance: {fileID: 1405182466}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1407116661
