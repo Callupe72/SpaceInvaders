@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -71,7 +72,9 @@ public class AudioReaction : MonoBehaviour
 
     public void SetVolume()
     {
-        audioSource.volume = volumeSlider.value;
+        if (SceneManager.GetActiveScene().name.Contains("Menu"))
+            return;
+            audioSource.volume = volumeSlider.value;
         volumeTxt.text = volumeSlider.value.ToString();
     }
 
