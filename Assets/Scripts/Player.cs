@@ -437,6 +437,9 @@ public class Player : MonoBehaviour
 
     public void TakeDommage(int dommage)
     {
+        if (shield.activeInHierarchy)
+            return;
+
         AudioManager.Instance.Play2DSound("PlayerLooseLife");
         PostProcessManager.Instance.PlayerIsTouch(this);
         CinemachineShake.Instance.ShakeCamera(10, .7f);
