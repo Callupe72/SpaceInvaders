@@ -85,7 +85,21 @@ public class JuicinessSpawner : MonoBehaviour
                 ComboManager.Instance.SetCanCombo(toggle.isOn);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.BarrelRoll:
-                ActiveJuiceManager.Instance.BarrelRoll = toggle.isOn;
+                ActiveJuiceManager.Instance.BarrelRollIsOn = toggle.isOn;
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.SlowMotion:
+                ActiveJuiceManager.Instance.SlowmotionIsOn = toggle.isOn;
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Zoom:
+                ActiveJuiceManager.Instance.ZoomIsOn = toggle.isOn;
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Trails:
+                ActiveJuiceManager.Instance.TrailsIsOn = toggle.isOn;
+                TrailRenderer[] allTrail =  FindObjectsOfType<TrailRenderer>();
+                foreach (TrailRenderer item in allTrail)
+                {
+                    item.enabled = ActiveJuiceManager.Instance.TrailsIsOn;
+                }
                 break;
             default:
                 break;
@@ -118,6 +132,7 @@ public class JuicinessSpawner : MonoBehaviour
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Bloom:
                 slider.SetValueWithoutNotify(PostProcessManager.Instance.GetBloom());
+                sliderText.text = slider.value.ToString();
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShipExplostion:
                 break;
@@ -143,6 +158,23 @@ public class JuicinessSpawner : MonoBehaviour
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Combo:
                 toggle.SetIsOnWithoutNotify(ComboManager.Instance.GetCanCombo());
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.BarrelRoll:
+                toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.BarrelRollIsOn);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.SlowMotion:
+                toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.SlowmotionIsOn);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Zoom:
+                toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.ZoomIsOn);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Trails:
+                toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.TrailsIsOn);
+                TrailRenderer[] allTrail = FindObjectsOfType<TrailRenderer>();
+                foreach (TrailRenderer item in allTrail)
+                {
+                    item.enabled = ActiveJuiceManager.Instance.TrailsIsOn;
+                }
                 break;
             default:
                 break;

@@ -13,6 +13,7 @@ public class PostProcessManager : MonoBehaviour
     ChromaticAberration ca;
     ColorAdjustments colorA;
 
+    [SerializeField] float bloomValue = .7f;
 
     //Color adjustment
     public enum PlayerState
@@ -86,7 +87,7 @@ public class PostProcessManager : MonoBehaviour
         b.active = isActive;
         if (isActive)
         {
-            b.intensity.value = intensity * ActiveJuiceManager.Instance.GetValueFloat(ActiveJuiceManager.ActiveJuiceValues.AllEffect.Bloom);
+            b.intensity.value = intensity * ActiveJuiceManager.Instance.GetValueFloat(ActiveJuiceManager.ActiveJuiceValues.AllEffect.Bloom) * bloomValue;
         }
     }
 

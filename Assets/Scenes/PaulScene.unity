@@ -11243,6 +11243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: {fileID: 653260036}
+  bloomValue: 0.5
 --- !u!1 &450981835
 GameObject:
   m_ObjectHideFlags: 0
@@ -25826,7 +25827,10 @@ MonoBehaviour:
   juicinessArray: {fileID: 0}
   AnimationIsOn: 1
   ExplosionIsOn: 1
-  BarrelRoll: 1
+  BarrelRollIsOn: 1
+  ZoomIsOn: 1
+  SlowmotionIsOn: 1
+  TrailsIsOn: 1
   activeJuices:
   - effectToActive: 'TITLE : Active Everything'
     whichEffect: 0
