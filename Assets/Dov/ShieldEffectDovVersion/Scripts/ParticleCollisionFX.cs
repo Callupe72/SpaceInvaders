@@ -41,6 +41,7 @@ namespace ForcefieldDemo
             {
                 // instantiate collision particles at each intersection
                 var collisionFX = Instantiate(collisionFXPrefab, collisionEvents[i].intersection, Quaternion.identity);
+                AudioManager.Instance.Play2DSound("ShootOnShield");
 
                 // orient to face normal
                 collisionFX.transform.rotation = Quaternion.LookRotation(collisionEvents[i].normal);

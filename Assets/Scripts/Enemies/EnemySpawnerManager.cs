@@ -237,7 +237,9 @@ public class EnemySpawnerManager : MonoBehaviour
     {
 
         currentWave++;
+        AudioManager.Instance.Play2DSound("Alarm");
         yield return new WaitForSeconds(1);
+        AudioManager.Instance.Play2DSound("Alarm");
         transform.position = startingPos;
         waveParent.gameObject.SetActive(true);
         waveParent.GetComponentInChildren<TextMeshProUGUI>().text = "Wave " + (currentWave + 1).ToString();
@@ -248,7 +250,6 @@ public class EnemySpawnerManager : MonoBehaviour
         yield return new WaitForSeconds(waveAnimationTime);
         waveParent.gameObject.SetActive(false);
         yield return new WaitForSeconds(1);
-
 
         //GET DATA
         currentEnemiesPerLine = dataWave.Data[currentWave].ennemyByLine;

@@ -15,6 +15,8 @@ public class AudioManager : MonoBehaviour
 
     public float audioVolume { get; set; } = 50f;
 
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -28,6 +30,7 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
+        Play2DSound("Reacteur");
         LoadAudioValue();
     }
 

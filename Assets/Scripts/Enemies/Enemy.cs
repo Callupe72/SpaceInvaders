@@ -110,6 +110,8 @@ public class Enemy : MonoBehaviour
         }
         if (EnemySpawnerManager.Instance.GetEnemyStillAlive() == 1)
         {
+            AudioManager.Instance.Play2DSound("ZoomLastEnnemy");
+
             if (ActiveJuiceManager.Instance.ZoomIsOn)
                 CVM.gameObject.SetActive(true);
             SlowMotionManager.Instance.SlowMotion(3f);
@@ -144,7 +146,6 @@ public class Enemy : MonoBehaviour
     IEnumerator WaitBeforeDestroy()
     {
         yield return new WaitForSeconds(1f);
-        if (shipType == EnemySpawnerManager.ShipType.Pinata)
             AudioManager.Instance.Play2DSound(soundToPlayOnDie);
         yield return new WaitForSeconds(.8f);
         Die(true);

@@ -122,6 +122,7 @@ public class XPManager : MonoBehaviour
         xpBarBack.fillAmount = 0;
         player.SetStatsOnLevelUp(levelData.Data[level]);
         levelTxt.text = (level + 1).ToString();
+        AudioManager.Instance.Play2DSound("PlayerLevelUp");
         if (level > 0)
         {
             ParticlesManager.Instance.SpawnParticles("LevelUp", FindObjectOfType<Player>().particleSpawnTransform, new Vector3(-90,0,0), true) ;
