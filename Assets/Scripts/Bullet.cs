@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, timeBeforeDestroy);
+        GetComponent<TrailRenderer>().enabled = ActiveJuiceManager.Instance.TrailsIsOn;
     }
 
     void Update()

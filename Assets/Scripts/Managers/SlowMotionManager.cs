@@ -28,6 +28,10 @@ public class SlowMotionManager : MonoBehaviour
 
     public void SlowMotion(float slowMotionFactor)
     {
+
+        if (!ActiveJuiceManager.Instance.SlowmotionIsOn)
+            return;
+
         Time.timeScale = slowMotionFactor;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
         slowMoCurrentTime = 0;

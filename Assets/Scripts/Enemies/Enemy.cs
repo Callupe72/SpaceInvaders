@@ -109,7 +109,8 @@ public class Enemy : MonoBehaviour
         }
         if (EnemySpawnerManager.Instance.GetEnemyStillAlive() == 1)
         {
-            CVM.gameObject.SetActive(true);
+            if (ActiveJuiceManager.Instance.ZoomIsOn)
+                CVM.gameObject.SetActive(true);
             SlowMotionManager.Instance.SlowMotion(3f);
             StartCoroutine(WaitBeforeDestroy());
         }

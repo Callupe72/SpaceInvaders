@@ -21,7 +21,10 @@ public class ActiveJuiceManager : MonoBehaviour
 
     public bool AnimationIsOn = true;
     public bool ExplosionIsOn = true;
-    public bool BarrelRoll = true;
+    public bool BarrelRollIsOn = true;
+    public bool ZoomIsOn = true;
+    public bool SlowmotionIsOn = true;
+    public bool TrailsIsOn = true;
 
     [System.Serializable]
     public struct ActiveJuiceValues
@@ -42,6 +45,9 @@ public class ActiveJuiceManager : MonoBehaviour
             Particles,
             Combo,
             BarrelRoll,
+            SlowMotion,
+            Zoom,
+            Trails,
         }
 
         [Header("Essentials")]
