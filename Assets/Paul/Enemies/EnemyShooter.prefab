@@ -81,8 +81,8 @@ MonoBehaviour:
   soundToPlayOnDie: DestroyEnemy
   fracturedEnemy: {fileID: -8716586036654775229, guid: 1d8144ec2087d5b4db480d7f8ba9a379, type: 3}
   scoreDamages: {fileID: 1098862414797635225, guid: 89d0cc0feb60c72449f746f15581c362, type: 3}
-  randomXpGivenMin: 40
-  randomXpGivenMax: 60
+  randomXpGivenMin: 150
+  randomXpGivenMax: 200
   CVM: {fileID: 1495715435570814867}
   shipType: 0
   damages: 1

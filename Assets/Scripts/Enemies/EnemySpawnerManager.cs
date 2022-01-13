@@ -24,6 +24,9 @@ public class EnemySpawnerManager : MonoBehaviour
     [SerializeField] float frontTime = 1f;
     [SerializeField] bool wasRight;
 
+    [HideInInspector] public bool canSpawnTextEnemyRestants = true;
+    [HideInInspector] public bool canSpawnDamageText = true;
+
     float speedCurrentTime;
 
     Vector3 startingPos;
@@ -133,7 +136,6 @@ public class EnemySpawnerManager : MonoBehaviour
         if (GameManager.Instance.currentGameState == GameManager.GameState.InPause || GameManager.Instance.currentGameState == GameManager.GameState.Defeat)
             return;
 
-
         if (!isPinataWave && enemyStillAlive > 0)
         {
             switch (currentDirection)
@@ -234,6 +236,8 @@ public class EnemySpawnerManager : MonoBehaviour
 
     void GrowUpStillEnemyText()
     {
+        if (!canSpawnTextEnemyRestants)
+            return;
         ennemyRestantText.transform.DOScale(5, .01f);
         ennemyRestantText.DOColor(Color.red, .01f);
         ennemyRestantText.transform.DOScale(1, .5f);
@@ -242,6 +246,10 @@ public class EnemySpawnerManager : MonoBehaviour
 
     IEnumerator WaitBeforeCreateNewWave()
     {
+        foreach (Transform item in transform)
+        {
+            Destroy(item.gameObject);
+        }
         currentWave++;
         player.AddLife(1);
         AudioManager.Instance.Play2DSound("Alarm");
@@ -357,8 +365,9 @@ public class EnemySpawnerManager : MonoBehaviour
         }
         GameObject enemy = Instantiate(enemyToSpawn, pos, Quaternion.Euler(rot));
         enemy.GetComponent<Enemy>().shipType = shipType;
+        enemy.GetComponent<Enemy>().StartPlaying();
         float value = (((float)currentLineNumbers - (float)lineNum + 1) / 5);
-        enemy.GetComponent<Enemy>().SetTimeBeforeShow(Mathf.Clamp(value,.1f,100f));
+        enemy.GetComponent<Enemy>().SetTimeBeforeShow(Mathf.Clamp(value, .1f, 100f));
         enemy.name = "EnemyL" + lineNum + "N" + enemyIndex;
         enemy.transform.parent = parent;
     }
@@ -414,7 +423,8 @@ public class EnemySpawnerManager : MonoBehaviour
             ParticlesManager.Instance.SpawnParticles("DestroyLine", lineToDestroy, Vector3.zero, false);
         foreach (Transform enemy in lineToDestroy)
         {
-            enemy.GetComponent<Enemy>().Damage(damages, false);
+            if (enemy.GetComponent<Enemy>())
+                enemy.GetComponent<Enemy>().Damage(damages, false);
         }
     }
 }

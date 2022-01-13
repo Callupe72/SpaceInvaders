@@ -95,19 +95,27 @@ public class JuicinessSpawner : MonoBehaviour
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Trails:
                 ActiveJuiceManager.Instance.TrailsIsOn = toggle.isOn;
-                TrailRenderer[] allTrail =  FindObjectsOfType<TrailRenderer>();
+                TrailRenderer[] allTrail = FindObjectsOfType<TrailRenderer>();
                 foreach (TrailRenderer item in allTrail)
                 {
                     item.enabled = ActiveJuiceManager.Instance.TrailsIsOn;
                 }
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.PerfectText:
-                ActiveJuiceManager.Instance.PerfectTextIsOn = toggle.isOn;
+                PerfectManager.Instance.canPerfect = toggle.isOn;
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.TextDamages:
+                EnemySpawnerManager.Instance.canSpawnDamageText = toggle.isOn;
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.EnemyStillAlive:
+                EnemySpawnerManager.Instance.canSpawnTextEnemyRestants = toggle.isOn;
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Score:
+                ScoreManager.Instance.canScoreGrow = toggle.isOn;
                 break;
             default:
                 break;
         }
-
         if (toggle.gameObject.activeInHierarchy)
         {
             ActiveJuiceManager.Instance.SpawnText(thisEffect.ToString(), toggle.isOn);
@@ -178,6 +186,20 @@ public class JuicinessSpawner : MonoBehaviour
                 {
                     item.enabled = ActiveJuiceManager.Instance.TrailsIsOn;
                 }
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ActiveEveryhing:
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.PerfectText:
+                toggle.SetIsOnWithoutNotify(PerfectManager.Instance.canPerfect);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.TextDamages:
+                toggle.SetIsOnWithoutNotify(EnemySpawnerManager.Instance.canSpawnDamageText);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.EnemyStillAlive:
+                toggle.SetIsOnWithoutNotify(EnemySpawnerManager.Instance.canSpawnTextEnemyRestants);
+                break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Score:
+                toggle.SetIsOnWithoutNotify(ScoreManager.Instance.canScoreGrow);
                 break;
             default:
                 break;

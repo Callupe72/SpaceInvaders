@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] float max = 1;
     [SerializeField] float speed = 5;
-    bool goUp = true;
     [SerializeField] CinemachineVirtualCamera cinemachine;
+    void Start()
+    {
+        cinemachine.GetCinemachineComponent<CinemachineTrackedDolly>().m_PathPosition = 0;
+    }
     void Update()
     {
-        if (goUp)
-            cinemachine.GetCinemachineComponent<CinemachineTrackedDolly>().m_PathPosition += speed / 100 * Time.deltaTime;
+        cinemachine.GetCinemachineComponent<CinemachineTrackedDolly>().m_PathPosition += speed / 100 * Time.deltaTime;
     }
 }

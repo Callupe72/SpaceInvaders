@@ -113,7 +113,7 @@ MonoBehaviour:
   borderWidth: 0.03
   noiseScale: 6
   speed: 5
-  color: {r: 4, g: 0, b: 0, a: 0}
+  color: {r: 4, g: 0, b: 0, a: 1}
   multiMesh: []
   activeEffectAfterTime: 0
   dissolveMultipleObj: 0
@@ -170,8 +170,8 @@ MonoBehaviour:
   soundToPlayOnDie: DestroyEnemy
   fracturedEnemy: {fileID: -8716586036654775229, guid: 1d8144ec2087d5b4db480d7f8ba9a379, type: 3}
   scoreDamages: {fileID: 1098862414797635225, guid: 89d0cc0feb60c72449f746f15581c362, type: 3}
-  randomXpGivenMin: 90
-  randomXpGivenMax: 110
+  randomXpGivenMin: 200
+  randomXpGivenMax: 250
   CVM: {fileID: 5123760498786305073}
   shipType: 0
 --- !u!1 &4040328980003087183

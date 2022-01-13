@@ -21,10 +21,10 @@ public class Enemy : MonoBehaviour
     [Header("Cam")]
     public CinemachineVirtualCamera CVM = null;
 
-    [HideInInspector] public EnemySpawnerManager.ShipType shipType;
+    public EnemySpawnerManager.ShipType shipType;
 
     protected float timeBeforeShow;
-    void Start()
+    public void StartPlaying()
     {
         float scale = Random.Range(1.5f, 2f);
         transform.localScale = Vector3.one * scale;
@@ -63,15 +63,18 @@ public class Enemy : MonoBehaviour
         XPManager.Instance.AddXP(rand);
         Vector3 spawnPos = transform.position;
         spawnPos = new Vector3(spawnPos.x, spawnPos.y + 10, spawnPos.z - 30);
-        ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.Euler(Vector3.zero)).GetComponent<ScoreDamages>();
-        scoreOverEnemy.transform.localScale = Vector3.one * scoreOverEnemy.transform.localScale.x * Mathf.Clamp(AudioReaction.Instance.GetDropValue(), 1, 100);
-        Color oldColor = scoreOverEnemy.GetText().fontMaterial.GetColor(ShaderUtilities.ID_OutlineColor);
-        var factor = AudioReaction.Instance.GetDropValue() * 1;
-        Color newColor = new Color(oldColor.r * factor, oldColor.g * factor, oldColor.b * factor, oldColor.a);
-        scoreOverEnemy.GetText().fontMaterial.SetColor(ShaderUtilities.ID_OutlineColor, newColor);
-        scoreOverEnemy.GetText().fontMaterial.SetFloat(ShaderUtilities.ID_OutlineWidth, .3f);
-        scoreOverEnemy.transform.parent = EnemySpawnerManager.Instance.scoreParent;
-        scoreOverEnemy.SetText(damages * Mathf.RoundToInt(AudioReaction.Instance.GetDropValue()));
+        if (EnemySpawnerManager.Instance.canSpawnTextEnemyRestants)
+        {
+            ScoreDamages scoreOverEnemy = Instantiate(scoreDamages, spawnPos, Quaternion.Euler(Vector3.zero)).GetComponent<ScoreDamages>();
+            scoreOverEnemy.transform.localScale = Vector3.one * scoreOverEnemy.transform.localScale.x * Mathf.Clamp(AudioReaction.Instance.GetDropValue(), 1, 100);
+            Color oldColor = scoreOverEnemy.GetText().fontMaterial.GetColor(ShaderUtilities.ID_OutlineColor);
+            var factor = AudioReaction.Instance.GetDropValue() * 1;
+            Color newColor = new Color(oldColor.r * factor, oldColor.g * factor, oldColor.b * factor, oldColor.a);
+            scoreOverEnemy.GetText().fontMaterial.SetColor(ShaderUtilities.ID_OutlineColor, newColor);
+            scoreOverEnemy.GetText().fontMaterial.SetFloat(ShaderUtilities.ID_OutlineWidth, .3f);
+            scoreOverEnemy.transform.parent = EnemySpawnerManager.Instance.scoreParent;
+            scoreOverEnemy.SetText(damages * Mathf.RoundToInt(AudioReaction.Instance.GetDropValue()));
+        }
         ScoreManager.Instance.AddScore(damages * Mathf.RoundToInt(AudioReaction.Instance.GetDropValue()));
         AudioManager.Instance.Play2DSound(soundToPlayOnDamages);
         CinemachineShake.Instance.ShakeCamera(AudioReaction.Instance.GetDropValue(), .5f);
@@ -103,7 +106,7 @@ public class Enemy : MonoBehaviour
         if (shipType == EnemySpawnerManager.ShipType.Pinata)
         {
             AudioManager.Instance.Play2DSound(soundToPlayOnDie);
-            if(ParticlesManager.Instance.GetCanParticles())
+            if (ParticlesManager.Instance.GetCanParticles())
                 ParticlesManager.Instance.SpawnParticles("PinataDeath", transform, Vector3.zero, false);
             SlowMotionManager.Instance.SlowMotion(2);
             GetComponent<Collider>().enabled = false;
@@ -130,11 +133,15 @@ public class Enemy : MonoBehaviour
         if (ActiveJuiceManager.Instance.ExplosionIsOn)
         {
             if (!isLast)
+            {
                 Instantiate(fracturedEnemy, transform.position, Quaternion.identity);
+            }
             else
             {
+                //EnemySpawnerManager.Instance.canMove = false;
                 FracturedEnemy frac = Instantiate(fracturedEnemy, transform.position, Quaternion.identity).GetComponent<FracturedEnemy>();
                 frac.SetBreakForce(1);
+                ParticlesManager.Instance.SpawnParticles("EnemyTakesDamages", transform, transform.rotation.eulerAngles, false);
             }
         }
         CVM.transform.parent = transform.parent;
@@ -146,7 +153,7 @@ public class Enemy : MonoBehaviour
     IEnumerator WaitBeforeDestroy()
     {
         yield return new WaitForSeconds(1f);
-            AudioManager.Instance.Play2DSound(soundToPlayOnDie);
+        AudioManager.Instance.Play2DSound(soundToPlayOnDie);
         yield return new WaitForSeconds(.8f);
         Die(true);
     }

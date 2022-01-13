@@ -25,7 +25,6 @@ public class ActiveJuiceManager : MonoBehaviour
     public bool ZoomIsOn = true;
     public bool SlowmotionIsOn = true;
     public bool TrailsIsOn = true;
-    public bool PerfectTextIsOn = true;
 
     [System.Serializable]
     public struct ActiveJuiceValues
@@ -50,6 +49,9 @@ public class ActiveJuiceManager : MonoBehaviour
             Zoom,
             Trails,
             PerfectText,
+            TextDamages,
+            EnemyStillAlive,
+            Score,
         }
 
         [Header("Essentials")]
@@ -104,10 +106,10 @@ public class ActiveJuiceManager : MonoBehaviour
         for (int i = 0; i < juicinessParent.transform.childCount; i++)
         {
             GameObject goToDestroy = juicinessParent.transform.GetChild(i).gameObject;
-            UnityEditor.EditorApplication.delayCall += () =>
-            {
-                DestroyImmediate(goToDestroy);
-            };
+            //UnityEditor.EditorApplication.delayCall += () =>
+            //{
+            //    DestroyImmediate(goToDestroy);
+            //};
         }
     }
 
@@ -181,7 +183,7 @@ public class ActiveJuiceManager : MonoBehaviour
             {
                 juicinessText.text = activeJuices[i].titleName;
                 activeJuices[i].juicinessSpawner.name = "Title : " + activeJuices[i].titleName;
-                juicinessText.fontSize = 50;
+                juicinessText.fontSize = 60;
                 juicinessText.fontStyle = FontStyles.Bold;
                 juicinessTransform.GetComponentInChildren<Button>().gameObject.SetActive(false);
             }  

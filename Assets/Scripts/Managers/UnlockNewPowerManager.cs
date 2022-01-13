@@ -58,8 +58,10 @@ public class UnlockNewPowerManager : MonoBehaviour
 
     public void AddNewPower()
     {
-        waitSeeNewPower = true;
         powerToUnlockIndex++;
+        if (powerToUnlockIndex > powers.Length)
+            return;
+        waitSeeNewPower = true;
         SetCanvaActive(true);
         powerTitleText.text = powers[powerToUnlockIndex].powerName;
         powerDescriptionText.text = powers[powerToUnlockIndex].powerDescription;

@@ -377,7 +377,11 @@ public class Player : MonoBehaviour
             hasShield = 0.25f;
         }
 
-        rb.velocity = new Vector3(horizontal * Time.fixedDeltaTime * isDashingSpeed * 2 * hasShield, rb.velocity.y, rb.velocity.z);
+
+        if (Input.GetAxisRaw("HorizontalMove") != 0)
+            rb.velocity = new Vector3(horizontal * Time.fixedDeltaTime * isDashingSpeed * 2 * hasShield, rb.velocity.y, rb.velocity.z);
+        else
+            rb.velocity = Vector3.zero;
         //forceFactor = 1.0f - ((weaponRigidbody.transform.position.y - waterLevel) / floatThreshold);
 
         //if (forceFactor > 0.0f)

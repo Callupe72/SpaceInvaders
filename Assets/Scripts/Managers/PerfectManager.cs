@@ -10,6 +10,7 @@ public class PerfectManager : MonoBehaviour
 
     [SerializeField] string[] perfectsWords;
     [SerializeField] Color color;
+    [HideInInspector] public bool canPerfect = true;
 
     public static PerfectManager Instance;
     void Awake()
@@ -27,10 +28,13 @@ public class PerfectManager : MonoBehaviour
 
     public void SpawnText()
     {
-        if (AudioReaction.Instance.GetDropValue() < 2 || !ActiveJuiceManager.Instance.PerfectTextIsOn)
+        if (!canPerfect)
             return;
 
-        perfectText.transform.DOScale(3, .01f);
+        if (AudioReaction.Instance.GetDropValue() < 2)
+            return;
+
+        perfectText.transform.DOScale(1.7f, .01f);
         perfectText.DOColor(Color.red, .01f);
 
         int random = Random.Range(0, perfectsWords.Length);

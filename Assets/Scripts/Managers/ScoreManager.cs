@@ -9,12 +9,11 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI DefeatVictoryScoreText;
     int score;
-    bool canFade;
     [SerializeField] float fadeTime = 0.5f;
     [SerializeField] float maximumScale = 5f;
 
     public static ScoreManager Instance;
-
+    [HideInInspector] public bool canScoreGrow = true;
     void Awake()
     {
         if (Instance != null)
@@ -28,23 +27,17 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (canFade)
-        {
-            scoreText.DOColor(Color.white, fadeTime);
-            scoreText.transform.DOScale(1, fadeTime);
-        } 
-    }
-
     public void AddScore(int scoreToAdd)
     {
-        canFade = false;
         score += (scoreToAdd + ComboManager.Instance.GetCombo());
         scoreText.text = score.ToString();
+        if (!canScoreGrow)
+            return;
         scoreText.DOColor(Color.red, 0.01f);
         scoreText.transform.DOScale(maximumScale, 0.01f);
-        canFade = true;
+
+        scoreText.DOColor(Color.white, fadeTime);
+        scoreText.transform.DOScale(1, fadeTime);
     }
 
     public void SeeScore()
