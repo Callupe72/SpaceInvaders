@@ -99,12 +99,12 @@ public class EnemySpawnerManager : MonoBehaviour
 
     void Start()
     {
+        player = FindObjectOfType<Player>();
         startingPos = transform.position;
         //startTime = 1;
         //start = 1400;
         //end = -1400;
         CreateNewWave();
-        player = FindObjectOfType<Player>();
     }
 
     void OnDrawGizmos()
@@ -232,10 +232,18 @@ public class EnemySpawnerManager : MonoBehaviour
         StartCoroutine(WaitBeforeCreateNewWave());
     }
 
+    void GrowUpStillEnemyText()
+    {
+        ennemyRestantText.transform.DOScale(5, .01f);
+        ennemyRestantText.DOColor(Color.red, .01f);
+        ennemyRestantText.transform.DOScale(1, .5f);
+        ennemyRestantText.DOColor(Color.white, .5f);
+    }
 
     IEnumerator WaitBeforeCreateNewWave()
     {
         currentWave++;
+        player.AddLife(1);
         AudioManager.Instance.Play2DSound("Alarm");
         yield return new WaitForSeconds(1);
         AudioManager.Instance.Play2DSound("Alarm");
@@ -355,14 +363,15 @@ public class EnemySpawnerManager : MonoBehaviour
         enemy.transform.parent = parent;
     }
 
-    public void DestroyLine(Transform lineToDestroy)
+    public void DestroyLine(Transform lineToDestroy, int damages)
     {
-        StartCoroutine(WaitToDestroyLine(lineToDestroy));
+        StartCoroutine(WaitToDestroyLine(lineToDestroy, damages));
     }
 
     public void EnemyIsKilled()
     {
         enemyStillAlive--;
+        GrowUpStillEnemyText();
         enemyStillAlive = Mathf.Clamp(enemyStillAlive, 0, 999999);
         ennemyRestantText.text = enemyStillAlive + "/" + (currentEnemiesPerLine * currentLineNumbers);
         if (enemyStillAlive == 0)
@@ -396,7 +405,7 @@ public class EnemySpawnerManager : MonoBehaviour
         }
     }
 
-    IEnumerator WaitToDestroyLine(Transform lineToDestroy)
+    IEnumerator WaitToDestroyLine(Transform lineToDestroy, int damages)
     {
 
         SlowMotionManager.Instance.SlowMotion();
@@ -405,7 +414,7 @@ public class EnemySpawnerManager : MonoBehaviour
             ParticlesManager.Instance.SpawnParticles("DestroyLine", lineToDestroy, Vector3.zero, false);
         foreach (Transform enemy in lineToDestroy)
         {
-            enemy.GetComponent<Enemy>().PrepareToDie();
+            enemy.GetComponent<Enemy>().Damage(damages, false);
         }
     }
 }

@@ -16,25 +16,23 @@ public class Life : MonoBehaviour
 
     [SerializeField] bool rotate;
 
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < imgs.Length; i++)
         {
             imgsColor.Add(Color.red);
             imgsSize.Add(1);
         }
-        SetColorLife(3);
     }
 
     public void SetColorLife(int playerLife)
     {
-
         playerLife--;
-
         for (int i = 0; i < imgs.Length; i++)
         {
             if (i <= playerLife)
             {
+
                 imgsColor[i] = hasLife;
                 imgsSize[i] = 1;
             }

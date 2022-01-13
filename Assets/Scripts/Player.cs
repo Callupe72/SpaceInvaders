@@ -470,6 +470,13 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void AddLife(int lifeToAdd)
+    {
+        life += lifeToAdd;
+        life = Mathf.Clamp(life, 1, 3);
+        lifeCanva.SetColorLife(Mathf.RoundToInt(life));
+    }
+
     private void ChangeState(float direction)
     {
         oldDirection = newDirection;

@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
 
             if (destroyLine)
             {
-                DestroyThisLine();
+                DestroyThisLine(damages);
             }
             else
             {
@@ -156,9 +156,9 @@ public class Enemy : MonoBehaviour
         debrisWillMakeDamages = isTrue;
     }
 
-    void DestroyThisLine()
+    void DestroyThisLine(int damages)
     {
-        transform.parent.transform.parent.GetComponent<EnemySpawnerManager>().DestroyLine(transform.parent);
+        transform.parent.transform.parent.GetComponent<EnemySpawnerManager>().DestroyLine(transform.parent, damages);
         PrepareToDie();
     }
 
