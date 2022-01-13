@@ -11,6 +11,7 @@ public class MovingPlanet : MonoBehaviour
 
     public bool doIRandomizeColor = true;
     [SerializeField] Material sunMat;
+    public int maxRange = 3;
 
     void Start()
     {
@@ -31,9 +32,9 @@ public class MovingPlanet : MonoBehaviour
         {
             meshRenderer.materials[0] = sunMat;
         }
-        float scale = Random.Range(1, 3);
+        float scale = Random.Range(1, maxRange);
         timeToGo = offset / 400;
         transform.localScale = Vector3.one * scale * 100;
-        transform.DOMoveZ(player.transform.position.z - 10, timeToGo).OnComplete(() => Spawn());
+        transform.DOMoveZ(player.transform.position.z - 100, timeToGo).OnComplete(() => Spawn());
     }
 }
