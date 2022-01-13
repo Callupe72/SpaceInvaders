@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
+  m_AmplitudeGain: 0.5886617
   m_FrequencyGain: 5
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &69721748
@@ -11189,19 +11189,19 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 150aee38b5d848b42b75593618992bb7, type: 2}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 2
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1.71948e-19
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
@@ -26550,6 +26550,7 @@ MonoBehaviour:
   ZoomIsOn: 1
   SlowmotionIsOn: 1
   TrailsIsOn: 1
+  PerfectTextIsOn: 1
   activeJuices:
   - effectToActive: 'TITLE : Active Everything'
     whichEffect: 0
@@ -30292,7 +30293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.z
@@ -53715,19 +53716,19 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 150aee38b5d848b42b75593618992bb7, type: 2}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0.7
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 5305458039736548751, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0.7
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a316a8a93192fb748982cdb577a8b8cd, type: 3}
