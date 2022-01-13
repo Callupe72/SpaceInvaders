@@ -101,6 +101,9 @@ public class JuicinessSpawner : MonoBehaviour
                     item.enabled = ActiveJuiceManager.Instance.TrailsIsOn;
                 }
                 break;
+            case ActiveJuiceManager.ActiveJuiceValues.AllEffect.PerfectText:
+                ActiveJuiceManager.Instance.PerfectTextIsOn = toggle.isOn;
+                break;
             default:
                 break;
         }

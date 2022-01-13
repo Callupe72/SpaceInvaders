@@ -27,8 +27,9 @@ public class PerfectManager : MonoBehaviour
 
     public void SpawnText()
     {
-        if (AudioReaction.Instance.GetDropValue() < 2)
+        if (AudioReaction.Instance.GetDropValue() < 2 || !ActiveJuiceManager.Instance.PerfectTextIsOn)
             return;
+
         perfectText.transform.DOScale(3, .01f);
         perfectText.DOColor(Color.red, .01f);
 
