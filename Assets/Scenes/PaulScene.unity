@@ -32568,7 +32568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ennemies coming
+  m_text: Enemies coming
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9384000af363c6143ab0b3be4f6e0783, type: 2}
   m_sharedMaterial: {fileID: 6097585779076628864, guid: 9384000af363c6143ab0b3be4f6e0783, type: 2}
