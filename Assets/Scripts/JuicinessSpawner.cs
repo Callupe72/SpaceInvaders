@@ -139,67 +139,86 @@ public class JuicinessSpawner : MonoBehaviour
         switch (thisEffect)
         {
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.PostProcess:
-                toggle.SetIsOnWithoutNotify(PostProcessManager.Instance.GetPostProcessIsActive());
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(PostProcessManager.Instance.GetPostProcessIsActive());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Bloom:
-                slider.SetValueWithoutNotify(PostProcessManager.Instance.GetBloom());
+                slider.value = 0f;
+                //slider.SetValueWithoutNotify(PostProcessManager.Instance.GetBloom());
                 sliderText.text = slider.value.ToString();
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShipExplostion:
+                toggle.isOn = false;
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Sound:
-                toggle.SetIsOnWithoutNotify(AudioManager.Instance.GetCanPlaySound());
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(AudioManager.Instance.GetCanPlaySound());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Music:
-                toggle.SetIsOnWithoutNotify(AudioReaction.Instance.audioSource.isPlaying);
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(AudioReaction.Instance.audioSource.isPlaying);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ShakeCamera:
-                toggle.SetIsOnWithoutNotify(CinemachineShake.Instance.GetCanShake());
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(CinemachineShake.Instance.GetCanShake());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Animations:
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.XpText:
-                toggle.SetIsOnWithoutNotify(XPManager.Instance.GetXpText());
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(XPManager.Instance.GetXpText());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.XpBar:
-                toggle.SetIsOnWithoutNotify(XPManager.Instance.GetXpBar());
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(XPManager.Instance.GetXpBar());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Particles:
-                toggle.SetIsOnWithoutNotify(ParticlesManager.Instance.GetCanParticles());
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(ParticlesManager.Instance.GetCanParticles());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Combo:
-                toggle.SetIsOnWithoutNotify(ComboManager.Instance.GetCanCombo());
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(ComboManager.Instance.GetCanCombo());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.BarrelRoll:
-                toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.BarrelRollIsOn);
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.BarrelRollIsOn);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.SlowMotion:
-                toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.SlowmotionIsOn);
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.SlowmotionIsOn);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Zoom:
-                toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.ZoomIsOn);
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.ZoomIsOn);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Trails:
-                toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.TrailsIsOn);
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(ActiveJuiceManager.Instance.TrailsIsOn);
                 TrailRenderer[] allTrail = FindObjectsOfType<TrailRenderer>();
                 foreach (TrailRenderer item in allTrail)
                 {
-                    item.enabled = ActiveJuiceManager.Instance.TrailsIsOn;
+                    //item.enabled = ActiveJuiceManager.Instance.TrailsIsOn;
+                    item.enabled = false;
                 }
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.ActiveEveryhing:
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.PerfectText:
-                toggle.SetIsOnWithoutNotify(PerfectManager.Instance.canPerfect);
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(PerfectManager.Instance.canPerfect);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.TextDamages:
-                toggle.SetIsOnWithoutNotify(EnemySpawnerManager.Instance.canSpawnDamageText);
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(EnemySpawnerManager.Instance.canSpawnDamageText);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.EnemyStillAlive:
-                toggle.SetIsOnWithoutNotify(EnemySpawnerManager.Instance.canSpawnTextEnemyRestants);
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(EnemySpawnerManager.Instance.canSpawnTextEnemyRestants);
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Score:
-                toggle.SetIsOnWithoutNotify(ScoreManager.Instance.canScoreGrow);
+                toggle.isOn = false;
+                //toggle.SetIsOnWithoutNotify(ScoreManager.Instance.canScoreGrow);
                 break;
             default:
                 break;

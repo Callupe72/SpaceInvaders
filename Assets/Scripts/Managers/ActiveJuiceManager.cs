@@ -106,10 +106,10 @@ public class ActiveJuiceManager : MonoBehaviour
         for (int i = 0; i < juicinessParent.transform.childCount; i++)
         {
             GameObject goToDestroy = juicinessParent.transform.GetChild(i).gameObject;
-            //UnityEditor.EditorApplication.delayCall += () =>
-            //{
-            //    DestroyImmediate(goToDestroy);
-            //};
+            /*UnityEditor.EditorApplication.delayCall += () =>
+            {
+                DestroyImmediate(goToDestroy);
+            };*/
         }
     }
 
