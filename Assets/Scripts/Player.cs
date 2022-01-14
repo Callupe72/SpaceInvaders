@@ -383,10 +383,6 @@ public class Player : MonoBehaviour
         else
             rb.velocity = Vector3.zero;
 
-        Debug.Log("time : " + Time.unscaledDeltaTime);
-
-
-
         //forceFactor = 1.0f - ((weaponRigidbody.transform.position.y - waterLevel) / floatThreshold);
 
         //if (forceFactor > 0.0f)

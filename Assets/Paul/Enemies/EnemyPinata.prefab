@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d3a043fdea161246b4f57294d2ee305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 5000
+  life: 10000
   soundToPlayOnDamages: HitPinata
   soundToPlayOnDie: DestroyPinata
   fracturedEnemy: {fileID: -8716586036654775229, guid: 1d8144ec2087d5b4db480d7f8ba9a379, type: 3}

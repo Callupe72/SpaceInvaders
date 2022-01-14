@@ -117,7 +117,7 @@ public class Enemy : MonoBehaviour
 
             if (ActiveJuiceManager.Instance.ZoomIsOn)
                 CVM.gameObject.SetActive(true);
-            SlowMotionManager.Instance.SlowMotion(3f);
+            SlowMotionManager.Instance.SlowMotion();
             StartCoroutine(WaitBeforeDestroy());
         }
         else

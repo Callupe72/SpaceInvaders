@@ -3,7 +3,7 @@ using UnityEngine;
 public class SlowMotionManager : MonoBehaviour
 {
     public static SlowMotionManager Instance;
-    float slowMoCurrentTime;
+    float slowDownLenght = 2f;
     [SerializeField] AnimationCurve slowMoCurve;
     bool slowMo;
     void Awake()
@@ -24,23 +24,22 @@ public class SlowMotionManager : MonoBehaviour
 
         if (!slowMo)
             return;
-        slowMoCurrentTime += Time.unscaledDeltaTime;
-        Time.timeScale += (1f / slowMoCurrentTime) * Time.unscaledDeltaTime;
+        //slowMoCurrentTime += Time.unscaledDeltaTime;
+        Time.timeScale += (1f / slowDownLenght) * Time.unscaledDeltaTime;
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0, 1);
         if (Time.timeScale >= 1)
             slowMo = false;
     }
 
-    public void SlowMotion(float slowMotionFactor)
+    public void SlowMotion(float slowDownFactor)
     {
 
         if (!ActiveJuiceManager.Instance.SlowmotionIsOn)
             return;
 
         slowMo = true;
-        Time.timeScale = slowMotionFactor;
+        Time.timeScale = slowDownFactor;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
-        slowMoCurrentTime = 0;
     }
 
     public void SlowMotion()
