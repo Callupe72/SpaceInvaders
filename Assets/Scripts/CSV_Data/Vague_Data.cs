@@ -29,9 +29,8 @@ public class Vague_Data : MonoBehaviour
 
     void ReadCSVFile()
     {
-        //TextAsset textData = Resources.Load<TextAsset>("Assets/Resources/CSV/vague.csv");
-        //Debug.Log(textData.text);
-        //StreamReader strReader = new StreamReader(Application.dataPath + "/" + "Resources/CSV/vague.csv");
+        var myText = Resources.Load<TextAsset>("CSV/vague");
+        Debug.LogError(myText.text);
         StreamReader strReader = new StreamReader(Application.dataPath + "/" + "Resources/CSV/vague.csv");
         bool endOfFile = false;
         bool skipHeader = true;
