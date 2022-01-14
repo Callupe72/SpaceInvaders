@@ -11850,7 +11850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaa0b0b93c0afa40a344750b4a0981e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: Assets/CSV/level_xp.csv
+  path: Resources/CSV/level_xp.csv
   Data: []
 --- !u!114 &321142073
 MonoBehaviour:
@@ -11864,7 +11864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c553dd69e505fc1459fd4925c2b41b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: Assets/CSV/vague.csv
+  path: Resources/CSV/vague.csv
   Data: []
 --- !u!1 &323421411
 GameObject:

@@ -19,7 +19,7 @@ public struct VagueData
 
 public class Vague_Data : MonoBehaviour
 {
-    public string path = "Assets/CSV/vague.csv";
+    public string path = "Resources/CSV/vague.csv";
     public List<VagueData> Data = new List<VagueData>();
 
     void Awake()
@@ -29,7 +29,8 @@ public class Vague_Data : MonoBehaviour
 
     void ReadCSVFile()
     {
-        StreamReader strReader = new StreamReader(path);
+        TextAsset textAsset = Resources.Load("CSV/vague.csv") as TextAsset;
+        StreamReader strReader = new StreamReader(textAsset);
         bool endOfFile = false;
         bool skipHeader = true;
         while (!endOfFile)

@@ -15,7 +15,7 @@ public struct LevelData
 
 public class Level_Data : MonoBehaviour
 {
-    public string path = "Assets/CSV/level_xp.csv";
+    public string path = "Resources/CSV/level_xp.csv";
     public List<LevelData> Data = new List<LevelData>();
 
     void Awake()
@@ -25,7 +25,8 @@ public class Level_Data : MonoBehaviour
 
     void ReadCSVFile()
     {
-        StreamReader strReader = new StreamReader(path);
+        TextAsset textAsset = Resources.Load("CSV/level_xp.csv") as TextAsset;
+        StreamReader strReader = new StreamReader(textAsset.text);
         bool endOfFile = false;
         bool skipHeader = true;
         while (!endOfFile)
