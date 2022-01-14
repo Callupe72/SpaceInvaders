@@ -25,8 +25,7 @@ public class Level_Data : MonoBehaviour
 
     void ReadCSVFile()
     {
-        TextAsset textAsset = Resources.Load("CSV/level_xp.csv") as TextAsset;
-        StreamReader strReader = new StreamReader(textAsset.text);
+        StreamReader strReader = new StreamReader(Application.dataPath + "/" + "Resources/CSV/level_xp.csv");
         bool endOfFile = false;
         bool skipHeader = true;
         while (!endOfFile)
