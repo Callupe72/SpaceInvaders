@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 
 public class ActiveJuiceManager : MonoBehaviour
 {
-
+    bool canShow;
     [Header("Debug")]
     [SerializeField] bool generateButtons;
 
@@ -120,6 +121,13 @@ public class ActiveJuiceManager : MonoBehaviour
         {
             activeJuices[i].juicinessSpawner.SaveResetValue();
         }
+        StartCoroutine(WaitBeforeShowText());
+    }
+
+    IEnumerator WaitBeforeShowText()
+    {
+        yield return new WaitForSeconds(1);
+        canShow = true;
     }
 
     void ChangeName()
@@ -314,6 +322,8 @@ public class ActiveJuiceManager : MonoBehaviour
 
     void SetText(string power, bool isEnable, float value)
     {
+        if (!canShow)
+            return;
         GameObject inst = Instantiate(juicinessTextInstance, juicinessTextParent);
         inst.transform.parent = juicinessTextParent;
         inst.transform.position = Vector3.zero;

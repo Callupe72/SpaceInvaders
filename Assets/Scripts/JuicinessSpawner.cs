@@ -143,7 +143,7 @@ public class JuicinessSpawner : MonoBehaviour
                 //toggle.SetIsOnWithoutNotify(PostProcessManager.Instance.GetPostProcessIsActive());
                 break;
             case ActiveJuiceManager.ActiveJuiceValues.AllEffect.Bloom:
-                slider.value = 0f;
+                slider.value = 1f;
                 //slider.SetValueWithoutNotify(PostProcessManager.Instance.GetBloom());
                 sliderText.text = slider.value.ToString();
                 break;
