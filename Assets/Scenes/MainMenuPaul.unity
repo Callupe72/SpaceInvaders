@@ -19717,7 +19717,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1165900681}
-  m_LocalRotation: {x: 0.12191177, y: -0.040811237, z: 0.0050170673, w: 0.99168885}
+  m_LocalRotation: {x: 0.12191175, y: -0.040811203, z: 0.005017062, w: 0.9916889}
   m_LocalPosition: {x: 8.026229, y: 5.780146, z: -180.56094}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -20682,7 +20682,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1406631752}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 892603829}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
+        m_MethodName: ExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1406631752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21738,7 +21750,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.12191177, y: -0.040811237, z: 0.0050170673, w: 0.99168885}
+  m_LocalRotation: {x: 0.12191175, y: -0.040811203, z: 0.005017062, w: 0.9916889}
   m_LocalPosition: {x: -1749.2571, y: -902.0057, z: -192.54242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
