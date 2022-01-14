@@ -379,9 +379,14 @@ public class Player : MonoBehaviour
 
 
         if (Input.GetAxisRaw("HorizontalMove") != 0)
-            rb.velocity = new Vector3(horizontal * Time.fixedDeltaTime * isDashingSpeed * 2 * hasShield, rb.velocity.y, rb.velocity.z);
+            rb.velocity = new Vector3(horizontal * .02f * isDashingSpeed * 2 * hasShield, rb.velocity.y, rb.velocity.z);
         else
             rb.velocity = Vector3.zero;
+
+        Debug.Log("time : " + Time.unscaledDeltaTime);
+
+
+
         //forceFactor = 1.0f - ((weaponRigidbody.transform.position.y - waterLevel) / floatThreshold);
 
         //if (forceFactor > 0.0f)

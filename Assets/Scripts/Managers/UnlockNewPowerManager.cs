@@ -38,9 +38,9 @@ public class UnlockNewPowerManager : MonoBehaviour
     }
 
 
-    [SerializeField] PowerStruct[] powers;
+    [HideInInspector]public PowerStruct[] powers;
 
-    [SerializeField] int powerToUnlockIndex = -1;
+    [HideInInspector]public int powerToUnlockIndex = -1;
 
     public static UnlockNewPowerManager Instance;
     void Awake()
@@ -60,7 +60,9 @@ public class UnlockNewPowerManager : MonoBehaviour
     {
         powerToUnlockIndex++;
         if (powerToUnlockIndex > powers.Length)
+        {
             return;
+        }
         waitSeeNewPower = true;
         SetCanvaActive(true);
         powerTitleText.text = powers[powerToUnlockIndex].powerName;

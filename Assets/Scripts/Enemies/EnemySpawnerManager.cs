@@ -399,7 +399,7 @@ public class EnemySpawnerManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (currentWave < dataWave.Data.Count)
         {
-            if (isPinataWave)
+            if (isPinataWave && UnlockNewPowerManager.Instance.powerToUnlockIndex < UnlockNewPowerManager.Instance.powers.Length)
             {
                 UnlockNewPowerManager.Instance.AddNewPower();
             }

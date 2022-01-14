@@ -30,7 +30,6 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
-        Play2DSound("Reacteur");
         LoadAudioValue();
     }
 

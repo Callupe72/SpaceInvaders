@@ -74,7 +74,9 @@ public class AudioReaction : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name.Contains("Menu"))
             return;
-            audioSource.volume = (float)volumeSlider.value / 100;
+        if (audioSource == null)
+            GameObject.Find("MusicSlider").GetComponent<Slider>();
+        audioSource.volume = (float)volumeSlider.value / 100;
         volumeTxt.text = volumeSlider.value.ToString();
     }
 

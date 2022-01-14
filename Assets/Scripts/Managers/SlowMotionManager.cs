@@ -21,6 +21,7 @@ public class SlowMotionManager : MonoBehaviour
 
     void Update()
     {
+
         if (!slowMo)
             return;
         slowMoCurrentTime += Time.unscaledDeltaTime;

@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour
             AudioManager.Instance.Play2DSound(soundToPlayOnDie);
             if (ParticlesManager.Instance.GetCanParticles())
                 ParticlesManager.Instance.SpawnParticles("PinataDeath", transform, Vector3.zero, false);
-            SlowMotionManager.Instance.SlowMotion(2);
+            //SlowMotionManager.Instance.SlowMotion(2);
             GetComponent<Collider>().enabled = false;
         }
         if (EnemySpawnerManager.Instance.GetEnemyStillAlive() == 1)
