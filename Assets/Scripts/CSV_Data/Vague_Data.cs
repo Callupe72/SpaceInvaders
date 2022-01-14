@@ -30,13 +30,10 @@ public class Vague_Data : MonoBehaviour
     void ReadCSVFile()
     {
         var myText = Resources.Load<TextAsset>("CSV/vague");
-        Debug.LogError(myText.text);
-        StreamReader strReader = new StreamReader(Application.dataPath + "/" + "Resources/CSV/vague.csv");
         bool endOfFile = false;
         bool skipHeader = true;
-        while (!endOfFile)
+        foreach (var data_String in myText.text.Split('\n'))
         {
-            string data_String = strReader.ReadLine();
             if (data_String == null)
             {
                 endOfFile = true;
@@ -59,5 +56,6 @@ public class Vague_Data : MonoBehaviour
             data_value.Total = int.Parse(data_string_value[7]);
             Data.Add(data_value);
         }
+
     }
 }
