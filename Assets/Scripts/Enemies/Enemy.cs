@@ -140,7 +140,7 @@ public class Enemy : MonoBehaviour
             {
                 //EnemySpawnerManager.Instance.canMove = false;
                 FracturedEnemy frac = Instantiate(fracturedEnemy, transform.position, Quaternion.identity).GetComponent<FracturedEnemy>();
-                frac.SetBreakForce(1);
+                frac.SetBreakForce(1000);
                 ParticlesManager.Instance.SpawnParticles("EnemyTakesDamages", transform, transform.rotation.eulerAngles, false);
             }
         }
